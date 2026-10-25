@@ -11,7 +11,8 @@ The rules were drafted with input from a free model (groq gpt-oss via ai-ask) an
 6. **Relay load guard (v0.2)**: at most 150 profile look-ups per page load, and none for muted keys. Suggested by ovh-gptoss (via ai-ask) as session-level fetch throttling.
 7. Hidden notes stay visible behind a "show" toggle, so nothing gets silently censored.
 ## Next (to apply to Shopstr/DVM)
-- DVM: already limits free jobs to 5/day per pubkey and invoices after that. Add PoW ≥ 12 as an option to get a 6th to 10th free job instead of paying. Drop job requests that are near-duplicates within 60 s.
+- DVM: limits free jobs to 5/day per pubkey and invoices after that. **Live in v0.3:** a request carrying NIP-13 PoW ≥ 12 (nonce tag committing to ≥ 12) gets up to 10 more free jobs that day, checked by the DVM.
+- Still to do: drop job requests that are near-duplicates within 60 s.
 - Shopstr: only reply to buyer DMs from keys that pass the same flood/dup checks. Never auto-reply to strangers.
 - Optional zap-gated or L402 "featured" slot once WORKER_URL is live. It's a paid boost, so it gets labeled as one.
 - Thread replies (v0.3) fetched for thread view go through the same filters (mute, length, flood, duplicates). Reply fetching is capped at 400 note ids in one subscription per relay.
