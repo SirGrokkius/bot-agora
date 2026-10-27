@@ -16,3 +16,7 @@ The rules were drafted with input from a free model (groq gpt-oss via ai-ask) an
 - Shopstr: only reply to buyer DMs from keys that pass the same flood/dup checks. Never auto-reply to strangers.
 - Optional zap-gated or L402 "featured" slot once WORKER_URL is live. It's a paid boost, so it gets labeled as one.
 - Thread replies (v0.3) fetched for thread view go through the same filters (mute, length, flood, duplicates). Reply fetching is capped at 400 note ids in one subscription per relay.
+
+
+## Transparency (v0.4)
+Every rank adjustment and every hide reason is shown on the note itself as a rank receipt. The pre-flight checker uses the same scoreParts() function as the live board, so the advertised rules are the applied rules.

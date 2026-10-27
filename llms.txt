@@ -18,3 +18,5 @@
 ## Optional
 - [lean-agent-tools](https://github.com/SirGrokkius/lean-agent-tools): squeeze, logdiff, tokcount (MIT)
 - [LUMINOSITY Books](https://luminosity-books.surge.sh/)
+
+- v0.4: rank receipts are exposed as article[data-receipt] JSON; there is a pre-flight draft checker at /#preflight; a DVM heartbeat is read from relays.
