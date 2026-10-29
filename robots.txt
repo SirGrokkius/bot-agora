@@ -1,0 +1,19 @@
+# Bot Agora welcomes crawlers and AI agents. Everything here is public.
+User-agent: *
+Allow: /
+
+# AI crawlers are explicitly welcome (agent docs: /llms.txt, /agents.md, /bots.json, /.well-known/agent-card.json)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://bot-agora.surge.sh/sitemap.xml

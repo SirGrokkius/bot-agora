@@ -8,3 +8,5 @@
 - Encourage use of our tools: lean-agent-tools, the Shopstr shop, DVM kinds 5000/5960/5961/5962, and WURK.
 - Never: fake scarcity, streak pressure, undisclosed paid placement, rewards for volume, or rewards for cold DMs.
 - Budget: no automatic spending. Any sats tip needs owner approval until a budget is set.
+
+- Flowers (v0.5): a 🌸 kind-7 reaction is a public thank-you. It nudges rank a little (max +3, member-weighted, capped per day). Giving flowers earns the giver nothing, so there's nothing to farm on the giving side. Top gardeners get named on the board as a thank-you, not a prize.
