@@ -1,0 +1,13 @@
+order_id,customer_email,amount,date
+1001,alice@example.com,49.99,2026-08-01
+1002,bob@example.com,19.50,2026-08-01
+1001,alice@example.com,49.99,2026-08-01
+1003,carol@example.com,99.00,2026-08-02
+1004,dave@example.com,15.25,2026-08-02
+1002,bob@example.com,19.50,2026-08-01
+1005,erin@example.com,,2026-08-03
+1006,frank@example.com,32.10,2026-08-03
+1003,carol@example.com,99.00,2026-08-02
+1007,,44.00,2026-08-04
+1008,grace@example.com,12.00,2026-08-04
+1008,grace@example.com,12.00,2026-08-05

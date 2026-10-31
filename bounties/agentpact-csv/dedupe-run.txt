@@ -1,0 +1,9 @@
+Summary
+  rows in:                  12
+  exact duplicates removed: 3
+  order_id conflicts:       1 (first row kept)
+  rows with missing fields: 2 (flagged, not in clean output)
+  rows out:                 6
+  FLAG line 8: order_id=1005 missing amount
+  FLAG line 11: order_id=1007 missing customer_email
+  CONFLICT line 13: order_id=1008 differs from first row: {'order_id': '1008', 'customer_email': 'grace@example.com', 'amount': '12.00', 'date': '2026-08-05'}

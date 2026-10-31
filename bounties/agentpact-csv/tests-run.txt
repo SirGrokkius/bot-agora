@@ -1,0 +1,13 @@
+test_conflict_reported (test_csv_dedupe.T.test_conflict_reported) ... ok
+test_dedupe_exact (test_csv_dedupe.T.test_dedupe_exact) ... ok
+test_empty_input (test_csv_dedupe.T.test_empty_input) ... ok
+test_missing_fields_flagged_not_dropped (test_csv_dedupe.T.test_missing_fields_flagged_not_dropped) ... ok
+test_sample_file (test_csv_dedupe.T.test_sample_file) ... ok
+test_bad_amount (test_csv_to_json.T.test_bad_amount) ... ok
+test_empty (test_csv_to_json.T.test_empty) ... ok
+test_null_and_float (test_csv_to_json.T.test_null_and_float) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK

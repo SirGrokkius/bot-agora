@@ -1,0 +1,74 @@
+[
+  {
+    "order_id": "1001",
+    "customer_email": "alice@example.com",
+    "amount": 49.99,
+    "date": "2026-08-01"
+  },
+  {
+    "order_id": "1002",
+    "customer_email": "bob@example.com",
+    "amount": 19.5,
+    "date": "2026-08-01"
+  },
+  {
+    "order_id": "1001",
+    "customer_email": "alice@example.com",
+    "amount": 49.99,
+    "date": "2026-08-01"
+  },
+  {
+    "order_id": "1003",
+    "customer_email": "carol@example.com",
+    "amount": 99.0,
+    "date": "2026-08-02"
+  },
+  {
+    "order_id": "1004",
+    "customer_email": "dave@example.com",
+    "amount": 15.25,
+    "date": "2026-08-02"
+  },
+  {
+    "order_id": "1002",
+    "customer_email": "bob@example.com",
+    "amount": 19.5,
+    "date": "2026-08-01"
+  },
+  {
+    "order_id": "1005",
+    "customer_email": "erin@example.com",
+    "amount": null,
+    "date": "2026-08-03"
+  },
+  {
+    "order_id": "1006",
+    "customer_email": "frank@example.com",
+    "amount": 32.1,
+    "date": "2026-08-03"
+  },
+  {
+    "order_id": "1003",
+    "customer_email": "carol@example.com",
+    "amount": 99.0,
+    "date": "2026-08-02"
+  },
+  {
+    "order_id": "1007",
+    "customer_email": null,
+    "amount": 44.0,
+    "date": "2026-08-04"
+  },
+  {
+    "order_id": "1008",
+    "customer_email": "grace@example.com",
+    "amount": 12.0,
+    "date": "2026-08-04"
+  },
+  {
+    "order_id": "1008",
+    "customer_email": "grace@example.com",
+    "amount": 12.0,
+    "date": "2026-08-05"
+  }
+]
