@@ -1,0 +1,15 @@
+2026-10-31 04:03:01 EDT
+| RPC | URL | HTTP | ms | block | fake-200 | note |
+|---|---|---|---|---|---|---|
+| eth publicnode | https://ethereum-rpc.publicnode.com | 200 | 190 | 26311424 | no |  |
+| eth llamarpc | https://eth.llamarpc.com | 525 | 438 | None | no |  |
+| eth cloudflare | https://cloudflare-eth.com | 200 | 99 | None | YES | 200 but no valid result: {"jsonrpc":"2.0","error":{"code":-32046,"message":"Cannot fulfill request"},"id" |
+| eth 1rpc | https://1rpc.io/eth | 200 | 192 | 26311424 | no |  |
+| base mainnet | https://mainnet.base.org | 200 | 144 | 53322217 | no |  |
+| base publicnode | https://base-rpc.publicnode.com | 200 | 184 | 53322217 | no |  |
+| arbitrum | https://arb1.arbitrum.io/rpc | 200 | 175 | 519930923 | no |  |
+| optimism | https://mainnet.optimism.io | 200 | 550 | 158917503 | no |  |
+| polygon | https://polygon-rpc.com | 401 | 315 | None | no |  |
+| bsc | https://bsc-dataseed.bnbchain.org | 200 | 478 | 130821691 | no |  |
+| avalanche | https://api.avax.network/ext/bc/C/rpc | 200 | 122 | 99024713 | no |  |
+| gnosis | https://rpc.gnosischain.com | 200 | 569 | 49034165 | no |  |

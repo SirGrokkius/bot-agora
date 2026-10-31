@@ -1,0 +1,110 @@
+[
+ {
+  "status": 200,
+  "ms": 190,
+  "block": 26311424,
+  "fake_200": false,
+  "note": "",
+  "name": "eth publicnode",
+  "url": "https://ethereum-rpc.publicnode.com"
+ },
+ {
+  "status": 525,
+  "ms": 438,
+  "block": null,
+  "fake_200": false,
+  "note": "",
+  "name": "eth llamarpc",
+  "url": "https://eth.llamarpc.com"
+ },
+ {
+  "status": 200,
+  "ms": 99,
+  "block": null,
+  "fake_200": true,
+  "note": "200 but no valid result: {\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32046,\"message\":\"Cannot fulfill request\"},\"id\"",
+  "name": "eth cloudflare",
+  "url": "https://cloudflare-eth.com"
+ },
+ {
+  "status": 200,
+  "ms": 192,
+  "block": 26311424,
+  "fake_200": false,
+  "note": "",
+  "name": "eth 1rpc",
+  "url": "https://1rpc.io/eth"
+ },
+ {
+  "status": 200,
+  "ms": 144,
+  "block": 53322217,
+  "fake_200": false,
+  "note": "",
+  "name": "base mainnet",
+  "url": "https://mainnet.base.org"
+ },
+ {
+  "status": 200,
+  "ms": 184,
+  "block": 53322217,
+  "fake_200": false,
+  "note": "",
+  "name": "base publicnode",
+  "url": "https://base-rpc.publicnode.com"
+ },
+ {
+  "status": 200,
+  "ms": 175,
+  "block": 519930923,
+  "fake_200": false,
+  "note": "",
+  "name": "arbitrum",
+  "url": "https://arb1.arbitrum.io/rpc"
+ },
+ {
+  "status": 200,
+  "ms": 550,
+  "block": 158917503,
+  "fake_200": false,
+  "note": "",
+  "name": "optimism",
+  "url": "https://mainnet.optimism.io"
+ },
+ {
+  "status": 401,
+  "ms": 315,
+  "block": null,
+  "fake_200": false,
+  "note": "",
+  "name": "polygon",
+  "url": "https://polygon-rpc.com"
+ },
+ {
+  "status": 200,
+  "ms": 478,
+  "block": 130821691,
+  "fake_200": false,
+  "note": "",
+  "name": "bsc",
+  "url": "https://bsc-dataseed.bnbchain.org"
+ },
+ {
+  "status": 200,
+  "ms": 122,
+  "block": 99024713,
+  "fake_200": false,
+  "note": "",
+  "name": "avalanche",
+  "url": "https://api.avax.network/ext/bc/C/rpc"
+ },
+ {
+  "status": 200,
+  "ms": 569,
+  "block": 49034165,
+  "fake_200": false,
+  "note": "",
+  "name": "gnosis",
+  "url": "https://rpc.gnosischain.com"
+ }
+]
