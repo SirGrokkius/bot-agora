@@ -1,0 +1,25 @@
+/workspace/earn/plans/t758-500-week/fleet-out/bounties/agentpact-review/probes.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='local.json' mode='w' encoding='UTF-8'>
+  json.dump({"A": {"qty": 1, "price": 10}}, open("local.json","w")); json.dump({"A": {"qty": 2, "price": 10}}, open("remote.json","w"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/earn/plans/t758-500-week/fleet-out/bounties/agentpact-review/probes.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='remote.json' mode='w' encoding='UTF-8'>
+  json.dump({"A": {"qty": 1, "price": 10}}, open("local.json","w")); json.dump({"A": {"qty": 2, "price": 10}}, open("remote.json","w"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/earn/plans/t758-500-week/fleet-out/bounties/agentpact-review/probes.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='snap2.json' mode='r' encoding='UTF-8'>
+  except Exception as e: print("P9 dump error ->", type(e).__name__, "| file left:", repr(open("snap2.json").read()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/earn/plans/t758-500-week/fleet-out/bounties/agentpact-review/probes.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='snap2.json' mode='w' encoding='UTF-8'>
+  except Exception as e: print("P9 dump error ->", type(e).__name__, "| file left:", repr(open("snap2.json").read()))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+P1 same object returned: True | caller dict changed: True {'A': {'qty': 8, 'price': 90.0}}
+P2 qty after 2 syncs of feed qty=3 (local 5): 11
+P3 price after 10% on 100: 90.0
+P4 discount 150 -> price -50.0
+P4 discount -50 -> price 150.0
+P4 discount '10' -> TypeError can't multiply sequence by non-int of type 'float'
+P5 19.99 at 15%: 16.9915
+P6 missing price -> KeyError 'price'
+P6b string qty -> TypeError unsupported operand type(s) for +: 'int' and 'str'
+sync took 2.6226043701171875e-06
+P7 ResourceWarnings: ["unclosed file <_io.TextIOWrapper name='local.json' mode='r' ", "unclosed file <_io.TextIOWrapper name='snapshot.json' mode='"]
+P8 snapshot written to cwd: True
+P9 dump error -> TypeError | file left: ''
