@@ -1,0 +1,17 @@
+import http.server, sys, json
+state = {"n": 0, "keys": {}}
+FAILS = int(sys.argv[2]) if len(sys.argv) > 2 else 2
+class H(http.server.BaseHTTPRequestHandler):
+    def log_message(self, *a): pass
+    def _go(self):
+        state["n"] += 1
+        if self.path == "/always404":
+            self.send_response(404); self.end_headers(); return
+        key = self.headers.get("Idempotency-Key")
+        if state["n"] <= FAILS:
+            self.send_response(503); self.end_headers(); return
+        if key: state["keys"][key] = state["keys"].get(key, 0) + 1
+        self.send_response(200); self.end_headers()
+        self.wfile.write(json.dumps({"hits": state["n"], "applied": state["keys"]}).encode())
+    do_GET = do_POST = _go
+http.server.HTTPServer(("127.0.0.1", int(sys.argv[1])), H).serve_forever()

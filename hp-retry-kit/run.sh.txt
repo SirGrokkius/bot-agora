@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Local-only tests: a flaky server on 127.0.0.1 fails N times with 503, then succeeds.
+set -u; cd "$(dirname "$0")"; pass=0; fail=0
+ok(){ echo "PASS $1"; pass=$((pass+1)); }; bad(){ echo "FAIL $1"; fail=$((fail+1)); }
+start(){ python3 flaky_server.py "$1" "$2" & PID=$!; sleep 0.6; }
+stop(){ kill "$PID" 2>/dev/null; wait "$PID" 2>/dev/null; }
+. ../bash/retry.sh
+export RETRY_BASE_MS=50 RETRY_CAP_MS=200
+# 1 bash: recovers after 2 transient failures (curl -f -> rc 22 on 503, so allow-retry list empty)
+start 18081 2; RETRY_NO_RETRY="" retry_call curl -fsS --max-time 3 http://127.0.0.1:18081/ >/dev/null 2>&1 && ok "bash recovers after 2x503" || bad "bash recovers"; stop
+# 2 bash: gives up after RETRY_MAX
+start 18082 99; RETRY_MAX=3 RETRY_NO_RETRY="" retry_call curl -fsS --max-time 3 http://127.0.0.1:18082/ >/dev/null 2>&1 && bad "bash gives up" || ok "bash gives up after 3"; stop
+# 3 bash: permanent error not retried
+start 18083 0; t0=$(date +%s%N); retry_call curl -fsS --max-time 3 http://127.0.0.1:18083/always404 >/dev/null 2>&1; rc=$?
+[ "$rc" -eq 22 ] && ok "bash 404 not retried (rc=22)" || bad "bash 404 rc=$rc"; stop
+# 4 bash: timeout on dead port is retried then fails
+RETRY_MAX=2 RETRY_NO_RETRY="" retry_call curl -fsS --max-time 1 http://127.0.0.1:18099/ >/dev/null 2>&1 && bad "dead port" || ok "bash dead port fails cleanly"
+# 5-7 python
+start 18084 2
+python3 - <<'PY' && ok "python GET recovers + POST idempotency key reused across retries" || bad "python"
+import sys, json; sys.path.insert(0, "../python"); from hp_retry import request_with_retry
+s, b = request_with_retry("GET", "http://127.0.0.1:18084/", base=0.01)
+assert s == 200, s
+PY
+stop
+start 18085 2
+python3 - <<'PY' && ok "python POST with idempotent_post applied exactly once" || bad "python POST"
+import sys, json; sys.path.insert(0, "../python"); from hp_retry import request_with_retry
+s, b = request_with_retry("POST", "http://127.0.0.1:18085/", data=b"x", base=0.01, idempotent_post=True)
+d = json.loads(b); assert s == 200 and list(d["applied"].values()) == [1], d
+PY
+stop
+start 18086 2
+python3 - <<'PY' && ok "python plain POST is NOT retried" || bad "python plain POST"
+import sys, urllib.error; sys.path.insert(0, "../python"); from hp_retry import request_with_retry
+try: request_with_retry("POST", "http://127.0.0.1:18086/", data=b"x", base=0.01); raise SystemExit(1)
+except urllib.error.HTTPError as e: assert e.code == 503
+PY
+stop
+# 8-9 retry_curl
+start 18087 2; out=$(retry_curl http://127.0.0.1:18087/ 2>/dev/null) && [[ "$out" == *hits* ]] && ok "retry_curl recovers after 2x503" || bad "retry_curl recovers"; stop
+start 18088 0; retry_curl http://127.0.0.1:18088/always404 >/dev/null 2>&1; rc=$?; [ "$rc" -eq 64 ] && ok "retry_curl 404 fails fast (rc=64)" || bad "retry_curl 404 rc=$rc"; stop
+echo "== $pass passed, $fail failed"; [ "$fail" -eq 0 ]

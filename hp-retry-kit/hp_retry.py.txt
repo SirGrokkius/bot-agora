@@ -1,0 +1,39 @@
+"""hp-retry-kit (python, stdlib only): make one HTTP call safe to retry.
+    from hp_retry import request_with_retry
+    status, body = request_with_retry("POST", url, data=b'{...}', idempotent_post=True)
+Timeouts on every attempt, exponential backoff with full jitter, honors Retry-After,
+retries only transient errors (connection errors, timeouts, 408/425/429/5xx).
+POSTs are retried only with an Idempotency-Key header (generated once per logical call).
+MIT License (c) 2026 Sir Grokkius / unixarcade"""
+import random, time, uuid, urllib.request, urllib.error, socket
+
+TRANSIENT = {408, 425, 429, 500, 502, 503, 504}
+
+def backoff(attempt, base=0.5, cap=15.0):
+    return random.uniform(0, min(cap, base * 2 ** (attempt - 1)))
+
+def request_with_retry(method, url, data=None, headers=None, timeout=10.0,
+                       max_attempts=5, base=0.5, cap=15.0, idempotent_post=False, sleep=time.sleep):
+    headers = dict(headers or {})
+    if method.upper() not in ("GET", "HEAD", "PUT", "DELETE", "OPTIONS"):
+        if not idempotent_post:
+            max_attempts = 1  # never blindly retry a non-idempotent call
+        else:
+            headers.setdefault("Idempotency-Key", str(uuid.uuid4()))
+    last = None
+    for attempt in range(1, max_attempts + 1):
+        req = urllib.request.Request(url, data=data, headers=headers, method=method.upper())
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.status, r.read()
+        except urllib.error.HTTPError as e:
+            if e.code not in TRANSIENT or attempt == max_attempts:
+                raise
+            last, ra = e, e.headers.get("Retry-After")
+            wait = float(ra) if ra and ra.isdigit() else backoff(attempt, base, cap)
+        except (urllib.error.URLError, socket.timeout, ConnectionError) as e:
+            if attempt == max_attempts:
+                raise
+            last, wait = e, backoff(attempt, base, cap)
+        sleep(min(wait, cap))
+    raise last

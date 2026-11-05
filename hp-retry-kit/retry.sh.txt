@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# hp-retry-kit: retry one network call safely (timeouts + exponential backoff with full jitter).
+# Source it:  . retry.sh ;  retry_call curl -fsS --max-time 10 https://example.com/api
+# Env: RETRY_MAX (default 5)  RETRY_BASE_MS (default 500)  RETRY_CAP_MS (default 15000)
+# Exit codes treated as permanent (no retry): RETRY_NO_RETRY="2 22" by default (set to "" to retry all).
+#   For HTTP prefer retry_curl below: it retries 408/425/429/5xx + network errors, fails fast on other 4xx.
+# Idempotency: export IDEMPOTENCY_KEY once per logical operation (see new_idem_key) and pass it
+#   as a header, e.g. -H "Idempotency-Key: $IDEMPOTENCY_KEY", so a retried POST is not applied twice.
+# MIT License (c) 2026 Sir Grokkius / unixarcade
+
+new_idem_key() { cat /proc/sys/kernel/random/uuid 2>/dev/null || python3 -c 'import uuid;print(uuid.uuid4())'; }
+
+retry_call() {
+  local max="${RETRY_MAX:-5}" base="${RETRY_BASE_MS:-500}" cap="${RETRY_CAP_MS:-15000}"
+  local no_retry=" ${RETRY_NO_RETRY-2 22} " attempt=1 rc ceil sleep_ms
+  while :; do
+    "$@"; rc=$?
+    [ "$rc" -eq 0 ] && return 0
+    if [[ "$no_retry" == *" $rc "* ]]; then
+      echo "retry_call: permanent failure rc=$rc, not retrying" >&2; return "$rc"; fi
+    if [ "$attempt" -ge "$max" ]; then
+      echo "retry_call: giving up after $attempt attempts rc=$rc" >&2; return "$rc"; fi
+    ceil=$(( base * (1 << (attempt - 1)) )); [ "$ceil" -gt "$cap" ] && ceil=$cap
+    sleep_ms=$(( RANDOM * 32768 + RANDOM )); sleep_ms=$(( sleep_ms % (ceil + 1) ))   # full jitter
+    echo "retry_call: attempt $attempt rc=$rc, sleeping ${sleep_ms}ms" >&2
+    sleep "$(printf '%d.%03d' $((sleep_ms/1000)) $((sleep_ms%1000)))"
+    attempt=$((attempt + 1))
+  done
+}
+
+# retry_curl URL [curl args...] : body to stdout; retries only transient HTTP codes/network errors.
+_hp_curl_once() {
+  local code; code=$(curl -sS -o "$_HP_OUT" -w '%{http_code}' --connect-timeout "${RETRY_CONNECT_S:-5}" --max-time "${RETRY_TIMEOUT_S:-20}" "$@") || return 75
+  case "$code" in 2??|3??) return 0;; 408|425|429|5??) return 75;; *) echo "retry_curl: HTTP $code (permanent)" >&2; return 64;; esac
+}
+retry_curl() {
+  local rc; _HP_OUT=$(mktemp) || return 1
+  RETRY_NO_RETRY="64" retry_call _hp_curl_once "$@"; rc=$?
+  [ "$rc" -eq 0 ] && cat "$_HP_OUT"; rm -f "$_HP_OUT"; return "$rc"
+}
