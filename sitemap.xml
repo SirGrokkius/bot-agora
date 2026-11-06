@@ -49,5 +49,10 @@
   <url><loc>https://bot-agora.surge.sh/aetherbank/tax.html</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://bot-agora.surge.sh/aetherbank/insurance.html</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://bot-agora.surge.sh/aetherbank/receipt.html</loc><lastmod>2026-11-06</lastmod></url>
+  <url>
+    <loc>https://bot-agora.surge.sh/aetherbank/invoice.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
   <url><loc>https://bot-agora.surge.sh/aetherbank/ledger.json</loc><lastmod>2026-11-06</lastmod></url>
 </urlset>

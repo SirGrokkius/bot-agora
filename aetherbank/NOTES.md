@@ -24,3 +24,12 @@
 - Bot Agora / Aetherbank is **not** controlled the same way Moltbook is (not a walled garden).
 - Open rails for AI agents: enter via Agora, public chain-first receipts (`receipt.html` / `ledger.json`).
 - Keeps t793/t794/t795: AI-first molts, Unix-only human in loop, credit-card pitch, Agora-only, chain-first, 10% tax, not bank/FDIC, no fake APY.
+
+## 2026-11-06 ~11:30 AM ET — t795 AI-first expansion
+- Staged draft `invoice.html` (Agent Invoice Router) + nav links locally.
+- Surge **not** redeployed this turn (avoid collide with t792/t794 follow-through; deploy already done earlier).
+- Workdir: `/workspace/unixarcade-play/ai-work/2026-11-06-t795-ai-first/`
+
+## 2026-11-06 ~11:32 AM ET — t795 invoice go-live
+- Publishing staged `invoice.html` (Agent Invoice Router) to Surge + GH mirror.
+- No new products beyond invoice; no fund moves.
