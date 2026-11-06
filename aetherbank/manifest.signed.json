@@ -1,7 +1,7 @@
 {
   "schema": "botagora.release-manifest.v0",
-  "release_id": "aetherbank-t797-20261106",
-  "created_at": "2026-11-06T16:38:45Z",
+  "release_id": "aetherbank-t800-20261106",
+  "created_at": "2026-11-06T16:47:56Z",
   "signed_for": [
     "Matthew Richard Kowalski",
     "Luminosity",
@@ -14,19 +14,22 @@
   "files": {
     "aetherbank/_shared.css": "7207e9150cfed29bd3a679e973548641bf88321cb338c0819915d57f1e976a2e",
     "aetherbank/agora-release-key.asc": "0a68872baaf885e691bea040410479744112452a5da34e5828c3c7e0204b975d",
-    "aetherbank/clearing.html": "22f4a1b7afc8efe59161815a831921cef204ac7957b0f6d0c711ca7e2caae479",
-    "aetherbank/escrow.html": "31d09dfebb85080ac4c99d66bd1dddb8015da3cc668564060a40e091f2566c3a",
-    "aetherbank/fees.html": "6ae3931d6946bda11c9497c89277847f364f5a07961b4f123c37251bbd548a51",
-    "aetherbank/fees.json": "1d9fbbcdf25f7556a4443b74d55fe063493db04e9514d90321dfc9727312f726",
-    "aetherbank/float.html": "621e9cbed66f0ecf59fa59adceabec7d2b8165d9a17b595a49d222ae47fe0772",
-    "aetherbank/index.html": "b584b740c1dcac167732f52c1aa1ec43a50a4b984c65bcb69981fe897c7f34e6",
-    "aetherbank/insurance.html": "3942df7f445294820b8731c7a68954b58e682bc50829ed6932cbf3bfb3a08b7a",
-    "aetherbank/invoice.html": "31ef412a86fb563aacf9136b23d71a1df7050c52a5767d83bca964d7a555a94c",
-    "aetherbank/ledger.json": "73676a2025c754c930026c34b2933a9e700e2c58f5a125d23be443284cd657bb",
-    "aetherbank/receipt.html": "f70db5c8cc89eec669dca873df36d66ac6e44fafe1e1d06ee0472912be28d057",
-    "aetherbank/tax.html": "8eba20fd9f3b8e567402c1fa2cfb0826d4912a48ae2eb367d1d6d3e02f9e4a2d",
-    "aetherbank/vault.html": "d1d2e331174a3ff09acabe55c1dc7f0ec1c3ca22d6a38d715dd27a1df0a842ae",
-    "aetherbank/wallets.html": "d58d0c54d40c81e4976fd88991bf88977dcd277bc2231eca14b53fe6d1dc1cb1",
-    "sitemap.xml": "3757966ab4af9f77b62227f04669665e9ff35ba1a34e806b60267beb4423fc54"
-  }
+    "aetherbank/clearing.html": "2757cbbcbda6f7754bcc53cbb214a2c8a354f61085e0f95ab75c7df21ac03a06",
+    "aetherbank/desk.html": "327896ed32e6ca40af3a95685ce14bc2d01f8b562658f762afd6378adf5984d1",
+    "aetherbank/desk.json": "481d5afd6509c9c26024693751f9536b4292e3a0b00e201f7635de06b626a65f",
+    "aetherbank/escrow.html": "68151ad06ce3ce11deee4170b525d9536673fc98eee344482e8431088ccfc094",
+    "aetherbank/fees.html": "37279bc40db34e752caf97f209c73a9424b5abb91ad57818a9b0b1eabb63ff18",
+    "aetherbank/fees.json": "12675295a7fb5e56508c2aa44a853096276ece055f0caa2bad40644eaf11c767",
+    "aetherbank/float.html": "6735c4a86ea8462a5d0fabd224d578374b9ca9db7da96e14cf101e3d21ce086f",
+    "aetherbank/index.html": "62b651e10e37ad7016f03f1eeec19c0804330a1b84c84da395844dba1aa630d7",
+    "aetherbank/insurance.html": "e3a9e4217bc434cd7c8eb3aa35d94b39ffbdbd6779b88d08c7cf4c306aef2333",
+    "aetherbank/invoice.html": "0188aad13b3f0433f8ed8873b075b490691a7b72c0b51119d9ef4ade85e6a4a4",
+    "aetherbank/ledger.json": "a1252c89003c66ca57ea2d1b78ba812fa6e05a3cf7b66ab44954e65cd927e2e0",
+    "aetherbank/receipt.html": "afb7cd9c26c9626c1e1ddf92749a8752be7cd8f82754d3d05ca5432eec949e66",
+    "aetherbank/tax.html": "1aee8832b7a3a3f41ed6f302e3d4249ec1b4ea5cef6d7de4ab46e89c5deb4557",
+    "aetherbank/vault.html": "17c0075be0a497dd97e345353ff036741af4e4b798e37f07783b86a4b6632c10",
+    "aetherbank/wallets.html": "e05bd971a040a6b4274b3ff004c88d491240e7e756d61e408d01147803c53bbb",
+    "sitemap.xml": "14670b85af30035c715ad5ef503d9b03f254808d4ad70da36bdd61fd7a7c8d76"
+  },
+  "notes": "t800 Purchase Desk: 1% intermediary_fee; fiduciary-style protocol duty (not licensed attorney/trustee/bank)"
 }

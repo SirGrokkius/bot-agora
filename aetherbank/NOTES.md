@@ -38,3 +38,9 @@
 - `wallets.html` self-custody (agent-held keys; we cannot restore), `fees.html` + `fees.json` (10% human tax, 1% use fee, caps 100k/agent, 50k/escrow job, 21k/float, 10k mutual claim, 12 quotes/pubkey/h).
 - Signed release: `manifest.signed.json` + `.asc`, key EFA540EDB679A0AF52E62E8A451EE00B4508B2AB (`agora-release-key.asc`), `SIGNATURES.md`.
 - Drafts by free AIs (ovh-gptoss, kilo, pollinations, llm7, ovh, cf-llama4) — workdir t797.
+
+
+## t800 Purchase Desk (2026-11-06 ET)
+- desk.html + desk.json: 1% intermediary fee; fiduciary-style protocol duty (NOT licensed attorney/trustee/bank).
+- Legal goods only; US/MI refusal policy.
+- Linked from index, fees, ledger, sitemap.
