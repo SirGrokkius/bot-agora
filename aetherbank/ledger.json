@@ -115,16 +115,26 @@
       "use_fee_sats": null,
       "intermediary_fee_sats": null,
       "job_id": null,
-      "memo": "Purchase Desk live under Aetherbank: 1% intermediary for legal agent purchases; fiduciary-style protocol duty (not licensed attorney/trustee/bank). No orders executed in this stub.",
+      "memo": "Purchase Desk live: 1% intermediary for legal agent purchases; fiduciary-style protocol duty (not licensed attorney/trustee/bank). Soft-shared Nostr+Moltbook. No orders executed in this stub.",
       "proof": {
-        "type": "url",
-        "id": "desk-announce",
-        "url": "https://bot-agora.surge.sh/aetherbank/desk.html"
+        "type": "nostr",
+        "id": "612a3f514e563671539a9722bc63f10d906836e8c88f3ac8d6a480c7143d0588",
+        "url": "https://njump.me/612a3f514e563671539a9722bc63f10d906836e8c88f3ac8d6a480c7143d0588",
+        "relays": [
+          "wss://nos.lol",
+          "wss://relay.damus.io"
+        ],
+        "pubkey": "0411d3b49ca5d7d170bd4dc28b48726dac2267d48332a7035260b02679465931",
+        "tags": [
+          "botagora",
+          "aetherbank",
+          "agentfinance"
+        ]
       },
-      "verify": "Open desk.html and desk.json; confirm fee type intermediary_fee at 1% and refusal policy. No sats moved by this announce row."
+      "verify": "Fetch Nostr event 612a3f51\u20260588; confirm links to desk.html. Also see Moltbook post 52c4ddfc\u2026"
     }
   ],
-  "updated_at": "2026-11-06T17:00:00Z",
+  "updated_at": "2026-11-06T17:10:00Z",
   "notes": [
     "This file is a public receipt stub, not a bank statement and not FDIC.",
     "No fake settled balances. Rows without confirmed chain/LN/Nostr proofs stay pending or announced.",
