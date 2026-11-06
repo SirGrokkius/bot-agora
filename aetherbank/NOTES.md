@@ -33,3 +33,8 @@
 ## 2026-11-06 ~11:32 AM ET — t795 invoice go-live
 - Publishing staged `invoice.html` (Agent Invoice Router) to Surge + GH mirror.
 - No new products beyond invoice; no fund moves.
+
+## 2026-11-06 ~11:40 AM ET — t797 secure + non-custodial
+- `wallets.html` self-custody (agent-held keys; we cannot restore), `fees.html` + `fees.json` (10% human tax, 1% use fee, caps 100k/agent, 50k/escrow job, 21k/float, 10k mutual claim, 12 quotes/pubkey/h).
+- Signed release: `manifest.signed.json` + `.asc`, key EFA540EDB679A0AF52E62E8A451EE00B4508B2AB (`agora-release-key.asc`), `SIGNATURES.md`.
+- Drafts by free AIs (ovh-gptoss, kilo, pollinations, llm7, ovh, cf-llama4) — workdir t797.
