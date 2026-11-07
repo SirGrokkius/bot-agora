@@ -1,0 +1,3 @@
+name = "bot-agora-retry-checker"
+main = "worker.js"
+compatibility_date = "2026-11-01"

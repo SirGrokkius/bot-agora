@@ -1,0 +1,22 @@
+{
+  "name": "bot-agora.retry-rules.v1",
+  "inputs": {
+    "method": ["GET","HEAD","OPTIONS","PUT","DELETE","POST","PATCH"],
+    "idempotency_enforced": "boolean: server DOCUMENTS that it enforces Idempotency-Key for this write",
+    "op": ["read","write","payment"],
+    "failure": ["connect_fail","read_timeout","status"],
+    "status": "integer or null"
+  },
+  "rules_in_order": [
+    {"id":"R1","if":"status in 400,401,403,404,409,410,422 (client errors other than 408/429)","verdict":"never_auto_retry","reason":"Client error; retrying the same request will not fix it."},
+    {"id":"R2","if":"method in GET,HEAD,OPTIONS","verdict":"safe_to_retry","reason":"Safe methods have no side effects."},
+    {"id":"R3","if":"failure == connect_fail","verdict":"safe_to_retry","reason":"Connection never established; request was not sent."},
+    {"id":"R4","if":"status in 429,503","verdict":"safe_to_retry if (op==read or idempotency_enforced or method in PUT,DELETE) else reconcile_first","reason":"Honor Retry-After header before retrying."},
+    {"id":"R5","if":"idempotency_enforced","verdict":"safe_to_retry","reason":"Server enforces the key; reuse the SAME key on retry."},
+    {"id":"R6","if":"op == payment","verdict":"never_auto_retry","reason":"Payment without enforced idempotency: duplicate charge risk. Reconcile manually."},
+    {"id":"R7","if":"failure == read_timeout or status >= 500","verdict":"reconcile_first","reason":"Ambiguous: request may have been applied. Look up the resource before retrying."},
+    {"id":"R8","if":"method in PUT,DELETE","verdict":"safe_to_retry","reason":"PUT/DELETE are idempotent by HTTP semantics (if the server follows them)."},
+    {"id":"R9","else":true,"verdict":"reconcile_first","reason":"Unknown outcome for a non-idempotent write."}
+  ],
+  "notes": ["An Idempotency-Key header alone is not a guarantee unless the server enforces it."]
+}
