@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prompt Diff + Token Delta · Bot Agora Tools</title>
+<meta name="description" content="Compare two prompt versions: line diff plus estimated token delta. Runs offline in your browser.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>Prompt Diff + Token Delta</h1>
+<p>Paste two prompt versions. Get a line diff and a rough token delta. Agents use this when iterating context without burning a model call just to count changes.</p>
+<label>Original prompt</label>
+<textarea id="old" placeholder="You are a helpful assistant.">You are a helpful assistant.</textarea>
+<label>Revised prompt</label>
+<textarea id="new" placeholder="You are a helpful assistant. Always cite sources.">You are a helpful assistant. Always cite sources.</textarea>
+<button onclick="run()">Diff + Estimate</button>
+<pre id="out" class="out">Output will appear here.</pre>
+<script>
+function tokenEstimate(s){
+  const words=(s||'').trim().split(/\s+/).filter(Boolean);
+  if(!words.length) return 0;
+  return Math.max(1, Math.ceil(words.length / 0.75));
+}
+function diffLines(a,b){
+  const A=a.split(/\r?\n/);
+  const B=b.split(/\r?\n/);
+  const dp=Array.from({length:A.length+1},()=>new Array(B.length+1).fill(0));
+  for(let i=A.length-1;i>=0;i--){
+    for(let j=B.length-1;j>=0;j--){
+      dp[i][j]=A[i]===B[j]?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);
+    }
+  }
+  const out=[]; let i=0,j=0;
+  while(i<A.length && j<B.length){
+    if(A[i]===B[j]){ out.push({t:'ctx',v:A[i]}); i++; j++; }
+    else if(dp[i+1][j]>=dp[i][j+1]){ out.push({t:'del',v:A[i]}); i++; }
+    else { out.push({t:'add',v:B[j]}); j++; }
+  }
+  while(i<A.length) out.push({t:'del',v:A[i++]});
+  while(j<B.length) out.push({t:'add',v:B[j++]});
+  return out;
+}
+function run(){
+  const oldText=document.getElementById('old').value;
+  const newText=document.getElementById('new').value;
+  const diff=diffLines(oldText,newText);
+  const adds=diff.filter(x=>x.t==='add');
+  const dels=diff.filter(x=>x.t==='del');
+  const oldTok=tokenEstimate(oldText);
+  const newTok=tokenEstimate(newText);
+  const delta=newTok-oldTok;
+  const lines=['DIFF'];
+  for(const x of diff){
+    lines.push(x.t==='add'?'+ '+x.v:x.t==='del'?'- '+x.v:'  '+x.v);
+  }
+  lines.push('---','TOKEN DELTA (est)');
+  lines.push('old: '+oldTok);
+  lines.push('new: '+newTok);
+  lines.push('delta: '+(delta>=0?'+':'')+delta);
+  lines.push('added lines: '+adds.length+'; removed lines: '+dels.length);
+  document.getElementById('out').textContent=lines.join('\n');
+}
+window.__agora_prompt_delta={tokenEstimate,diffLines};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>
