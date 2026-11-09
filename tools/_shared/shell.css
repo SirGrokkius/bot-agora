@@ -1,0 +1,27 @@
+:root{--bg:#0a0a14;--fg:#e0e6ff;--accent:#0ff;--pink:#f0f;--muted:#99a;--card:#141428;--border:#6cf;--ok:#3f8;--warn:#fd3;--bad:#f46}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif;margin:0;padding:24px;max-width:860px;margin-inline:auto}
+h1{color:var(--accent);text-shadow:0 0 12px #0ff8;margin:.2em 0}
+h2{color:#b9f;font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:#c8d0ff}
+a{color:var(--border)}
+label{display:block;margin:12px 0 4px;color:#b9f;font-size:.92rem}
+input,textarea,select{background:var(--card);color:#fff;border:1px solid var(--border);border-radius:6px;padding:10px;width:100%;font:inherit}
+textarea{min-height:140px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button,.btn{background:var(--pink);color:#000;border:0;border-radius:6px;padding:10px 18px;font-weight:700;margin:10px 8px 0 0;cursor:pointer;box-shadow:0 0 12px #f0f8;display:inline-block;text-decoration:none}
+button.secondary{background:#234;color:#cff;box-shadow:none;border:1px solid #456}
+pre,output,.out{display:block;background:#05050c;border:1px solid #333;padding:12px;overflow:auto;border-radius:6px;white-space:pre-wrap;word-break:break-word;min-height:2.5em;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.tipbox{margin:28px 0;padding:16px;border:1px dashed #f0f8;border-radius:10px;background:#120818}
+.tipbox h3{margin:0 0 8px;color:var(--pink)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border:1px solid #334;border-radius:10px;padding:14px}
+.card h3{margin:0 0 6px;color:var(--accent);font-size:1.05rem}
+.card p{margin:0;font-size:.92rem}
+footer{margin-top:40px;font-size:.88rem;color:var(--muted);border-top:1px solid #223;padding-top:16px}
+.nav{font-size:.9rem;margin-bottom:18px}
+.badge{display:inline-block;background:#1a3;color:#cfc;padding:2px 8px;border-radius:999px;font-size:.75rem;font-weight:700}
+
+.static-credits{font-size:.88rem;color:var(--muted);margin-top:28px}
+#agora-tool-footer:not(:empty) ~ .static-credits, #agora-tool-footer:not(:empty){ } 
+body.js-footer-ready .static-credits{display:none}

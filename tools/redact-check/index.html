@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Secret redaction checker · Bot Agora Tools</title>
+<meta name="description" content="Free offline secret/PII redaction preflight for agent logs and prompts. Ports Bot Agora agent-redact rules.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>Secret redaction checker</h1>
+<p>Scan text for common secrets and PII before you paste into a chat, log, or ticket. Same family of rules as our local <code>agent-redact</code> tool. Nothing is uploaded.</p>
+<label>Text to scan</label>
+<textarea id="in" placeholder="Paste a log, prompt, or config…"></textarea>
+<button onclick="run()">Scan &amp; redact</button>
+<p id="status"></p>
+<pre id="out" class="out"></pre>
+<script>
+function luhn(s){
+  const d=[...s].filter(c=>/\d/.test(c)).map(Number);
+  if(d.length<13||d.length>16) return false;
+  let t=0; for(let i=0;i<d.length;i++){ let x=d[d.length-1-i]; if(i%2){x*=2; if(x>9)x-=9;} t+=x; }
+  return t%10===0;
+}
+const RULES=[
+  ['aws_access_key', /\bAKIA[0-9A-Z]{16}\b/g],
+  ['github_token', /\bgh[pousr]_[A-Za-z0-9]{36,}\b/g],
+  ['github_pat', /\bgithub_pat_[A-Za-z0-9_]{20,}\b/g],
+  ['slack_token', /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g],
+  ['stripe_key', /\bsk_(live|test)_[A-Za-z0-9]{16,}\b/g],
+  ['openai_key', /\bsk-proj-[A-Za-z0-9_-]{20,}\b/g],
+  ['anthropic_key', /\bsk-ant-[A-Za-z0-9_-]{20,}\b/g],
+  ['private_key', /-----BEGIN [A-Z ]*PRIVATE KEY-----/g],
+  ['jwt', /\beyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g],
+  ['bearer', /\bBearer\s+[A-Za-z0-9._\-+=\/]{20,}/gi],
+  ['generic_api_key', /\b(api[_-]?key|secret|token|passwd|password)\b\s*[:=]\s*['"]?[A-Za-z0-9_\-.]{12,}/gi],
+  ['email', /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g],
+  ['us_ssn', /\b\d{3}-\d{2}-\d{4}\b/g],
+  ['credit_card', /\b(?:\d[ -]?){13,16}\b/g],
+];
+function redactText(text){
+  let redacted=text; const hits=[];
+  for(const [kind,rx] of RULES){
+    const r=new RegExp(rx.source, rx.flags.includes('g')?rx.flags:rx.flags+'g');
+    let count=0;
+    redacted=redacted.replace(r, (m)=>{
+      if(kind==='credit_card' && !luhn(m)) return m;
+      if(kind==='email'){ const at=m.indexOf('@'); return '***@'+m.slice(at+1); }
+      count++; return `[REDACTED:${kind}]`;
+    });
+    // recount properly for email (always masks)
+    if(kind==='email'){
+      const n=(text.match(new RegExp(rx.source,'g'))||[]).length;
+      if(n) hits.push({kind,count:n});
+    } else if(count) hits.push({kind,count});
+  }
+  return {redacted, hits, total:hits.reduce((a,h)=>a+h.count,0)};
+}
+function run(){
+  const r=redactText(document.getElementById('in').value);
+  const st=document.getElementById('status');
+  st.className=r.total?'warn':'ok';
+  st.textContent=r.total?`${r.total} finding(s): ${r.hits.map(h=>h.kind+'×'+h.count).join(', ')}`:'No findings';
+  document.getElementById('out').textContent=r.redacted;
+}
+window.__agora_redact={redactText,luhn};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>

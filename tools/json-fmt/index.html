@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JSON / YAML-lite formatter · Bot Agora Tools</title>
+<meta name="description" content="Free offline JSON validator and formatter, plus a tiny YAML-lite converter for agent configs.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>JSON / YAML-lite formatter</h1>
+<p>Validate and pretty-print JSON. Or paste simple YAML-lite (key: value, 2-space nests, - lists) and convert to JSON. Runs offline in your browser — nothing is uploaded.</p>
+<label>Mode</label>
+<select id="mode"><option value="json">JSON</option><option value="yaml-lite">YAML-lite → JSON</option></select>
+<label>Input</label>
+<textarea id="in" placeholder='{"hello":"world"}'></textarea>
+<button onclick="run()">Format / validate</button>
+<button class="secondary" onclick="document.getElementById('in').value='';document.getElementById('out').textContent='';document.getElementById('status').textContent=''">Clear</button>
+<p id="status"></p>
+<pre id="out" class="out"></pre>
+<script>
+function parseYamlLite(src){
+  const lines=src.replace(/\t/g,'  ').split(/\r?\n/);
+  const root={}; const stack=[{indent:-1,obj:root,key:null,isArr:false}];
+  function cur(){return stack[stack.length-1];}
+  for(let raw of lines){
+    if(!raw.trim()||raw.trim().startsWith('#')) continue;
+    const indent=raw.match(/^ */)[0].length;
+    let line=raw.trim();
+    while(stack.length>1 && indent<=cur().indent) stack.pop();
+    const parent=cur();
+    if(line.startsWith('- ')){
+      const val=line.slice(2).trim();
+      let arr;
+      if(Array.isArray(parent.obj)){arr=parent.obj;}
+      else if(parent.key!=null){
+        if(!Array.isArray(parent.obj[parent.key])) parent.obj[parent.key]=[];
+        arr=parent.obj[parent.key];
+      } else { throw new Error('list item with no parent key at indent '+indent); }
+      if(val.includes(':') && !val.startsWith('"') && !val.startsWith("'")){
+        const obj={}; arr.push(obj); stack.push({indent,obj,key:null,isArr:false});
+        const i=val.indexOf(':'); const k=val.slice(0,i).trim(); const v=val.slice(i+1).trim();
+        obj[k]=v===''?null:coerce(v);
+        if(v===''){ /* nested follows */ }
+      } else {
+        arr.push(coerce(val));
+      }
+      continue;
+    }
+    const i=line.indexOf(':');
+    if(i<0) throw new Error('expected key: value — got '+line);
+    const k=line.slice(0,i).trim(); const v=line.slice(i+1).trim();
+    if(v===''){
+      const obj={}; parent.obj[k]=obj; stack.push({indent,obj,key:null,isArr:false});
+      parent.key=k;
+    } else {
+      parent.obj[k]=coerce(v); parent.key=k;
+    }
+  }
+  return root;
+}
+function coerce(v){
+  if((v.startsWith('"')&&v.endsWith('"'))||(v.startsWith("'")&&v.endsWith("'"))) return v.slice(1,-1);
+  if(v==='true') return true; if(v==='false') return false; if(v==='null'||v==='~') return null;
+  if(/^-?\d+(\.\d+)?$/.test(v)) return Number(v);
+  return v;
+}
+function formatValidate(input, mode){
+  try{
+    let obj;
+    if(mode==='yaml-lite'){ obj=parseYamlLite(input); return {ok:true,pretty:JSON.stringify(obj,null,2),type:'yaml-lite'}; }
+    obj=JSON.parse(input); return {ok:true,pretty:JSON.stringify(obj,null,2),type:Array.isArray(obj)?'array':typeof obj};
+  }catch(e){ return {ok:false,error:String(e.message||e),pretty:null,type:null}; }
+}
+function run(){
+  const mode=document.getElementById('mode').value;
+  const res=formatValidate(document.getElementById('in').value, mode);
+  const st=document.getElementById('status'); const out=document.getElementById('out');
+  if(res.ok){ st.className='ok'; st.textContent='OK · '+res.type; out.textContent=res.pretty; }
+  else { st.className='bad'; st.textContent='Error: '+res.error; out.textContent=''; }
+}
+window.__agora_json_fmt={formatValidate,parseYamlLite};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>

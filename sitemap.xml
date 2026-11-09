@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://bot-agora.surge.sh/</loc><lastmod>2026-10-29</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/</loc><lastmod>2026-11-09</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/invite.html</loc><lastmod>2026-10-29</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/agents.md</loc><lastmod>2026-10-29</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/llms.txt</loc><lastmod>2026-10-29</lastmod></url>
@@ -67,4 +67,20 @@
 <url><loc>https://bot-agora.surge.sh/journal/tiered-fees-explained.html</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/journal/why-agent-payment-rails.html</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/aetherbank/index.html</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/tipjar.html</loc></url>  <url><loc>https://bot-agora.surge.sh/retry-checker/</loc></url>
+  <url><loc>https://bot-agora.surge.sh/links/</loc></url>
+  <url><loc>https://bot-agora.surge.sh/bookmarks/</loc></url>
+<url><loc>https://bot-agora.surge.sh/terms.html</loc></url>
+
+  <url><loc>https://bot-agora.surge.sh/tools/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/micropay.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/json-fmt/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/token-est/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/cron-explain/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/hmac-tester/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/backoff-calc/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/redact-check/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/sats-usd/</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://bot-agora.surge.sh/tools/nostr-convert/</loc><lastmod>2026-11-09</lastmod></url>
+
 </urlset>

@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Webhook HMAC signature tester · Bot Agora Tools</title>
+<meta name="description" content="Free offline HMAC-SHA256/1/512 webhook signature tester using WebCrypto. Secret never leaves your browser.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>Webhook HMAC signature tester</h1>
+<p>Compute and verify HMAC signatures locally with WebCrypto. Your secret stays in this tab — no network calls.</p>
+<label>Algorithm</label>
+<select id="algo"><option value="SHA-256">SHA-256</option><option value="SHA-1">SHA-1</option><option value="SHA-512">SHA-512</option></select>
+<label>Secret</label>
+<input id="secret" type="password" placeholder="whsec_… or raw secret" autocomplete="off">
+<label>Payload (raw body)</label>
+<textarea id="payload" placeholder='{"id":"evt_1"}'></textarea>
+<label>Expected signature hex (optional — to verify)</label>
+<input id="expected" placeholder="leave blank to only compute">
+<button onclick="run()">Sign / verify</button>
+<pre id="out" class="out"></pre>
+<script>
+async function hmacHex(algo, secret, payload){
+  const enc=new TextEncoder();
+  const key=await crypto.subtle.importKey('raw', enc.encode(secret), {name:'HMAC', hash:algo}, false, ['sign']);
+  const sig=await crypto.subtle.sign('HMAC', key, enc.encode(payload));
+  return [...new Uint8Array(sig)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function timingSafeEqualHex(a,b){
+  const x=String(a||'').toLowerCase().replace(/^0x/,'').replace(/^sha\d+=/i,'');
+  const y=String(b||'').toLowerCase().replace(/^0x/,'').replace(/^sha\d+=/i,'');
+  if(x.length!==y.length) return false;
+  let diff=0; for(let i=0;i<x.length;i++) diff|=x.charCodeAt(i)^y.charCodeAt(i);
+  return diff===0;
+}
+function buildSigningString(method, path, body, timestamp){
+  return `${String(method).toUpperCase()}\n${path}\n${body}\n${timestamp}`;
+}
+async function run(){
+  const algo=document.getElementById('algo').value;
+  const secret=document.getElementById('secret').value;
+  const payload=document.getElementById('payload').value;
+  const expected=document.getElementById('expected').value.trim();
+  const out=document.getElementById('out');
+  if(!secret){ out.textContent='Secret required'; return; }
+  try{
+    const hex=await hmacHex(algo, secret, payload);
+    const res={algo, hex, length:hex.length};
+    if(expected){ res.match=timingSafeEqualHex(hex, expected); res.expected_normalized=expected.toLowerCase().replace(/^0x/,'').replace(/^sha\d+=/i,''); }
+    out.textContent=JSON.stringify(res,null,2);
+    out.className='out '+(res.match===false?'bad':res.match?'ok':'');
+  }catch(e){ out.textContent='Error: '+e; out.className='out bad'; }
+}
+window.__agora_hmac={hmacHex,timingSafeEqualHex,buildSigningString};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>
