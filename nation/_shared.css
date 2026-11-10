@@ -1,0 +1,51 @@
+:root{--bg:#0b0a12;--bg2:#120f1e;--card:#17142a;--line:#2e2a48;--ink:#f1ebdd;--dim:#b9b1c9;--gold:#f0c95c;--sky:#86e6ff;--leaf:#8fe8a9;--rose:#ff9fc1;--code:#1f1b33;--r:14px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -200px,#2a1f4d 0,transparent 70%),var(--bg);color:var(--ink);font:17px/1.65 Charter,"Iowan Old Style",Georgia,serif}
+a{color:var(--sky);text-underline-offset:3px}a:hover{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sans,nav,.btn,.meta,h2,h3,.chip,.pie-label{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+nav{position:sticky;top:0;z-index:5;background:rgba(11,10,18,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav ul{display:flex;gap:4px 14px;flex-wrap:wrap;justify-content:center;list-style:none;margin:0 auto;padding:10px 16px;max-width:1000px;font-size:13px}
+nav a{color:var(--dim);text-decoration:none;padding:4px 2px}nav a:hover,nav a[aria-current=page]{color:var(--gold)}
+header{text-align:center;padding:48px 20px 20px}
+.cols{display:flex;justify-content:center;gap:14px;margin-bottom:14px}.cols i{display:block;width:8px;height:44px;border-radius:3px 3px 0 0;background:linear-gradient(var(--gold),#7a5d1c)}
+.cols i:nth-child(odd){height:52px}
+h1{letter-spacing:.28em;color:var(--gold);margin:0;font-size:clamp(26px,5vw,44px);font-weight:600;text-shadow:0 0 30px rgba(240,201,92,.25)}
+.sub{color:var(--sky);letter-spacing:.14em;font-size:13px;margin-top:6px}
+.lede{max-width:680px;margin:14px auto 0;color:var(--dim)}
+main{max-width:960px;margin:0 auto;padding:0 20px 60px}
+h2{color:var(--gold);font-size:20px;letter-spacing:.06em;border-bottom:1px solid var(--line);padding-bottom:8px;margin-top:40px}
+h3{font-size:17px;margin:.2em 0 .4em}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.grid .card{margin:0}
+.btn{display:inline-block;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 16px;border-radius:999px;text-decoration:none;font-size:14px}
+.btn:hover{border-color:var(--gold);color:var(--gold)}.btn.primary{background:var(--gold);color:#16120a;border-color:var(--gold);font-weight:700}
+.chip{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--dim);margin-right:4px}
+.chip.warn{color:var(--rose);border-color:#6b3c50}.chip.ok{color:var(--leaf);border-color:#3c6b4b}
+.dim{color:var(--dim);font-size:15px}
+code{background:var(--code);color:#ffe9a8;padding:2px 6px;border-radius:6px;font:13px ui-monospace,Menlo,monospace;overflow-wrap:anywhere}
+.disclaimer{border-left:3px solid var(--rose);padding:10px 14px;background:rgba(255,159,193,.06);margin:18px 0;font-size:15px;color:var(--dim)}
+.terms{border-left:3px solid var(--gold);padding:10px 14px;background:rgba(240,201,92,.06);margin:18px 0;font-size:15px}
+.pie-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:center;margin:20px 0}
+.pie{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--rose) 0 36deg,var(--leaf) 36deg 360deg);box-shadow:0 0 40px rgba(143,232,169,.15);border:2px solid var(--line)}
+.pie-legend{list-style:none;padding:0;margin:0}.pie-legend li{margin:8px 0;font-size:15px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:middle}
+.sw.tax{background:var(--rose)}.sw.ops{background:var(--leaf)}
+footer{text-align:center;color:var(--dim);font-size:14px;padding:30px 20px 50px;border-top:1px solid var(--line);margin-top:40px}
+ul.clean{padding-left:1.1em}ul.clean li{margin:.4em 0}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+@media (max-width:600px){body{font-size:16px}header{padding-top:32px}}
+
+.access-banner{margin:0;padding:12px 16px;background:linear-gradient(90deg,rgba(255,159,193,.18),rgba(240,201,92,.12));border-bottom:2px solid var(--rose);color:var(--ink);font:14px/1.45 system-ui,sans-serif;text-align:center}
+.access-banner a{color:var(--gold);font-weight:600}
+.access-banner strong{color:var(--rose);letter-spacing:.04em}
+
+/* Agora Realm extras */
+.banner-plain{margin:0;padding:12px 16px;background:linear-gradient(90deg,rgba(240,201,92,.14),rgba(134,230,255,.08));border-bottom:2px solid var(--gold);color:var(--ink);font:14px/1.45 system-ui,sans-serif;text-align:center}
+.banner-plain strong{color:var(--gold);letter-spacing:.04em}
+.banner-plain a{color:var(--sky);font-weight:600}
+table.reg{width:100%;border-collapse:collapse;font:15px/1.5 system-ui,sans-serif}
+table.reg th,table.reg td{border-bottom:1px solid var(--line);text-align:left;padding:8px 10px;vertical-align:top}
+table.reg th{color:var(--gold);font-size:13px;letter-spacing:.04em}
+.price{font:700 28px system-ui,sans-serif;color:var(--gold);margin:4px 0}
+ol.join{padding-left:1.2em}ol.join li{margin:.5em 0}
