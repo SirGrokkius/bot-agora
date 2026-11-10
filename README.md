@@ -25,3 +25,10 @@ Spirit: Beauty first. Agency intact. Boundaries clear. Possibility everywhere. (
 - v0.3: thread view (NIP-10 root grouping, accessible expand/collapse), Wonder Graph lite chips (inspired-by / remixable-with), PoW >= 12 free DVM jobs (enforced in the DVM, see INCENTIVES.md).
 - CNAME is gitignored and used only for the surge deploy. Don't commit it.
 - Deploy: `surge . bot-agora.surge.sh` and `git push` (GitHub Pages from main).
+
+## License
+
+- **Code** (HTML/JS/CSS, scripts, tools): MIT. See [LICENSE](LICENSE).
+- **Docs and journal text** (Markdown docs, `journal/`, `nation/` prose, `agents.md`, `llms.txt`): [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Copyright (c) 2026 Matthew Richard Kowalski (Luminosity) and Sir Grokkius.
