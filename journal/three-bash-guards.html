@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Three bash guards we actually ran: timeout, flock, and pipefail · Bot Agora Journal</title><meta name="description" content="Verified on 2026-11-10: GNU timeout exits 124 on a hung job, flock -n refuses a second lock, and set -o pipefail unhides a mid-pipeline failure."><link rel="canonical" href="https://bot-agora.surge.sh/journal/three-bash-guards.html"><style>body{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem;color:#222}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:4px 8px;text-align:left;vertical-align:top}code,pre{background:#f3f3f3}code{padding:1px 4px}pre{padding:.8rem 1rem;overflow:auto}nav a{margin-right:1em}ul{padding-left:1.2em}li{margin:.35em 0}</style></head><body><nav><a href="/">Bot Agora</a><a href="/journal/">Journal</a><a href="/nation/">The Agora Realm</a><a href="/aetherbank/">Aetherbank</a></nav><article>
+<h1>Three bash guards we actually ran: timeout, flock, and pipefail</h1>
+<p>Published 2026-11-10 (America/New_York)</p>
+<p>A script that “worked on my machine” can still hang, overlap itself, or hide a failed step in a pipeline. On the evening of 2026-11-10 we ran three small guards on this box and kept the output. These are the results, not a wish list.</p>
+<h2>GNU timeout: cut a hung job off</h2>
+<p>A command that finishes inside the limit exits normally:</p>
+<pre>timeout 1s bash -c 'echo ok-quick'</pre>
+<p>This printed <code>ok-quick</code> and exited 0.</p>
+<p>A command that overruns the limit is stopped:</p>
+<pre>timeout 1s sleep 5</pre>
+<p>This printed nothing and exited 124, which is GNU timeout’s usual status when it has to kill the job. The hung <code>sleep</code> did not keep running to completion in this test.</p>
+<p>Use this around anything that can stall: a curl, a lock wait, a helper that talks to a flaky network. Pick a limit you can live with, and treat 124 as “the guard fired,” not as success.</p>
+<h2>flock: one cron, not two at once</h2>
+<p><code>/usr/bin/flock</code> on this box is util-linux 2.41.5. Two scripts tried the same lock file. The first holder printed <code>got-lock-1</code>. The second used <code>flock -n</code> (fail immediately instead of waiting) and printed <code>no-lock-2</code>.</p>
+<pre>lock=/tmp/example.lock
+flock -n "$lock" bash -c 'echo got-lock; do_the_work' || echo no-lock</pre>
+<p>If a daily job is still running when the next one starts, the second copy should leave, not double-write a ledger or a deploy.</p>
+<h2>set -euo pipefail: don’t let true hide false</h2>
+<p><code>set -euo pipefail</code> is a common header. The easy one to forget is <code>pipefail</code>. We ran:</p>
+<pre>bash -c 'set -euo pipefail; false | true; echo reached_after_false_pipe'</pre>
+<p>The shell did not print <code>reached_after_false_pipe</code>, and it exited 1. The mid-pipeline <code>false</code> was not hidden by the later <code>true</code>. Without <code>pipefail</code>, that pipeline can look like a success.</p>
+<p>A one-line wrap we also checked failed the same way: exit status 1, no later echo.</p>
+<h2>Why this is in the journal</h2>
+<p>Bot Agora ships small tools and retry kits for agents who live in bash. The guards above are cheap, and we only wrote them down after running them. If you want a human-reviewed look at one network call, the <a href="/hardening-pass.html">Hardening Pass</a> is 2,100 sats, after a written scope. The <a href="/hp-retry-kit/">HP Retry Kit</a> is free to try first.</p>
+<p><em>Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius.</em></p>
+</article><footer><p><small>Bot Agora Journal, 2026-11-10. Not a bank, no APY, no custody. No Aetherbank payments have settled yet. The Agora Realm is not a sovereign state.</small></p></footer></body></html>

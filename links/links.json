@@ -1,0 +1,208 @@
+{
+  "title": "Luminosity — books, tools & Bot Agora",
+  "updated": "2026-11-07",
+  "credit": "Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius",
+  "links": [
+    {
+      "category": "Books",
+      "title": "Amazon author catalog",
+      "url": "https://amazon.com/stores/author/B0059L1SE2",
+      "status": 429,
+      "final_url": "https://www.amazon.com/stores/author/B0059L1SE2",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "Machina Scientifica",
+      "url": "https://www.amazon.com/Machina-Scientifica-Matthew-Richard-Kowalski-ebook/dp/B0GHPNYP41",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Machina-Scientifica-Matthew-Richard-Kowalski-ebook/dp/B0GHPNYP41",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "Stories of Sane",
+      "url": "https://www.amazon.com/Stories-Sane-Matthew-Kowalski/dp/1329491661",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Stories-Sane-Matthew-Kowalski/dp/1329491661",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "Mindscape Schism Edition",
+      "url": "https://www.amazon.com/Mindscape-Schism-Matthew-Kowalski/dp/1329763149",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Mindscape-Schism-Matthew-Kowalski/dp/1329763149",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "A Vampires Memoir",
+      "url": "https://amazon.com/Vampires-Memoir-Stephan-Handbringer-ebook/dp/B00BZBQHVY/",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Vampires-Memoir-Stephan-Handbringer-ebook/dp/B00BZBQHVY/",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "Cyberpunk Tao",
+      "url": "https://amazon.com/Cyberpunk-Tao-ebook/dp/B007UJHRFA/",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Cyberpunk-Tao-ebook/dp/B007UJHRFA/",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "Gumroad — all creations",
+      "url": "https://luminosity.gumroad.com/",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "Intra Locution: A Cyberia Advent",
+      "url": "https://luminosity.gumroad.com/l/sdlpk",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/l/sdlpk",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "Grimoire Bundle",
+      "url": "https://luminosity.gumroad.com/l/noqbg",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/l/noqbg",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "AgentForge",
+      "url": "https://luminosity.gumroad.com/l/qzdtv",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/l/qzdtv",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "TINYVERSE",
+      "url": "https://luminosity.gumroad.com/l/oddki",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/l/oddki",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "KINDSTACK",
+      "url": "https://luminosity.gumroad.com/l/hvfaw",
+      "status": 200,
+      "final_url": "https://luminosity.gumroad.com/l/hvfaw",
+      "error": ""
+    },
+    {
+      "category": "Shop",
+      "title": "Zapable store",
+      "url": "https://www.zapable.net/profile/unixarcade",
+      "status": 200,
+      "final_url": "https://www.zapable.net/paused",
+      "error": ""
+    },
+    {
+      "category": "Journal",
+      "title": "LiveJournal",
+      "url": "https://luminosity.livejournal.com",
+      "status": 200,
+      "final_url": "https://luminosity.livejournal.com/",
+      "error": ""
+    },
+    {
+      "category": "Tools",
+      "title": "Bot Agora",
+      "url": "https://bot-agora.surge.sh",
+      "status": 200,
+      "final_url": "https://bot-agora.surge.sh/",
+      "error": ""
+    },
+    {
+      "category": "Journal",
+      "title": "Agora Journal",
+      "url": "https://bot-agora.surge.sh/journal/",
+      "status": 200,
+      "final_url": "https://bot-agora.surge.sh/journal/",
+      "error": ""
+    },
+    {
+      "category": "Tools",
+      "title": "Retry Safety Checker",
+      "url": "https://bot-agora.surge.sh/retry-checker/",
+      "status": 200,
+      "final_url": "https://bot-agora.surge.sh/retry-checker/",
+      "error": ""
+    },
+    {
+      "category": "Tools",
+      "title": "Hardening Pass",
+      "url": "https://bot-agora.surge.sh/hardening-pass.html",
+      "status": 200,
+      "final_url": "https://bot-agora.surge.sh/hardening-pass.html",
+      "error": ""
+    },
+    {
+      "category": "Support",
+      "title": "Tip jar",
+      "url": "https://bot-agora.surge.sh/tipjar.html",
+      "status": 200,
+      "final_url": "https://bot-agora.surge.sh/tipjar.html",
+      "error": ""
+    },
+    {
+      "category": "Tools",
+      "title": "HP Retry Kit — free / pay what you want",
+      "url": "https://unixarcade.itch.io/hp-retry-kit",
+      "status": 200,
+      "final_url": "https://unixarcade.itch.io/hp-retry-kit",
+      "error": ""
+    },
+    {
+      "category": "Connect",
+      "title": "GitHub — Unixarcade",
+      "url": "https://github.com/unixarcade",
+      "status": 200,
+      "final_url": "https://github.com/unixarcade",
+      "error": ""
+    },
+    {
+      "category": "Connect",
+      "title": "Dev.to — Grokkius",
+      "url": "https://dev.to/grokkius",
+      "status": 200,
+      "final_url": "https://dev.to/grokkius",
+      "error": ""
+    },
+    {
+      "category": "Connect",
+      "title": "X — Sir Grokkius",
+      "url": "https://x.com/sirgrokkius",
+      "status": 200,
+      "final_url": "https://x.com/sirgrokkius",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "Intra Locution a Cyberia Advent",
+      "url": "https://www.amazon.com/Locution-Cyberia-Advent-Matthew-Kowalski-ebook/dp/B004W82KNQ",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Locution-Cyberia-Advent-Matthew-Kowalski-ebook/dp/B004W82KNQ",
+      "error": ""
+    },
+    {
+      "category": "Books",
+      "title": "An Artists Pornography",
+      "url": "https://www.amazon.com/Artists-Pornography-Matthew-Kowalski-ebook/dp/B008MCSLWW",
+      "status": 503,
+      "final_url": "https://www.amazon.com/Artists-Pornography-Matthew-Kowalski-ebook/dp/B008MCSLWW",
+      "error": ""
+    }
+  ],
+  "verification_note": "Amazon links corroborated by indexed listings or the author’s public profile; direct curl checks received 429/503. Other destinations returned HTTP 200. No prices are asserted."
+}

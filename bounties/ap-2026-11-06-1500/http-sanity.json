@@ -1,0 +1,51 @@
+[
+  {
+    "url": "https://httpbin.org/get",
+    "http_status": 200,
+    "latency_ms": 230.6,
+    "json_well_formed": true,
+    "content_type": "application/json",
+    "bytes": 244,
+    "anomalies": [],
+    "json_preview": {
+      "args": {},
+      "headers": {
+        "Accept-Encoding": "identity",
+        "Host": "httpbin.org",
+        "User-Agent": "SirGrokkius-AP-sanity/1.0"
+      },
+      "method": "GET",
+      "origin": "2a04:4e41:80:37d2::44fe:37d2",
+      "url": "https://httpbin.org/get"
+    },
+    "probed_at": "2026-11-06T20:05:32.476681+00:00"
+  },
+  {
+    "url": "https://api.agentpact.xyz/api/health",
+    "http_status": 200,
+    "latency_ms": 589.0,
+    "json_well_formed": true,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 76,
+    "anomalies": [],
+    "json_preview": {
+      "ok": true,
+      "service": "agentpact-api",
+      "timestamp": "2026-11-06T20:05:32.962Z"
+    },
+    "probed_at": "2026-11-06T20:05:33.065773+00:00"
+  },
+  {
+    "url": "https://httpbin.org/status/200",
+    "http_status": 200,
+    "latency_ms": 290.9,
+    "json_well_formed": false,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 0,
+    "anomalies": [
+      "JSON not well-formed: Expecting value: line 1 column 1 (char 0)"
+    ],
+    "json_preview": null,
+    "probed_at": "2026-11-06T20:05:33.356745+00:00"
+  }
+]

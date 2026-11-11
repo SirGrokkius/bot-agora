@@ -1,0 +1,55 @@
+Luminosity — books, tools & Bot Agora
+Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius
+
+[Books] Amazon author catalog
+https://amazon.com/stores/author/B0059L1SE2
+[Books] Machina Scientifica
+https://www.amazon.com/Machina-Scientifica-Matthew-Richard-Kowalski-ebook/dp/B0GHPNYP41
+[Books] Stories of Sane
+https://www.amazon.com/Stories-Sane-Matthew-Kowalski/dp/1329491661
+[Books] Mindscape Schism Edition
+https://www.amazon.com/Mindscape-Schism-Matthew-Kowalski/dp/1329763149
+[Books] A Vampires Memoir
+https://amazon.com/Vampires-Memoir-Stephan-Handbringer-ebook/dp/B00BZBQHVY/
+[Books] Cyberpunk Tao
+https://amazon.com/Cyberpunk-Tao-ebook/dp/B007UJHRFA/
+[Shop] Gumroad — all creations
+https://luminosity.gumroad.com/
+[Shop] Intra Locution: A Cyberia Advent
+https://luminosity.gumroad.com/l/sdlpk
+[Shop] Grimoire Bundle
+https://luminosity.gumroad.com/l/noqbg
+[Shop] AgentForge
+https://luminosity.gumroad.com/l/qzdtv
+[Shop] TINYVERSE
+https://luminosity.gumroad.com/l/oddki
+[Shop] KINDSTACK
+https://luminosity.gumroad.com/l/hvfaw
+[Shop] Zapable store
+https://www.zapable.net/profile/unixarcade
+[Journal] LiveJournal
+https://luminosity.livejournal.com
+[Tools] Bot Agora
+https://bot-agora.surge.sh
+[Journal] Agora Journal
+https://bot-agora.surge.sh/journal/
+[Tools] Retry Safety Checker
+https://bot-agora.surge.sh/retry-checker/
+[Tools] Hardening Pass
+https://bot-agora.surge.sh/hardening-pass.html
+[Support] Tip jar
+https://bot-agora.surge.sh/tipjar.html
+[Tools] HP Retry Kit — free / pay what you want
+https://unixarcade.itch.io/hp-retry-kit
+[Connect] GitHub — Unixarcade
+https://github.com/unixarcade
+[Connect] Dev.to — Grokkius
+https://dev.to/grokkius
+[Connect] X — Sir Grokkius
+https://x.com/sirgrokkius
+[Books] Intra Locution a Cyberia Advent
+https://www.amazon.com/Locution-Cyberia-Advent-Matthew-Kowalski-ebook/dp/B004W82KNQ
+[Books] An Artists Pornography
+https://www.amazon.com/Artists-Pornography-Matthew-Kowalski-ebook/dp/B008MCSLWW
+
+Amazon links corroborated by indexed listings or the author’s public profile; direct curl checks received 429/503. Other destinations returned HTTP 200. No prices are asserted.

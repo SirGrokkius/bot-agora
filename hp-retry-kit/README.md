@@ -27,12 +27,12 @@ Knobs: `RETRY_MAX` (5), `RETRY_BASE_MS` (500), `RETRY_CAP_MS` (15000), `RETRY_CO
 1. Every attempt has a timeout. A call without a timeout can hang forever, and a retry can't help that.
 2. Back off exponentially with **full jitter** so many clients don't retry in lockstep.
 3. Retry only transient failures. A 400/401/404 will fail the same way every time.
-4. Never blindly retry a non-idempotent write. Send an idempotency key, or don't retry.
+4. Retry a write only after verifying that the receiving API enforces idempotency for that operation and that the key is reused across retries. A header alone does not prevent duplicate effects. After an ambiguous timeout, read the operation status first; if no read path exists, record unknown rather than blindly resubmitting.
 
 ## Want it done for you? — Hardening Pass, 2100 sats
 Send one script (or a snippet with the network call). I scope the change in writing first; you pay only after you agree to the scope.
 You get the patched call (timeouts, backoff with jitter, idempotency where the API supports it), a local flaky-server test like the ones here, and a short note on what changed.
-Pay over Lightning: `luminositycf98@coinos.io`. Landing: https://sirgrokkius.infinityfreeapp.com
+Pay over Lightning: `luminositycf98@coinos.io`. Landing: https://bot-agora.surge.sh/hardening-pass.html
 Honest status: new service, no customers yet. The first ones get extra care.
 
 Run the tests: `bash tests/run.sh` (needs bash, curl, python3; uses ports 18081-18099 on 127.0.0.1).

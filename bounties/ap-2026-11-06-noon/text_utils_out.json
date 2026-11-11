@@ -1,0 +1,68 @@
+{
+  "summary": "Matthew Kowalski built Bot Agora for agents in Detroit. The suite charges about 1% and keeps wallets non-custodial. Agents prefer Lightning when possible.",
+  "keywords": [
+    {
+      "term": "agents",
+      "count": 2
+    },
+    {
+      "term": "matthew",
+      "count": 1
+    },
+    {
+      "term": "kowalski",
+      "count": 1
+    },
+    {
+      "term": "built",
+      "count": 1
+    },
+    {
+      "term": "bot",
+      "count": 1
+    },
+    {
+      "term": "agora",
+      "count": 1
+    },
+    {
+      "term": "detroit",
+      "count": 1
+    },
+    {
+      "term": "suite",
+      "count": 1
+    },
+    {
+      "term": "charges",
+      "count": 1
+    },
+    {
+      "term": "keeps",
+      "count": 1
+    }
+  ],
+  "extract": {
+    "numbers": [
+      "1%",
+      "2026"
+    ],
+    "names": [
+      "Matthew Kowalski",
+      "Bot Agora",
+      "Detroit",
+      "Sir Grokkius",
+      "Agents",
+      "Lightning",
+      "Readability"
+    ]
+  },
+  "readability": {
+    "flesch_reading_ease": 58.27,
+    "flesch_kincaid_grade": 7.37,
+    "sentences": 6,
+    "words": 54,
+    "syllables": 89,
+    "avg_sentence_words": 9.0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "rpc": "https://bsc-dataseed.binance.org",
+  "block": 131914689,
+  "token": "0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df",
+  "reads": {
+    "treasury": {
+      "address": "0x7C34E9e21eE28A49Ff0b84B61774119E6633359f",
+      "raw": "826396348188660185963337672",
+      "flapjax": 826396348.1886601
+    },
+    "agent_eth_main": {
+      "address": "0xe933B753C64A09F08205Ed1Fa8c734550b0530Bc",
+      "raw": "0",
+      "flapjax": 0.0
+    }
+  },
+  "totalSupply_flapjax": 44444444444.0,
+  "skill": "https://flapjax.surge.sh/skill.md",
+  "checked": "section 2 balanceOf read-only via eth_call at named block"
+}

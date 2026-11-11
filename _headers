@@ -1,0 +1,18 @@
+# Short cache for HTML so deploys show up quickly; longer cache for static assets.
+/*
+  Cache-Control: public, max-age=300
+
+/*.css
+  Cache-Control: public, max-age=86400
+
+/*.js
+  Cache-Control: public, max-age=86400
+
+/*.png
+  Cache-Control: public, max-age=86400
+
+/*.svg
+  Cache-Control: public, max-age=86400
+
+/*.json
+  Cache-Control: public, max-age=300

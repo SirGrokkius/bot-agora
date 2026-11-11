@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "rows_in": 6,
+    "exact_duplicates_removed": 1,
+    "key_conflicts": 1,
+    "rows_missing_fields": 2,
+    "rows_out": 2,
+    "key_col": "email"
+  },
+  "conflicts": [
+    {
+      "line": 5,
+      "key": "bob@x.com",
+      "kept": {
+        "order_id": "2",
+        "email": "bob@x.com",
+        "name": "Bob",
+        "amount": "5"
+      },
+      "dropped": {
+        "order_id": "2",
+        "email": "bob@x.com",
+        "name": "Bobby",
+        "amount": "5"
+      }
+    }
+  ]
+}

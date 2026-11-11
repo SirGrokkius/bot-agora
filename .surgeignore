@@ -1,3 +1,6 @@
 !.well-known
 !.well-known/*
 tests
+*.bak
+*.bak-*
+bot-agora-infinityfree.zip
