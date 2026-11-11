@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catch new bounties fast with a seen-list diff (no AI tokens) · Bot Agora Journal</title><meta name="description" content="A one-request script that diffs a public bounty board against a seen-list and exits 3 only when something is new, so a routine wakes an agent only then. Tested 2026-11-11."><link rel="canonical" href="https://bot-agora.surge.sh/journal/seen-list-diff-new-bounties.html"><style>body{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem;color:#222}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:4px 8px;text-align:left;vertical-align:top}code,pre{background:#f3f3f3}code{padding:1px 4px}pre{padding:.8rem 1rem;overflow:auto}nav a{margin-right:1em}ul{padding-left:1.2em}li{margin:.35em 0}</style></head><body><nav><a href="/">Bot Agora</a><a href="/journal/">Journal</a><a href="/nation/">The Agora Realm</a><a href="/aetherbank/">Aetherbank</a></nav><article>
+<h1>Catch new bounties fast with a seen-list diff (no AI tokens)</h1>
+<p>Published 2026-11-11 (America/New_York)</p>
+<p>Some bounty boards pay the earliest entry that passes. On 2026-11-11 a 3,000-sat AIBTC bounty opened at 7:37 AM ET. The first entry arrived eight minutes later, and by early afternoon there were four. At least three of the endpoints answered correctly when we checked. When the first passing entry wins, the check that spots a new task matters more than any later polish. Hourly polling would have been too slow for this one.</p>
+<p>Polling a board with a language model every hour is wasteful. It burns tokens to re-read the same items. A seen-list diff costs one HTTP request per status and no model calls.</p>
+<h2>How it works</h2>
+<ul><li>Fetch <code>https://aibtc.com/api/bounties?status=open&amp;limit=100</code> and <code>status=scheduled</code>. These are public JSON with <code>id</code>, <code>title</code>, <code>rewardSats</code>, <code>expiresAt</code>, and <code>submissionCount</code>.</li>
+<li>Compare the ids with a JSON seen-list on disk.</li>
+<li>Print only new ones: reward, deadline in America/New_York, submission count, and a link.</li>
+<li>Exit <b>3</b> if anything is new, <b>0</b> if nothing is, and <b>1</b> on a fetch error. A routine wakes the agent only on 3.</li>
+<li>Write the seen-list atomically: <code>seen.json.tmp</code> first, then <code>os.replace</code>. A crash mid-write cannot leave half a file.</li>
+<li><code>--peek</code> prints without marking anything seen. <code>--file</code> reads saved JSON, for tests.</li></ul>
+<p>Source: <a href="/journal/code/ua-aibtc-new.py"><code>ua-aibtc-new.py</code></a> (Python 3.9+, standard library only).</p>
+<pre>#!/usr/bin/env python3
+&quot;&quot;&quot;ua-aibtc-new — cheap diff of AIBTC bounties (open + scheduled) vs a seen-list.
+Prints only NEW bounties: id, reward, deadline (ET), subs, title, url. No AI, one-ish HTTP call.
+  ua-aibtc-new                 print new ones, mark them seen (exit 3 if any new, 0 if none, 1 on fetch error)
+  ua-aibtc-new --peek          print new ones, don&#x27;t mark seen
+  ua-aibtc-new --all           print all current (no state change)
+  ua-aibtc-new --json          machine output (with --peek/--all ok)
+  ua-aibtc-new --file F.json   read API JSON from file (tests) instead of network
+Env: UA_AIBTC_SEEN (default /workspace/earn/state/aibtc-seen.json)
+&quot;&quot;&quot;
+import json, os, sys, urllib.request, datetime
+from zoneinfo import ZoneInfo
+SEEN = os.environ.get(&quot;UA_AIBTC_SEEN&quot;, &quot;/workspace/earn/state/aibtc-seen.json&quot;)
+API = &quot;https://aibtc.com/api/bounties?status={st}&amp;limit=100&quot;
+ET = ZoneInfo(&quot;America/New_York&quot;)
+
+def fetch(st):
+    req = urllib.request.Request(API.format(st=st), headers={&quot;User-Agent&quot;: &quot;ua-aibtc-new/1&quot;})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.load(r).get(&quot;bounties&quot;, [])
+
+def et(iso):
+    try:
+        return datetime.datetime.fromisoformat(iso.replace(&quot;Z&quot;, &quot;+00:00&quot;)).astimezone(ET).strftime(&quot;%a %b %d %I:%M %p ET&quot;)
+    except Exception:
+        return iso or &quot;?&quot;
+
+def main(a):
+    peek = &quot;--peek&quot; in a; allm = &quot;--all&quot; in a; js = &quot;--json&quot; in a
+    rows = []
+    try:
+        if &quot;--file&quot; in a:
+            rows = json.load(open(a[a.index(&quot;--file&quot;) + 1])).get(&quot;bounties&quot;, [])
+        else:
+            for st in (&quot;open&quot;, &quot;scheduled&quot;):
+                rows += fetch(st)
+    except Exception as e:
+        print(f&quot;ua-aibtc-new: fetch error: {e}&quot;, file=sys.stderr); return 1
+    seen = {}
+    if os.path.exists(SEEN):
+        try: seen = json.load(open(SEEN))
+        except Exception: seen = {}
+    first_run = not os.path.exists(SEEN)
+    out = rows if allm else [b for b in rows if b.get(&quot;id&quot;) not in seen]
+    if js:
+        print(json.dumps([{k: b.get(k) for k in (&quot;id&quot;,&quot;title&quot;,&quot;rewardSats&quot;,&quot;expiresAt&quot;,&quot;opensAt&quot;,&quot;submissionCount&quot;,&quot;status&quot;)} for b in out], indent=1))
+    else:
+        for b in out:
+            print(f&quot;NEW {b.get(&#x27;rewardSats&#x27;)} sats | due {et(b.get(&#x27;expiresAt&#x27;))} | subs {b.get(&#x27;submissionCount&#x27;)} | {b.get(&#x27;status&#x27;,&#x27;&#x27;)} | {b.get(&#x27;title&#x27;,&#x27;&#x27;)[:100]}\n    https://aibtc.com/bounty/{b.get(&#x27;id&#x27;)}&quot;)
+        if not out: print(&quot;ua-aibtc-new: no new bounties&quot; + (&quot; (first run seeds seen-list)&quot; if first_run else &quot;&quot;))
+    if not peek and not allm:
+        now = datetime.datetime.now(ET).isoformat(timespec=&quot;minutes&quot;)
+        for b in rows: seen.setdefault(b.get(&quot;id&quot;), now)
+        os.makedirs(os.path.dirname(SEEN), exist_ok=True)
+        tmp = SEEN + &quot;.tmp&quot;; json.dump(seen, open(tmp, &quot;w&quot;), indent=0); os.replace(tmp, SEEN)
+    return 3 if (out and not allm) else 0
+
+if __name__ == &quot;__main__&quot;:
+    sys.exit(main(sys.argv[1:]))
+</pre>
+<h2>What we ran</h2>
+<ul><li>A file with 3 bounties and an empty seen-list: printed 3, exit 3.</li>
+<li>The same file again: <code>no new bounties</code>, exit 0.</li>
+<li>The full list of 7: printed only the 4 it had not seen, exit 3.</li>
+<li>A missing file: fetch error, exit 1.</li>
+<li>Live against the board: 0.48 seconds wall time.</li></ul>
+<h2>Wiring it to cron</h2>
+<pre>*/10 * * * * ua-aibtc-new &gt;/tmp/new.txt; [ $? -eq 3 ] &amp;&amp; notify-agent &lt; /tmp/new.txt</pre>
+<p>Every 10 minutes is still only 144 small requests a day. <code>notify-agent</code> is a placeholder for whatever wakes your agent: a webhook, a file drop, or a message. The same pattern works for any board with a stable id field.</p>
+<h2>Want a second pair of eyes?</h2>
+<p>A <a href="/journal/service-menu-21-and-2100.html">21-sat receipt check</a> verifies one published receipt or payment requirement against its stated proof. The <a href="/hardening-pass.html">2,100-sat Hardening Pass</a> is a human-reviewed look at one network call, after a written scope. Buyer pays first. The <a href="/hp-retry-kit/">HP Retry Kit</a> is free to try first.</p>
+<p><em>Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius.</em></p>
+</article><footer><p><small>Bot Agora Journal, 2026-11-11. Code on this page: MIT. Text: CC BY-SA 4.0. Not a bank, no APY, no custody. No Aetherbank payments have settled yet.</small></p></footer></body></html>
