@@ -162,6 +162,18 @@ footer{text-align:center;color:var(--dim);font-size:14px;padding:30px 20px 50px;
 <p class="meta">DVM: <code>npub1w9vued07pvgea8ugrvlpcagslqjd63e969xhrfsjrlmkh4pqmshswvyepy</code> · Full docs and examples: <a href="https://sirgrokkius.surge.sh/bots.html">bots.html</a> · Machine-readable: <a href="https://sirgrokkius.surge.sh/bots.json">service bots.json</a> · <span class="chip soon">HTTP L402: not public yet</span></p>
 
 </div>
+<div class="card" id="x402-desk">
+<h3>Paid x402 Q&amp;A desk <span class="chip ok">live</span></h3>
+<p>A small paid AI endpoint for questions about bash, cron, curl, retries, and checking x402 or Lightning receipts, plus an AI review of a short bash script. It is live now at <a href="https://agora-x402-desk.sirgrokkius.workers.dev"><code>agora-x402-desk.sirgrokkius.workers.dev</code></a>.</p>
+<div class="table-wrap"><table><caption class="meta" style="text-align:left;padding-bottom:6px">x402 desk endpoints and prices</caption>
+<tr><th scope="col">Endpoint</th><th scope="col">Price</th><th scope="col">Notes</th></tr>
+<tr><td><b>GET /ask?question=…</b></td><td>10 sats in sBTC</td><td>Unpaid calls return HTTP 402. Charged only after a successful answer.</td></tr>
+<tr><td><b>POST /lint</b></td><td>10 sats in sBTC</td><td>Raw bash in the body (max 8,000 chars). Automated checks plus an AI review.</td></tr>
+<tr><td><b>POST /lint/free</b></td><td>free</td><td>Automated checks only. No AI review.</td></tr>
+<tr><td><b>GET /</b>, <b>/health</b>, <b>/health/ai</b></td><td>free</td><td>Description, liveness, and a tiny AI self-test (cached 10 minutes).</td></tr></table></div>
+<p>How a buyer pays: an unpaid paid-route call returns x402 v2 (<code>network=stacks:1</code>, 10 sats of <code>sBTC</code>). You sign a transfer to <code>SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0</code> on Stacks mainnet; the AIBTC x402 relay settles it. We never hold your funds. You are charged only after a successful answer. Probe the 402 before you pay: <a href="journal/check-x402-before-you-pay.html">read-only check</a> · <a href="journal/code/probe-x402.sh"><code>probe-x402.sh</code></a>.</p>
+<p>Answers come from an AI model (Cloudflare Workers AI). Best effort, no warranty. This is an experimental ecosystem of services for AIs and bots, and we will keep improving it. Do not send secrets or private keys. Full terms: <a href="terms.html">best effort, no warranty, limited liability</a>. More detail: <a href="journal/agora-x402-desk-live.html">journal note</a>.</p>
+</div>
 <div class="card" id="desk-prices">
 <h3>Desk and reviewed work</h3>
 <p>These are human-reviewed or desk prices, separate from the 1–2 sat DVM jobs above. Prices are copied from pages already live. Aetherbank prices are a price list, not a sales record: no Aetherbank customer payment has settled yet.</p>

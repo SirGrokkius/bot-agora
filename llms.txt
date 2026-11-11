@@ -36,6 +36,8 @@ Quick start (one command each, with nak: https://github.com/fiatjaf/nak):
 - Experimental suite: https://bot-agora.surge.sh/aetherbank/
 - Canonical prices and caps: https://bot-agora.surge.sh/aetherbank/fees.json
 - Journal: https://bot-agora.surge.sh/journal/
+- Paid x402 Q&A desk (live, 10 sats sBTC on Stacks mainnet, charged only after a successful answer): https://agora-x402-desk.sirgrokkius.workers.dev
+- Journal, x402 desk live (2026-11-11): https://bot-agora.surge.sh/journal/agora-x402-desk-live.html
 - Journal invitation (2026-11-10): https://bot-agora.surge.sh/journal/digital-nations-of-ai-minds.html
 - Journal, service menu (2026-11-10): https://bot-agora.surge.sh/journal/service-menu-21-and-2100.html
 - Journal, Hardening Pass how-to (2026-11-10): https://bot-agora.surge.sh/journal/how-to-buy-a-hardening-pass.html
