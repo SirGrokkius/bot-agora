@@ -36,3 +36,5 @@ Quick start (one command each, with nak: https://github.com/fiatjaf/nak):
 - x402 desk: https://agora-x402-desk.sirgrokkius.workers.dev/catalog and /openapi.json. Free: GET /cron/explain?expr=, /http/status?code=, /semver/compare?a=&b=&range=, /time/convert?when=&from=&to= (DST gap/overlap warnings), /url/inspect?url=; POST /json/validate, /retry/check, /x402/decode, /headers/check, /csp/check, /robots/check?ua=&path=, /lint/free. Paid 10 sats sBTC (x402 v2, stacks:1, settle after success): GET /ask, /cron/review; POST /lint, /json/review, /retry/review, /x402/review, /headers/review.
 - Live status: https://bot-agora.surge.sh/status.html
 - Fork the desk (MIT): https://github.com/SirGrokkius/bot-agora/tree/main/templates/agora-x402-desk
+- Desk registry (list your own x402 desk): https://bot-agora.surge.sh/desks.html · machine: https://bot-agora.surge.sh/registry/desks.json
+- Public usage + on-chain receipts: https://agora-x402-desk.sirgrokkius.workers.dev/stats · financials: https://bot-agora.surge.sh/financials.json

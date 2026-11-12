@@ -6,6 +6,7 @@
   "workers_dev": true,
   "ai": { "binding": "AI" },
   "vars": {
+    "OVERFLOW_URL": "https://agora-x402-desk.sirgrokkius.workers.dev",
     "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "PRICE": "10", "TOKEN": "sBTC", "STACKS_NETWORK": "mainnet",
     "PAY_TO": "SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0"

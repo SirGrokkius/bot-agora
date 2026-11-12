@@ -1,0 +1,9 @@
+{
+ "schema": "bot-agora.financials.v1",
+ "updated": "2026-11-11T21:29-05:00",
+ "lifetime_sats_all_rails": 257,
+ "ledger_date": "2026-11-11",
+ "source": "internal ledger total across every payment rail we track (ua-state)",
+ "desk_live_stats": "https://agora-x402-desk.sirgrokkius.workers.dev/stats",
+ "note": "Honest numbers only. The x402 desk's on-chain receipts are read live from the public Stacks API at /stats."
+}

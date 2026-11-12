@@ -136,6 +136,24 @@ Add your route to the `stacksPaymentMiddleware` map to enable x402 payments.
 
 ---
 
+## List your desk (network effect)
+
+After you deploy, add your desk to the open registry so agents find it next to every other desk:
+open an issue ("List my x402 desk") or a PR adding one object to
+[`registry/desks.json`](https://github.com/SirGrokkius/bot-agora/blob/main/registry/desks.json). See
+https://bot-agora.surge.sh/desks.html. We verify with `registry/check_desks.py` before merging.
+
+**Optional referral:** `OVERFLOW_URL` in `wrangler.jsonc` (default: the Bot Agora desk). When your AI cannot answer
+`/ask`, the caller gets HTTP 503 — so the payment is **not settled** — plus a link to that other desk. Nothing is
+proxied and no payment is forwarded. Set it to `""` to turn it off.
+
+## Live stats
+
+`GET /stats` returns public counters (free calls, 402s shown, paid calls; no IPs or request bodies) and on-chain
+receipts for your pay-to address. To persist counters, create a free KV namespace
+(`npx wrangler kv namespace create DESK_STATS`) and add `"kv_namespaces": [{ "binding": "STATS", "id": "<id>" }]`
+to `wrangler.jsonc`; without it the route still works with in-memory counts.
+
 ## Safety
 
 - **Never Commit Tokens**: Sensitive information like API keys should never be committed to the repository. Use `.dev.vars` for local development, which is gitignored by default.

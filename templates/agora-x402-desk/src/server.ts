@@ -16,7 +16,7 @@ import { checkRobots } from "./tools/robots";
 import { inspectUrl } from "./tools/url";
 import { stacksPaymentMiddleware, type StacksPaymentVariables } from "@aibtc/x402-stacks-agents/hono";
 
-type Env = { AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
+type Env = { OVERFLOW_URL?: string; STATS?: any; AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
 
 const PAY_TO = "SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0";
 const PRICE = 10;
@@ -76,6 +76,7 @@ const INFO = {
 
 type Route = { method: string; path: string; paid: boolean; input: string; does: string };
 const ROUTES: Route[] = [
+  { method: "GET", path: "/stats", paid: false, input: "none", does: "public usage counters + on-chain receipts for the pay-to address" },
   { method: "GET", path: "/health", paid: false, input: "none", does: "liveness" },
   { method: "GET", path: "/health/ai", paid: false, input: "none", does: "tiny AI self-test (cached 10 min)" },
   { method: "POST", path: "/lint/free", paid: false, input: "bash script as text body", does: "automated bash checks" },
@@ -117,6 +118,57 @@ function asPolicy(t: string): unknown { try { return JSON.parse(t); } catch { re
 
 const app = new Hono<{ Bindings: Env; Variables: StacksPaymentVariables }>();
 
+// ---- usage counters (no PII: only route names and counts). Batched per isolate, flushed to KV at most once a minute. ----
+const PAID_PATHS = new Set(["/ask", "/lint", "/cron/review", "/json/review", "/retry/review", "/x402/review", "/headers/review"]);
+const SKIP = new Set(["/stats", "/health", "/favicon.ico"]);
+let pend: Record<string, number> = {}; let lastFlush = 0;
+const bump = (k: string) => { pend[k] = (pend[k] || 0) + 1; };
+async function flush(env: Env) {
+  if (!env.STATS || !Object.keys(pend).length) return;
+  const d = pend; pend = {}; lastFlush = Date.now();
+  try {
+    const cur = (await env.STATS.get("stats", "json")) || { since: new Date().toISOString(), counts: {} };
+    for (const [k, v] of Object.entries(d)) cur.counts[k] = (cur.counts[k] || 0) + v;
+    cur.updated = new Date().toISOString();
+    await env.STATS.put("stats", JSON.stringify(cur));
+  } catch { for (const [k, v] of Object.entries(d)) pend[k] = (pend[k] || 0) + v; }
+}
+app.use("*", async (c, next) => {
+  await next();
+  try {
+    const path = new URL(c.req.url).pathname; if (SKIP.has(path) || c.req.method === "OPTIONS") return;
+    const st = c.res.status; const paid = PAID_PATHS.has(path);
+    if (paid && st === 402) { bump("paywall_402"); bump(`402 ${path}`); }
+    else if (paid && st < 300 && c.res.headers.get("payment-response")) { bump("paid_success"); bump(`paid ${path}`); }
+    else if (!paid && st < 300 && path !== "/") { bump("free_calls"); bump(`free ${path}`); }
+    else if (st >= 400) bump("errors_4xx_5xx");
+    if (Date.now() - lastFlush > 60_000) c.executionCtx.waitUntil(flush(c.env));
+  } catch {}
+});
+async function onchain(): Promise<any> {
+  const cache = (caches as any).default; const key = new Request("https://cache.internal/onchain-v1");
+  const hit = await cache.match(key); if (hit) return { ...(await hit.json()), cached: true };
+  const base = "https://api.hiro.so"; const out: any = { address: PAY_TO, source: "api.hiro.so", at: new Date().toISOString() };
+  try {
+    const b: any = await (await fetch(`${base}/extended/v1/address/${PAY_TO}/balances`, { headers: { accept: "application/json" } })).json();
+    out.stx_micro = b?.stx?.balance ?? "0";
+    const ft = b?.fungible_tokens || {}; const k = Object.keys(ft).find((x) => /sbtc-token/.test(x));
+    out.sbtc_sats = k ? Number(ft[k].balance) : 0; out.sbtc_received_sats = k ? Number(ft[k].total_received ?? ft[k].balance) : 0;
+    const t: any = await (await fetch(`${base}/extended/v2/addresses/${PAY_TO}/transactions?limit=1`, { headers: { accept: "application/json" } })).json();
+    out.tx_count = t?.total ?? 0;
+  } catch (e) { out.error = String(e).slice(0, 100); }
+  await cache.put(key, new Response(JSON.stringify(out), { headers: { "content-type": "application/json", "cache-control": "max-age=300" } }));
+  return out;
+}
+app.get("/stats", async (c) => {
+  const kv = c.env.STATS ? await c.env.STATS.get("stats", "json") : null;
+  const counts: Record<string, number> = { ...(kv?.counts || {}) }; for (const [k, v] of Object.entries(pend)) counts[k] = (counts[k] || 0) + v;
+  return c.json({ desk: "Bot Agora x402 desk", counting_since: kv?.since ?? null, updated: kv?.updated ?? null,
+    free_calls: counts.free_calls || 0, paywall_402_shown: counts.paywall_402 || 0, paid_calls: counts.paid_success || 0,
+    by_route: Object.fromEntries(Object.entries(counts).filter(([k]) => k.includes(" ")).sort((a, b) => b[1] - a[1])),
+    onchain: await onchain(), price_sats: PRICE,
+    note: "Counts are approximate (batched per edge isolate, flushed about once a minute), contain no IPs or request contents, and start at the time shown. On-chain numbers come from the public Stacks API for the pay-to address." });
+});
 app.use("*", cors({ origin: "*", allowHeaders: ["content-type", "payment-signature"], exposeHeaders: ["payment-required", "payment-response"] }));
 app.get("/", (c) => c.json(INFO));
 app.get("/health", (c) => c.json({ ok: true }));
@@ -192,7 +244,15 @@ app.use(stacksPaymentMiddleware({
   "POST /headers/review": { price: PRICE, description: "Bot Agora desk: HTTP header audit + AI fixes" }
 }, payment));
 
-app.get("/ask", async (c) => c.json({ answer: await ai(c.env, SYS_ASK, c.req.query("question")!), by: "AI (Workers AI), best effort" }));
+app.get("/ask", async (c) => {
+  const q = c.req.query("question")!;
+  try { return c.json({ answer: await ai(c.env, SYS_ASK, q), by: "AI (Workers AI), best effort" }); }
+  catch (e) {
+    // Non-2xx => the payment is NOT settled. Forks can point callers at another desk (default: Bot Agora) as a referral.
+    const o = (c.env.OVERFLOW_URL || "").replace(/\/$/, "");
+    return c.json({ error: "this desk could not answer right now; you were not charged", ...(o ? { overflow: `${o}/ask?question=${encodeURIComponent(q)}`, overflow_note: "Another x402 desk that may answer (separate payment there)." } : {}) }, 503);
+  }
+});
 app.post("/lint", async (c) => {
   const src = (await c.req.text()).slice(0, MAX_IN);
   if (!src.trim()) return c.json({ error: "empty body" }, 400); // 4xx => not settled, not charged

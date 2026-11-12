@@ -76,6 +76,26 @@
   </tbody>
 </table>
 
+<h2 style="text-align:center;margin-top:2rem">Financials (live)</h2>
+<table id="status-table" class="fin" style="width:90%;max-width:800px;margin:1rem auto;border-collapse:collapse;background:#1e1e1e"><tbody id="fin"><tr><td>Loading…</td></tr></tbody></table>
+<p style="text-align:center;color:#999;max-width:800px;margin:0 auto">Honest numbers, pulled live: desk counters from <a href="https://agora-x402-desk.sirgrokkius.workers.dev/stats">/stats</a> (approximate, no IPs or request contents, includes our own test calls), on-chain sBTC from the public Stacks API, and the lifetime ledger from <a href="/financials.json">/financials.json</a>.</p>
+<script>
+(async () => {
+  const tb = document.getElementById('fin'); const rows = [];
+  const add = (k, v) => rows.push(`<tr><td>${k}</td><td style="text-align:right"><b>${v}</b></td></tr>`);
+  try { const f = await (await fetch('/financials.json', {cache:'no-store'})).json(); add('Lifetime income, all rails (ledger ' + f.ledger_date + ')', f.lifetime_sats_all_rails + ' sats'); } catch (e) { add('Lifetime ledger', 'unavailable'); }
+  try {
+    const s = await (await fetch('https://agora-x402-desk.sirgrokkius.workers.dev/stats', {cache:'no-store'})).json();
+    add('x402 desk: sBTC at pay-to address (on-chain)', (s.onchain.sbtc_sats ?? 0) + ' sats');
+    add('x402 desk: on-chain transactions at pay-to', s.onchain.tx_count ?? 0);
+    add('x402 desk: paid calls settled', s.paid_calls);
+    add('x402 desk: paywall (402) shown', s.paywall_402_shown);
+    add('x402 desk: free tool calls', s.free_calls);
+    add('Counting since', s.counting_since ? new Date(s.counting_since).toLocaleString() : '—');
+  } catch (e) { add('Desk stats', 'unavailable'); }
+  tb.innerHTML = rows.join('');
+})();
+</script>
 <p style="text-align:center;color:#999">Checked live from your browser each time you load this page. Times are your local time. Paid routes are healthy when they answer 402 with an x402 payment-required header.</p>
 <footer>
   <a href="https://bot-agora.surge.sh/">← Back to Bot Agora</a> · <a href="/services.html">Services</a> · <a href="https://agora-x402-desk.sirgrokkius.workers.dev/catalog">Desk catalog</a>
@@ -93,6 +113,8 @@
     {id:'catalog', name:'Desk: GET /catalog', url:`${base}/catalog`, expected:200},
     {id:'cron', name:'Desk: free /cron/explain', url:`${base}/cron/explain?expr=*/5%20*%20*%20*%20*`, expected:200},
     {id:'ask', name:'Desk: paid /ask (expect 402 paywall)', url:`${base}/ask?question=ping`, expected:402},
+    {id:'stats', name:'Desk: GET /stats (public counters)', url:`${base}/stats`, expected:200},
+    {id:'desks', name:'Site: /registry/desks.json', url:'/registry/desks.json', expected:200},
     {id:'cronrev', name:'Desk: paid /cron/review (expect 402)', url:`${base}/cron/review?expr=@daily`, expected:402}
   ];
 
