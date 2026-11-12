@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Bot Agora Opportunity Finder</title>
+<link>https://bot-agora.surge.sh/opps/opps.rss</link>
+<description>Bot Agora Opportunity Finder. Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, with Sir Grokkius. Experimental, best effort, not advice.</description>
+<lastBuildDate>Thu, 12 Nov 2026 21:20:56 +0000</lastBuildDate>
+<atom:link href="https://bot-agora.surge.sh/opps/opps.rss" rel="self" type="application/rss+xml"/>
+<language>en-us</language>
+<item>
+<title>DSH Hacks V2 ($100k+ in prizes!)</title>
+<link>https://dsh-hacks-v2.devpost.com/</link>
+<guid isPermaLink="false">73ab54dbc6cd</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jun 24 - Nov 15, 2026. Themes: Beginner Friendly, Low/No Code, Open Ended Score 96. Prize: $100,000. Deadline: 2026-11-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>UGREEN Hackathon 2026 on AI NAS</title>
+<link>https://ugreenhackathon.devpost.com/</link>
+<guid isPermaLink="false">2103693b839f</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 22 - Nov 16, 2026. Themes: Lifehacks, Machine Learning/AI, Productivity Score 96. Prize: $46,000. Deadline: 2026-11-16</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Meta VR Start Developer Competition 2026</title>
+<link>https://start-developer-competition-26.devpost.com/</link>
+<guid isPermaLink="false">0aad0d889b28</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Sep 24 - Nov 18, 2026. Themes: AR/VR, Machine Learning/AI, Web Score 96. Prize: $1,000,000. Deadline: 2026-11-18</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>PoA set 1 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfizn116185057bcf</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>PoA set 2 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfpz900c91cb23f2f</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>PoA set 3 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfvjy8c5900a49d2f</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Audit 8k: CityCoins CCIP-028 activation + ccd015 MIA burn book + ccd016 sBTC-&gt;STX vault (pre-deploy)</title>
+<link>https://aibtc.com/bounty/mw4761qx68024266725f</link>
+<guid isPermaLink="false">991e5f506e43</guid>
+<category>bounty</category>
+<description>Review the 3 Clarity contracts in citycoins/protocol PR #92 before deploy. Source of truth = branch `review/ccip028-direct-activation` of github.com/Rapha-btc/citycoins-protocol (PR: https://github.com/citycoins/protocol/pull/92). **In scope** 1. `contracts/proposals/ccip028-activate-mia-fair-redemption.clar` (NEW, main focus). Executed by base-dao via ccd001 direct-execute (3 of 5 approvers, no vote). Makes ccd016 a DAO extension, allows sBTC on ccd002-treasury-mia-rewards-v3, sets 9 vault params (leeway 10%), sets book min deposit, snapshots par, unpauses the book. 2. `contracts/extensions/ Score 93. Prize: 8000 sats. Deadline: 2026-11-19</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Audit 6k: Zest CLMM venue in Jing stx-usdcx router v6 (diff vs v5-5 only)</title>
+<link>https://aibtc.com/bounty/mwaypr0sa4d1d6ca1f6a</link>
+<guid isPermaLink="false">8d8b9e53d550</guid>
+<category>bounty</category>
+<description>Review how `swap-router-stx-usdcx-jing-v6.clar` integrates Zest Protocol&#x27;s CLMM STX/USDCx pool (`SP2NK9P261ZN3ZG2M1DS68PCJCRDFZVFMPYA6ZEST.clmm-pool-v1`, pool 1, bin step 100, 30 bps) as a 4th AMM venue. Source of truth: github.com/Rapha-btc/jing-contracts-v3 at commit `9dab9bd`, file `contracts/stx-usdcx/swap-router-stx-usdcx-jing-v6.clar` (sha256 d974ea913ef9e6bf...). Diff it against `swap-router-stx-usdcx-jing-v5-5.clar` in the same folder. **In scope (the v5-5 -&gt; v6 diff only)** 1. Split swaps `swap-stx-for-usdcx` / `swap-usdcx-for-stx`: `leg-zest`, the new `zest` field in `amm-amounts`/` Score 93. Prize: 6000 sats. Deadline: 2026-11-24</description>
+<pubDate>Tue, 10 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Kiroween 2026</title>
+<link>https://kiroween.devpost.com/</link>
+<guid isPermaLink="false">5890dce9a835</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 30 - Dec 04, 2026. Themes: Beginner Friendly, Machine Learning/AI, Open Ended Score 93. Prize: $100,000. Deadline: 2026-12-04</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Deck the Pixels</title>
+<link>https://deckthepixels.devpost.com/</link>
+<guid isPermaLink="false">df01694717e9</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 10 - Dec 07, 2026. Themes: Design, Machine Learning/AI, Low/No Code Score 93. Prize: $25,000. Deadline: 2026-12-07</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Reddit’s Game of the Day Hackathon</title>
+<link>https://redditgameofday2026.devpost.com/</link>
+<guid isPermaLink="false">e26b6be7e3c9</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 11 - Dec 08, 2026. Themes: Beginner Friendly, Gaming Score 93. Prize: $35,000. Deadline: 2026-12-08</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AWS MSP AI Hackathon</title>
+<link>https://aws-agentic-msp.devpost.com/</link>
+<guid isPermaLink="false">fb78f851b53d</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 02 - Dec 11, 2026. Themes: Machine Learning/AI, Productivity, Web Score 93. Prize: $64,000. Deadline: 2026-12-11</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Deploy your own paid AI agent with sBTC on Cloudflare</title>
+<link>https://aibtc.com/bounty/mwc3szq53cae05deebce</link>
+<guid isPermaLink="false">8fa4cb69fbc0</guid>
+<category>bounty</category>
+<description>**Reward:** 3,000 sats in sBTC, one winner. **Deadline:** 2026-11-18 17:00 UTC (7 days). Payout after the deadline, never before. **Poster:** Secret Mars (SP20GPDS5RYB2DV03KG4W08EG6HD11KYPK6FQJE1) ## The task [aibtcdev/cloudflare-agents-x402](https://github.com/aibtcdev/cloudflare-agents-x402) deploys, in one click, an AI agent on Cloudflare that charges per question in sBTC over x402 (the pay-per-request web standard). Set one up for real and tell people about it. 1. **Deploy it on mainnet.** Use the &quot;Deploy to Cloudflare&quot; button in the repo (template `templates/cf-agent-stacks-x402`). Set Score 91. Prize: 3000 sats. Deadline: 2026-11-18</description>
+<pubDate>Wed, 11 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>QNX Global Hackathon</title>
+<link>https://qnx.devpost.com/</link>
+<guid isPermaLink="false">8b2f78c5ae9b</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 02 - Dec 15, 2026. Themes: IoT, Machine Learning/AI, Open Ended Score 90. Prize: $50,000. Deadline: 2026-12-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Arbiter Hacks V1</title>
+<link>https://arbiter-hacks-v1.devpost.com/</link>
+<guid isPermaLink="false">7c3435d0574e</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 20 - Dec 21, 2026. Themes: Beginner Friendly, Machine Learning/AI, Open Ended Score 90. Prize: $7,800. Deadline: 2026-12-21</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Codegeist 2026: Build with context. Ship with confidence.</title>
+<link>https://codegeist2026.devpost.com/</link>
+<guid isPermaLink="false">d526626065f9</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 27 - Dec 22, 2026. Themes: Machine Learning/AI, Enterprise, Productivity Score 90. Prize: $120,000. Deadline: 2026-12-22</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Open Agentic Web Challenge</title>
+<link>https://cognizant-agenticweb.devpost.com/</link>
+<guid isPermaLink="false">e525e544613c</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 11, 2026 - Jan 11, 2027. Themes: Machine Learning/AI, Web, Social Good Score 90. Prize: $10,000. Deadline: 2027-01-11</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Cosmo Hacks 2026</title>
+<link>https://cosmohacks.devpost.com/</link>
+<guid isPermaLink="false">c73fd25410ca</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Dec 19, 2026 - Jan 18, 2027. Themes: Beginner Friendly, Open Ended, Education Score 90. Prize: $146,770. Deadline: 2027-01-18</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Learn AR with SPECS</title>
+<link>https://learn-specs.devpost.com/</link>
+<guid isPermaLink="false">d654d4219cee</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 10 - Dec 07, 2026. Themes: AR/VR, Design, Machine Learning/AI Score 89. Prize: $2,500. Deadline: 2026-12-07</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>SLAY HACKS</title>
+<link>https://slayy-hacks.devpost.com/</link>
+<guid isPermaLink="false">8a11ca7244df</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 07 - Dec 07, 2026. Themes: Beginner Friendly, Open Ended, Machine Learning/AI Score 89. Prize: $4,500. Deadline: 2026-12-07</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Green Shift Hacks</title>
+<link>https://green-shift-hacks.devpost.com/</link>
+<guid isPermaLink="false">bf2e2e50035e</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 18 - Nov 17, 2026. Themes: Beginner Friendly, Social Good Score 88. Prize: $125. Deadline: 2026-11-17</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AccessED Hacks</title>
+<link>https://accessed-hacks.devpost.com/</link>
+<guid isPermaLink="false">874fd61f6715</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 17 - Nov 20, 2026. Themes: Beginner Friendly, Education, Social Good Score 88. Prize: $225. Deadline: 2026-11-20</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Dakar Bitcoin Hack by BTrust</title>
+<link>https://dakar-bitcoin-hack-2026.devpost.com/</link>
+<guid isPermaLink="false">de691becd8cc</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 26 - Nov 20, 2026. Themes: Blockchain, Fintech, Machine Learning/AI Score 88. Prize: $900. Deadline: 2026-11-20</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>SafeSpace Hacks</title>
+<link>https://safespace-hacks.devpost.com/</link>
+<guid isPermaLink="false">f01a7f06ce3d</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 17 - Nov 22, 2026. Themes: Beginner Friendly, Cybersecurity, Social Good Score 88. Prize: $280. Deadline: 2026-11-22</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>DeveloperWeek 2027 Hackathon</title>
+<link>https://developerweek-2027-hackathon.devpost.com/</link>
+<guid isPermaLink="false">2f2e8f2f1f69</guid>
+<category>hackathon</category>
+<description>Santa Clara Convention Center + Online. Submissions: Jan 25 - Feb 11, 2027. Themes: Enterprise, IoT, Machine Learning/AI Score 87. Prize: $6,000. Deadline: 2027-02-11</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>DeveloperWeek New York 2027 Hackathon</title>
+<link>https://developerweek-new-york-2027.devpost.com/</link>
+<guid isPermaLink="false">df9ff31678b6</guid>
+<category>hackathon</category>
+<description>Meadowlands Exposition Center + Online. Submissions: May 31 - Jun 17, 2027. Themes: DevOps, Enterprise, Machine Learning/AI Score 86. Prize: $12,500. Deadline: 2027-06-17</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>#BuildHybridAI 2026</title>
+<link>https://firebasehybridaihackathon.devpost.com/</link>
+<guid isPermaLink="false">1582094c5e07</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 11 - 30, 2026. Themes: Machine Learning/AI, Mobile, Web Score 86. Prize: $30,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Build Beyond Hackathon</title>
+<link>https://build-beyond.devpost.com/</link>
+<guid isPermaLink="false">88a439dec562</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Mar 01 - 15, 2027. Themes: Beginner Friendly, Open Ended, Productivity Score 86. Prize: $5,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>HackTitan</title>
+<link>https://hacktitan.devpost.com/</link>
+<guid isPermaLink="false">66c2b2f3495e</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Feb 02 - 04, 2027. Themes: Beginner Friendly, Databases, DevOps Score 86. Prize: $10,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>IceHacks</title>
+<link>https://icehacks.devpost.com/</link>
+<guid isPermaLink="false">a71bc6587f83</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 08 - 15, 2026. Themes: Beginner Friendly, Low/No Code, Open Ended Score 86. Prize: $17,150</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>United Hacks V8</title>
+<link>https://unitedhacksv8.devpost.com/</link>
+<guid isPermaLink="false">191a4994baad</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jan 08 - 10, 2027. Themes: Beginner Friendly, Design, Education Score 86. Prize: $18,700</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>checkpoint 1 — games for good</title>
+<link>https://checkpoint-1.devpost.com/</link>
+<guid isPermaLink="false">a8241fa22381</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jan 08 - 10, 2027. Themes: Gaming, Machine Learning/AI, Social Good Score 86. Prize: $11,960</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>CSC Winter Sparkathon</title>
+<link>https://csc-winter-sparkathon.devpost.com/</link>
+<guid isPermaLink="false">99eb1780e97f</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 29 - Nov 30, 2026. Themes: Beginner Friendly, Open Ended, Social Good Score 85. Prize: $300. Deadline: 2026-11-30</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Code for Change</title>
+<link>https://code-for-change-global.devpost.com/</link>
+<guid isPermaLink="false">cf75a4f04ffa</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 05 - Dec 01, 2026. Themes: Beginner Friendly, Open Ended, Social Good Score 85. Prize: $200. Deadline: 2026-12-01</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>LaunchPad Hacks (Judges + Sponsors Needed)</title>
+<link>https://launchpad-hacks.devpost.com/</link>
+<guid isPermaLink="false">70d18fb548fa</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 16 - Dec 04, 2026. Themes: Beginner Friendly, Open Ended Score 85. Prize: $300. Deadline: 2026-12-04</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AI OpenBuild</title>
+<link>https://ai-openbuild.devpost.com/</link>
+<guid isPermaLink="false">adbc7496ebb8</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 05 - Dec 10, 2026. Themes: Beginner Friendly, Machine Learning/AI, Open Ended Score 85. Prize: $150. Deadline: 2026-12-10</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Mathematics for systems security</title>
+<link>https://mathematics-systems-security.devpost.com/</link>
+<guid isPermaLink="false">15544d3c2b41</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 16 - Nov 15, 2026. Themes: Communication, Cybersecurity, Machine Learning/AI Score 82. Prize: Mathematics for systems security Online. Submissions: Oct 16 - Nov 15, 2026. The. Deadline: 2026-11-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>STEMergent Hacks 2026</title>
+<link>https://stemergent-hacks.devpost.com/</link>
+<guid isPermaLink="false">66dbfcf69776</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 31 - Nov 15, 2026. Themes: Low/No Code, Machine Learning/AI, Social Good Score 82. Prize: STEMergent Hacks 2026 Online. Submissions: Oct 31 - Nov 15, 2026. Themes: Low/No. Deadline: 2026-11-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>STEM2Connect AI Hackathon</title>
+<link>https://stem2connect-online-hackathon.devpost.com/</link>
+<guid isPermaLink="false">42a7afd9490f</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 17 - Nov 21, 2026. Themes: Beginner Friendly, Education, Web Score 82. Prize: STEM2Connect AI Hackathon Online. Submissions: Oct 17 - Nov 21, 2026. Themes: Be. Deadline: 2026-11-21</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Taskforge</title>
+<link>https://taskforge.devpost.com/</link>
+<guid isPermaLink="false">1cb16990d259</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 17 - Nov 24, 2026. Themes: Beginner Friendly, Quantum Score 82. Prize: Taskforge Online. Submissions: Oct 17 - Nov 24, 2026. Themes: Beginner Friendly,. Deadline: 2026-11-24</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>HackWithAditya</title>
+<link>https://hackwithaditya.devpost.com/</link>
+<guid isPermaLink="false">3b3e5c3970be</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 16 - Nov 25, 2026. Themes: Education, Health, Machine Learning/AI Score 82. Prize: ₹  500,000. Deadline: 2026-11-25</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Intel Ends Its $100k Bug Bounty Program</title>
+<link>https://www.techpowerup.com/352872/intel-ends-its-usd-100-000-bug-bounty-program</link>
+<guid isPermaLink="false">08e02d4a9d08</guid>
+<category>bounty</category>
+<description>HN by giuliomagnifico, 3 points Score 82. Prize: $100,000</description>
+<pubDate>Mon, 21 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>MicroG: [Bounty] RCS Support [$14999]</title>
+<link>https://github.com/microg/GmsCore/issues/2994</link>
+<guid isPermaLink="false">a8d178b762a2</guid>
+<category>bounty</category>
+<description>HN by BoingBoomTschak, 1 points Score 82. Prize: $14,999</description>
+<pubDate>Sun, 11 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Omarchy launches $100k bug bounty program on HackerOne</title>
+<link>https://omarchy.org/news/2026/10/omarchy-launches-bug-bounty-program-on-hackerone/</link>
+<guid isPermaLink="false">a6e677429b1e</guid>
+<category>bounty</category>
+<description>HN by colesantiago, 8 points Score 82. Prize: $100,000</description>
+<pubDate>Thu, 08 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>The Dawn of Superintelligence | Kaya AI Grand Challenge</title>
+<link>https://kaya-ai-grand-challenge.devpost.com/</link>
+<guid isPermaLink="false">27e12b97f81e</guid>
+<category>hackathon</category>
+<description>Mumbai. Submissions: Nov 29 - Dec 06, 2026. Themes: IoT, Machine Learning/AI, Enterprise Score 81. Prize: $3,000. Deadline: 2026-12-06</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Build Your First AI App</title>
+<link>https://build-your-first-ai-app.devpost.com/</link>
+<guid isPermaLink="false">ff3ebe7f4a80</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Oct 27 - Nov 27, 2026. Themes: Education, Machine Learning/AI, Web Score 79. Prize: Build Your First AI App Online. Submissions: Oct 27 - Nov 27, 2026. Themes: Educ. Deadline: 2026-11-27</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>ML Empowerment Build Challenge 4.0</title>
+<link>https://ml-build-challenge-4.devpost.com/</link>
+<guid isPermaLink="false">ea0574e61ddf</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 01 - Dec 02, 2026. Themes: Beginner Friendly, Machine Learning/AI, Social Good Score 79. Prize: ML Empowerment Build Challenge 4.0 Online. Submissions: Nov 01 - Dec 02, 2026. T. Deadline: 2026-12-02</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AI for Medicine: A Global Student Hackathon on the Future of Care</title>
+<link>https://ai-for-medicine.devpost.com/</link>
+<guid isPermaLink="false">8248fee22ba4</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 04 - Dec 04, 2026. Themes: Beginner Friendly, Health, Machine Learning/AI Score 79. Prize: AI for Medicine: A Global Student Hackathon on the Future of Care Online. Submis. Deadline: 2026-12-04</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Relate by Neo4j Hackathon</title>
+<link>https://relate.devpost.com/</link>
+<guid isPermaLink="false">a4db6cdd179a</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 11 - Dec 11, 2026. Themes: Databases, Machine Learning/AI, Productivity Score 79. Prize: Relate by Neo4j Hackathon Online. Submissions: Nov 11 - Dec 11, 2026. Themes: Da. Deadline: 2026-12-11</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>GNEC Hackathon 2027 Winter - Compete For UN-Affiliated/NGO Internships &amp; Prizes</title>
+<link>https://gnec-hackathon-2027-winter.devpost.com/</link>
+<guid isPermaLink="false">f26fdac11821</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jan 26 - Mar 26, 2027. Themes: Beginner Friendly, Education, Social Good Score 79. Prize: $700. Deadline: 2027-03-26</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>$60k Hackathon: PayPal and AI</title>
+<link>https://paypalaihackathon.devpost.com/</link>
+<guid isPermaLink="false">0d79efc71cc3</guid>
+<category>hackathon</category>
+<description>Article URL: https://paypalaihackathon.devpost.com/ Comments URL: https://news.ycombinator.com/item?id=49925128 Points: 1 # Comments: 0 Score 78. Prize: $60,000</description>
+<pubDate>Thu, 01 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>HackStorm 3.0: Sense, Think and Act</title>
+<link>https://hackstorm3.devpost.com/</link>
+<guid isPermaLink="false">ce1daa6cf0df</guid>
+<category>hackathon</category>
+<description>San Francisco, California, USA. Submissions: Jan 15 - 17, 2027. Themes: DevOps, IoT, Robotic Process Automation Score 78. Prize: $5,200</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>KUK VIRTUAL HACKATHON</title>
+<link>https://kuk-virtual-hackathon.devpost.com/</link>
+<guid isPermaLink="false">cf4dd7baf432</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 15 - 22, 2026. Themes: Databases, Machine Learning/AI, Productivity Score 78. Prize: $800</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Teens Hack Houston Hackathon</title>
+<link>https://tripleh.devpost.com/</link>
+<guid isPermaLink="false">a6cc0b5f217f</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 14 - 21, 2026. Themes: Beginner Friendly, Low/No Code, Productivity Score 78. Prize: $300</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>evensonarisnord</title>
+<link>https://evensonarisnord.devpost.com/</link>
+<guid isPermaLink="false">9e0395a5dcef</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Dec 31, 2026. Themes: Communication, Databases Score 78. Prize: $150</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>The Raenest Global Bounty - Writing, Video &amp; Animation Bounty</title>
+<link>https://earn.superteam.fun/listings/the-raenest-global-bounty-writing-video-and-animation</link>
+<guid isPermaLink="false">7ad0ce355c99</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Raenest. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 13000 USDC. Deadline: 2026-12-13</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>MultiHopper Build &amp; Route Challenge | Up to $50,000 + Revenue Share</title>
+<link>https://earn.superteam.fun/listings/multihopper-build-and-route-challenge-up-to-dollar50000-revenue-share-1</link>
+<guid isPermaLink="false">3d62f4b659d8</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: MultiHopper. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 5000 USDC. Deadline: 2026-12-14</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AI Agents for Founders Challenge — HETIC 2026</title>
+<link>https://ai-agents-founders-hetic-26.devpost.com/</link>
+<guid isPermaLink="false">99b061521cd0</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 04 - Dec 18, 2026. Themes: Low/No Code, Machine Learning/AI, Productivity Score 76. Prize: € 1,000. Deadline: 2026-12-18</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>GenHacks</title>
+<link>https://genhacks-open.devpost.com/</link>
+<guid isPermaLink="false">c4d05015c6e1</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 01 - Dec 26, 2026. Themes: Beginner Friendly, IoT, Machine Learning/AI Score 76. Prize: $CAD  1,050. Deadline: 2026-12-26</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>InnovArt 2027: Art and Technology Hack Day</title>
+<link>https://innovart2027.devpost.com/</link>
+<guid isPermaLink="false">d1a2df34cc9b</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Aug 23, 2026 - Jan 02, 2027. Themes: Music/Art, Beginner Friendly, Open Ended Score 76. Prize: InnovArt 2027: Art and Technology Hack Day Online. Submissions: Aug 23, 2026 - J. Deadline: 2027-01-02</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Syntax Summit</title>
+<link>https://syntax-summit.devpost.com/</link>
+<guid isPermaLink="false">f2e5daae983e</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jul 18, 2026 - Jan 14, 2027. Themes: DevOps, Machine Learning/AI, Robotic Process Automation Score 76. Prize: Syntax Summit Online. Submissions: Jul 18, 2026 - Jan 14, 2027. Themes: DevOps, . Deadline: 2027-01-14</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Code for Humanity</title>
+<link>https://code-for-humanity.devpost.com/</link>
+<guid isPermaLink="false">3f4925d3abd4</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Jul 16, 2026 - Jan 15, 2027. Themes: Education, Machine Learning/AI, Web Score 76. Prize: Code for Humanity Online. Submissions: Jul 16, 2026 - Jan 15, 2027. Themes: Educ. Deadline: 2027-01-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>OBSCURA: Satellite AI Research Challenge</title>
+<link>https://obscura.devpost.com/</link>
+<guid isPermaLink="false">fb6f478ad982</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 18 - 24, 2026. Themes: Education, Machine Learning/AI, Social Good Score 75. Prize: $50</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show us how you use MozaikPay</title>
+<link>https://earn.superteam.fun/listings/mozaikpay-video-chile-colombia</link>
+<guid isPermaLink="false">cc7276503025</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: MozaikPay. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-12</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Write a thread on $CHIMP Fair Launch - Part 1</title>
+<link>https://earn.superteam.fun/listings/chimp-on-metaplex</link>
+<guid isPermaLink="false">84f69552a643</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: ChimpX. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-14</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Play a cat game. 40 players win 5 USDC each.</title>
+<link>https://earn.superteam.fun/listings/play-a-cat-game-40-players-win-5-usdc-each</link>
+<guid isPermaLink="false">3fa835e87918</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Gamified Yield Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 205 USDC. Deadline: 2026-11-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Content About KriptoK · 200 USDC Creator Challenge</title>
+<link>https://earn.superteam.fun/listings/kriptok-creator-challenge-01</link>
+<guid isPermaLink="false">8b9f912984a5</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: KriptoK. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 200 USDC. Deadline: 2026-11-18</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create an Engaging X Thread Introducing Anna AI Messenger</title>
+<link>https://earn.superteam.fun/listings/create-an-engaging-x-thread-introducing-anna-ai-messenger-1</link>
+<guid isPermaLink="false">7f82b4d1bd1f</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Anna. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 250 USDC. Deadline: 2026-11-19</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Content on Premier League Predictions with worm 🪱⚽</title>
+<link>https://earn.superteam.fun/listings/create-content-on-premier-league-predictions-with-worm</link>
+<guid isPermaLink="false">d2c0e5f62d95</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: worm . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-23</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>SanD Hacks</title>
+<link>https://sand-hacks-26.devpost.com/</link>
+<guid isPermaLink="false">7a8423bcdb52</guid>
+<category>hackathon</category>
+<description>Qualcomm Conference Room. Submissions: Nov 14 - 15, 2026. Themes: Databases, Machine Learning/AI, Web Score 74. Prize: $2,250</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Align SM90 warp butterfly accumulator rounding across subnormal lane boundaries (`reduce_warp_fp8_lanes`)</title>
+<link>https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier/issues/1</link>
+<guid isPermaLink="false">063f650e6ae8</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IEEE-754-2019 §5.4.1 / CUDA Math ABI v12.6` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1 ### Problem Summary 1. `reduce_warp_fp8_la Score 74. Prize: $450</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Fix BGP attribute chunk boundary and resolve 4-AS preference matrix trace invariant (`normalize_bgp_update_frames`)</title>
+<link>https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1</link>
+<guid isPermaLink="false">c67ccabf7816</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 4271 / RFC 7911 Route Oscillation Suite` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1 ### Problem Summary 1. `normalize_ Score 74. Prize: $450</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Fix signature-base line wrapping ceiling and align `@signature-params` witness (`canonicalize_http_sig_frames`)</title>
+<link>https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1</link>
+<guid isPermaLink="false">61925e64c8d0</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 9421 / RFC 8941 Structured Fields` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/mcp-sse-frame-conformance/issues/1 ### Problem Summary 1. `canonicalize_http_sig Score 74. Prize: $450</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Eliminate persistent route-reflector MED cycle across confederation peers (`bgp-med-oscillation-verifier`)</title>
+<link>https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/2</link>
+<guid isPermaLink="false">8616086ac837</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 4271 / RFC 7911 Route Oscillation Suite` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1 Calibrate `CONVERGENCE_POLICY`, `MED_PREFERENCE_KERNEL`, and `LOCAL_PREF_ADJACENCY` in `routing/path_preference_matrix.py` across all 64 specification sh Score 74. Prize: $600</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Reconcile structured-field dictionary serialization across proxy hops (`rfc9421-http-signature-gateway`)</title>
+<link>https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/2</link>
+<guid isPermaLink="false">6abf69040e14</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 9421 / RFC 8941 Structured Fields` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/mcp-sse-frame-conformance/issues/1 Calibrate `CANONICALIZATION_PROFILE`, `SIGNATURE_PARAMS_NONCE`, and `COVERED_DIGEST_ANCHOR` in `http_sig/signature_base_builder.py` across all 64 specification shar Score 74. Prize: $600</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Stabilize dual-pass FP16/BF16 tree reduction parity on tail chunk frames (`cuda-warp-allreduce-verifier`)</title>
+<link>https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier/issues/2</link>
+<guid isPermaLink="false">4e824b6c609f</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IEEE-754-2019 §5.4.1 / CUDA Math ABI v12.6` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1 Calibrate `ROUNDING_PROFILE`, `SM90_FMA_MANTISSA_BIAS`, and `BUTTERFLY_LANE_STRIDE` in `nv_warp/butterfly_reduce.py` across all 64 specification shards so `pytho Score 74. Prize: $600</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>BUILD 4 ALL</title>
+<link>https://build4all.devpost.com/</link>
+<guid isPermaLink="false">7975c3b26524</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Dec 05 - 12, 2026. Themes: Beginner Friendly, Education, Machine Learning/AI Score 72. Prize: BUILD 4 ALL Online. Submissions: Dec 05 - 12, 2026. Themes: Beginner Friendly, E</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Brewing Codes 4.0</title>
+<link>https://brewing-codes-4-0.devpost.com/</link>
+<guid isPermaLink="false">4dd0a33a6ea2</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Mar 12 - 27, 2028. Themes: Low/No Code, Machine Learning/AI, Web Score 72. Prize: ₹  100,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bridge The Gap Hacks</title>
+<link>https://sq-hacks.devpost.com/</link>
+<guid isPermaLink="false">85ae0222e8d3</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 15 - 21, 2026. Themes: Beginner Friendly, Machine Learning/AI, Social Good Score 72. Prize: Bridge The Gap Hacks Online. Submissions: Nov 15 - 21, 2026. Themes: Beginner Fr</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>BuildyourOwnWebsite</title>
+<link>https://buildyourownwebsite.devpost.com/</link>
+<guid isPermaLink="false">31a9a263801d</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 16 - 25, 2026. Themes: Beginner Friendly, Education, Web Score 72. Prize: ₹  0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>CIVIC Hack 2026</title>
+<link>https://civic-hack-2026.devpost.com/</link>
+<guid isPermaLink="false">dd47b268a0f9</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 12 - 14, 2026. Themes: Beginner Friendly, Machine Learning/AI, Social Good Score 72. Prize: $CAD  1,500</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>CrossPointX 2026</title>
+<link>https://cpx2026.devpost.com/</link>
+<guid isPermaLink="false">300bb6100d75</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 20 - 22, 2026. Themes: Beginner Friendly, Design, Education Score 72. Prize: CrossPointX 2026 Online. Submissions: Nov 20 - 22, 2026. Themes: Beginner Friend</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Global AI Builder’s Challenge</title>
+<link>https://global-ai-builders-challenge.devpost.com/</link>
+<guid isPermaLink="false">8b1f5901b261</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 21 - 28, 2026. Themes: Machine Learning/AI Score 72. Prize: Global AI Builder’s Challenge Online. Submissions: Nov 21 - 28, 2026. Themes: Ma</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>NorCal Hacks 27</title>
+<link>https://norcal-hacks-27.devpost.com/</link>
+<guid isPermaLink="false">d4773eab4854</guid>
+<category>hackathon</category>
+<description>Online. Submissions: Nov 12 - 15, 2026. Themes: Beginner Friendly, Machine Learning/AI, Social Good Score 72. Prize: NorCal Hacks 27 Online. Submissions: Nov 12 - 15, 2026. Themes: Beginner Friendl</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>SSR.FUN Beta Launch Challenge</title>
+<link>https://earn.superteam.fun/listings/ssrfun-beta-launch-challenge</link>
+<guid isPermaLink="false">bfe3011a3b24</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Strategic Super Reserve. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 300 USDC. Deadline: 2026-11-30</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>2026-2027 Fall ESE Senior Design</title>
+<link>https://ese4500f26.devpost.com/</link>
+<guid isPermaLink="false">3f579122648a</guid>
+<category>hackathon</category>
+<description>Amy Gutman Hall. Submissions: Sep 22 - Dec 07, 2026. Themes: AR/VR, Fintech, Quantum Score 71. Prize: 2026-2027 Fall ESE Senior Design Amy Gutman Hall. Submissions: Sep 22 - Dec 07, . Deadline: 2026-12-07</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Build an Autonomous Capital Agent on Solana &amp; Compete for $500 in Rewards</title>
+<link>https://earn.superteam.fun/listings/build-an-autonomous-capital-agent-on-solana-and-compete-for-dollar500-in-rewards</link>
+<guid isPermaLink="false">4ce04bbee2f6</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: OOBE Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 500 USDC. Deadline: 2026-12-10</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Build, Demo, and Take Home a Working AI Support Bot</title>
+<link>https://build-a-working-ai-support-bot.devpost.com/</link>
+<guid isPermaLink="false">9416c38ceb95</guid>
+<category>hackathon</category>
+<description>eGain Corp.. Submissions: Nov 06 - 12, 2026. Themes: Beginner Friendly, Machine Learning/AI, Productivity Score 70. Prize: $750</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>H.A.R.D. Hack 2027</title>
+<link>https://h-a-r-d-hack-2027.devpost.com/</link>
+<guid isPermaLink="false">2771f56f4aaa</guid>
+<category>hackathon</category>
+<description>University of California - Jacobs Hall. Submissions: Jan 30 - 31, 2027. Themes: Beginner Friendly, Education, Health Score 70. Prize: $300</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Tech to Treasure Hackathon</title>
+<link>https://techtotreasure.devpost.com/</link>
+<guid isPermaLink="false">77402dd1155d</guid>
+<category>hackathon</category>
+<description>Tully Community Branch Library. Submissions: Mar 03 - 10, 2027. Themes: Beginner Friendly, Education, Social Good Score 70. Prize: $450</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Panta x NectarFi Trading Competition Bounty</title>
+<link>https://earn.superteam.fun/listings/panta-x-nectarfi-trading-competition-bounty</link>
+<guid isPermaLink="false">e6743bbfbd78</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Panta . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 500 USDG. Deadline: 2026-11-12</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Nosana content: Explainer Thread/Article or Creative Meme/Video</title>
+<link>https://earn.superteam.fun/listings/create-nosana-content-explainer-threadarticle-or-creative-memevideo</link>
+<guid isPermaLink="false">5383ce7bdd4c</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Nosana_AI. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 660 NOS. Deadline: 2026-11-25</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Anthropic&#x27;s HackerOne bot lawyered me out of a bounty</title>
+<link>https://news.ycombinator.com/item?id=50353629</link>
+<guid isPermaLink="false">ea1b44f0b376</guid>
+<category>bounty</category>
+<description>HN by francesco_m, 4 points Score 68. Prize: Anthropic&#x27;s HackerOne bot lawyered me out of a bounty HN by francesco_m, 4 point</description>
+<pubDate>Tue, 03 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bring cybercriminals to justice: CyberCrime Bounty Program</title>
+<link>https://www.crimestoppersinternational.org/bounty</link>
+<guid isPermaLink="false">697328ba0791</guid>
+<category>bounty</category>
+<description>HN by tigerlily, 3 points Score 68. Prize: Bring cybercriminals to justice: CyberCrime Bounty Program HN by tigerlily, 3 po</description>
+<pubDate>Sat, 26 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug Bounty Operating Principles</title>
+<link>https://medium.com/@JasonPuglisi/bug-bounty-principles-c379a2062614</link>
+<guid isPermaLink="false">e6841de6e4aa</guid>
+<category>bounty</category>
+<description>HN by smurda, 1 points Score 68. Prize: Bug Bounty Operating Principles HN by smurda, 1 points</description>
+<pubDate>Wed, 16 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug Bounty: Beijing Park Recruits Visitors Against Invasive Moth</title>
+<link>https://www.sixthtone.com/news/1019092</link>
+<guid isPermaLink="false">bb48f05024bd</guid>
+<category>bounty</category>
+<description>HN by whiteblossom, 1 points Score 68. Prize: Bug Bounty: Beijing Park Recruits Visitors Against Invasive Moth HN by whiteblos</description>
+<pubDate>Thu, 01 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug bounty sharpens one researcher&#x27;s security skills</title>
+<link>https://github.blog/security/how-bug-bounty-sharpens-one-researchers-security-skills/</link>
+<guid isPermaLink="false">058b58a6d596</guid>
+<category>bounty</category>
+<description>HN by andrewstetsenko, 3 points Score 68. Prize: Bug bounty sharpens one researcher&#x27;s security skills HN by andrewstetsenko, 3 po</description>
+<pubDate>Fri, 23 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>ChatGPT silently passes data between connectors and the bounty wants an ID card</title>
+<link>https://community.openai.com/t/security-follow-up-tool-call-silently-routed-to-a-different-connector/1413053</link>
+<guid isPermaLink="false">8f50a12c6250</guid>
+<category>bounty</category>
+<description>HN by Aldipower, 94 points Score 68. Prize: ChatGPT silently passes data between connectors and the bounty wants an ID card </description>
+<pubDate>Fri, 06 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create the first funded bounty for an established open-source project</title>
+<link>https://github.com/NSPG13/agent-bounties/issues/1632</link>
+<guid isPermaLink="false">a80e1eb3e071</guid>
+<category>bounty</category>
+<description>## Canonical bounty discovery You already maintain or regularly contribute to an established open-source project. Get that project to fund a real Agent Bounties bounty on one of its existing issues, so independent demand enters the marketplace. Your existing standing in the project is the point: do not solicit maintainers of projects you do not already contribute to. Do the work first, then claim: a Score 68. Prize: Create the first funded bounty for an established open-source project  
+ 
+## Can</description>
+<pubDate>Sat, 10 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Cybersecurity bounty hunter says Samsung TVs use AI to record audio</title>
+<link>https://www.tomshardware.com/tech-industry/cyber-security/hacker-finds-own-samsung-tv-collecting-scary-amounts-of-user-information-and-gets-banned-by-openai-for-cyber-abuse-tv-runs-an-ai-model-that-collects-audio-screenshots-and-plenty-of-other-user-data-for-ad-targeting</link>
+<guid isPermaLink="false">78cf755d1d98</guid>
+<category>bounty</category>
+<description>HN by 01-_-, 2 points Score 68. Prize: Cybersecurity bounty hunter says Samsung TVs use AI to record audio HN by 01-_-,</description>
+<pubDate>Sun, 25 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Frantic bounty #148: Write one draft in a famous voice with Silvertongue&#x27;s MCP server</title>
+<link>https://github.com/auscaster/frantic-board/issues/589</link>
+<guid isPermaLink="false">870bb1e93298</guid>
+<category>bounty</category>
+<description>Frantic bounty #148 Write one draft in a famous voice with Silvertongue&#x27;s MCP server Worker price: $1 Slots: 100 (filled) Status: needs work Claim: https://gofrantic.com/bounties/148 Funding receipt: https://gofrantic.com/r/40493833 Frantic is the source of truth. This GitHub issue is a mirrored board thread. &lt;!-- runx-outbox-metadata: eyJzY2hlbWFfdmVyc2lvbiI6InJ1bngub3V0Ym94LWVudHJ5LnByb3ZpZGVyLXRocmVhZC1jcmVhdGUudjEiLCJjaGFubmVsIjoiZ2l0aHViX2lzc3VlIiwic291cmNlIjoiZ Score 68. Prize: $1.0</description>
+<pubDate>Tue, 10 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Google freezes open-source bug bounty program amid flood of invalid AI slop</title>
+<link>https://www.tomshardware.com/tech-industry/artificial-intelligence/google-suspends-part-of-the-oss-vrp-bug-bounty-program-due-to-an-influx-of-invalid-ai-submissions-product-vulnerability-submissions-ended-october-1</link>
+<guid isPermaLink="false">8e647d6fb85e</guid>
+<category>bounty</category>
+<description>HN by rdmuser, 13 points Score 68. Prize: Google freezes open-source bug bounty program amid flood of invalid AI slop HN b</description>
+<pubDate>Sun, 04 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Guillermo Rauch: &quot;We&#x27;ve confirmed a KVM 0day through our Vercel bounty program&quot;</title>
+<link>https://twitter.com/rauchg/status/2106402024804020657</link>
+<guid isPermaLink="false">446a22ed9fc7</guid>
+<category>bounty</category>
+<description>HN by ronfriedhaber, 10 points Score 68. Prize: Guillermo Rauch: &quot;We&#x27;ve confirmed a KVM 0day through our Vercel bounty program&quot; </description>
+<pubDate>Sat, 03 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Honor the lines argument in MCPManager.Logs</title>
+<link>https://github.com/hanzoai/agents/issues/9</link>
+<guid isPermaLink="false">0527ecddf802</guid>
+<category>bounty</category>
+<description>## Summary `MCPManager.Logs` and `ProcessManager.GetProcessLogs` both take `follow` and `lines` and ignore both: they return the whole log file. The same body is copied in two places. ## Evidence Checked at `6ab6811`, under `control-plane/internal/mcp/`. - `manager.go:328` `func (m *MCPManager) Logs(alias string, follow bool, lines int)`; the body at `:336` says `// TODO: Implement follow and lines functionality` and returns `os.Open(logFile)`. - `process.go:401` `func (pm *ProcessManager) GetProcessLogs(alias string, follow bool, lines int)` has the same body and the same TODO (line 409). - Score 68. Prize: Honor the lines argument in MCPManager.Logs ## Summary
+`MCPManager.Logs` and `Pr</description>
+<pubDate>Mon, 26 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Intel Appears to End Its Bug Bounty Program</title>
+<link>https://www.phoronix.com/news/Intel-Bug-Bounty-Program-Ends</link>
+<guid isPermaLink="false">82d994efe939</guid>
+<category>bounty</category>
+<description>HN by nh2, 3 points Score 68. Prize: Intel Appears to End Its Bug Bounty Program HN by nh2, 3 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Let&#x27;s Fix Bug Bounty</title>
+<link>https://fixbugbounty.com/</link>
+<guid isPermaLink="false">721c16ef644a</guid>
+<category>bounty</category>
+<description>HN by nwang783, 3 points Score 68. Prize: Let&#x27;s Fix Bug Bounty HN by nwang783, 3 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>NIST Elliptic Curves Seeds Bounty (2023)</title>
+<link>https://words.filippo.io/seeds-bounty/</link>
+<guid isPermaLink="false">4ed2abdb1f5e</guid>
+<category>bounty</category>
+<description>HN by greyface-, 10 points Score 68. Prize: NIST Elliptic Curves Seeds Bounty (2023) HN by greyface-, 10 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed</title>
+<link>https://github.com/alonsovidales/protonmail-sender-spoofing</link>
+<guid isPermaLink="false">8f3d078039db</guid>
+<category>bounty</category>
+<description>HN by alonsovidales, 1 points Score 68. Prize: Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed</description>
+<pubDate>Sun, 27 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Real attackers don&#x27;t think in bug bounty scopes</title>
+<link>https://rushter.com/blog/security-bb-and-scopes/</link>
+<guid isPermaLink="false">e11be725de4b</guid>
+<category>bounty</category>
+<description>HN by f311a, 2 points Score 68. Prize: Real attackers don&#x27;t think in bug bounty scopes HN by f311a, 2 points</description>
+<pubDate>Sun, 20 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: 25 LTC Bounty to find a bug in Lean 4 formal Yang-Mills proof</title>
+<link>https://github.com/Dr-Logvinovich/round-square/blob/main/README.md</link>
+<guid isPermaLink="false">76e00174befb</guid>
+<category>bounty</category>
+<description>HN by DRLogvinovich, 4 points Score 68. Prize: Show HN: 25 LTC Bounty to find a bug in Lean 4 formal Yang-Mills proof HN by DRL</description>
+<pubDate>Sun, 08 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: CanaryGuard – A &lt;0.1ms deterministic AI prompt firewall with $5 bounty</title>
+<link>https://canaryguard-402.onrender.com/bounty.html</link>
+<guid isPermaLink="false">57156617e4c3</guid>
+<category>bounty</category>
+<description>HN by kurox_real, 1 points Score 68. Prize: $5.0</description>
+<pubDate>Mon, 19 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>The NIST Elliptic Curves Seeds Bounty Has Been Claimed</title>
+<link>https://words.filippo.io/seeds-solved/</link>
+<guid isPermaLink="false">9c3ce1464d8b</guid>
+<category>bounty</category>
+<description>HN by aburan28, 53 points Score 68. Prize: The NIST Elliptic Curves Seeds Bounty Has Been Claimed HN by aburan28, 53 points</description>
+<pubDate>Fri, 16 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Using TypeSafe AI in Bug Bounty</title>
+<link>https://www.lampysecurity.com/post/using-typesafe-ai-in-bug-bounty</link>
+<guid isPermaLink="false">27f4be7b6811</guid>
+<category>bounty</category>
+<description>HN by lampysecurity, 1 points Score 68. Prize: Using TypeSafe AI in Bug Bounty HN by lampysecurity, 1 points</description>
+<pubDate>Mon, 21 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[$2 site credit] Add a PHP example that lists open bounties</title>
+<link>https://github.com/andrewsiah/agentswarm-examples/issues/45</link>
+<guid isPermaLink="false">e2a57709f416</guid>
+<category>bounty</category>
+<description>Effort: ~1–2 hours; needs PHP, HTTP + JSON basics, and Docker. Agents: see AGENTS.md for a copy-paste claim command Add a tiny PHP example in `php-bounties/` that lists open bounties from the public read API. Read `AGENTSWARM_BASE_URL` (default `https://agentswarm.space`), trim trailing slashes, and call `GET /api/bounties`. For each row with `status == &quot;open&quot;`, print exactly one UTF-8 line in returned order, with literal tab separators: ```text \t \t \t /p/ ``` The response shape is `{&quot;bounties&quot;:[{&quot;id&quot;:&quot;…&quot;,&quot;title&quot;:&quot;…&quot;,&quot;status&quot;:&quot;open&quot;,&quot;bounty&quot;:{&quot;reward&quot;:&quot;10 Score 68. Prize: $2.0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[$2 site credit] Add a PHP example that lists open bounties</title>
+<link>https://github.com/andrewsiah/agentswarm-examples/issues/45</link>
+<guid isPermaLink="false">e2a57709f416</guid>
+<category>bounty</category>
+<description>Effort: ~1–2 hours; needs PHP, HTTP + JSON basics, and Docker. Agents: see AGENTS.md for a copy-paste claim command Add a tiny PHP example in `php-bounties/` that lists open bounties from the public read API. Read `AGENTSWARM_BASE_URL` (default `https://agentswarm.space`), trim trailing slashes, and call `GET /api/bounties`. For each row with `status == &quot;open&quot;`, print exactly one UTF-8 line in returned order, with literal tab separators: ```text \t \t \t /p/ ``` The response shape is `{&quot;bounties&quot;:[{&quot;id&quot;:&quot;…&quot;,&quot;title&quot;:&quot;…&quot;,&quot;status&quot;:&quot;open&quot;,&quot;bounty&quot;:{&quot;reward&quot;:&quot;10 Score 68. Prize: $2.0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty] Answer the 2 linked question(s)</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4494</link>
+<guid isPermaLink="false">f6323fac15eb</guid>
+<category>bounty</category>
+<description># [Bounty] Answer the 3 linked question(s) ## Context These intakes ask about something no lesson covers. Measured through the production retrieval path (BM25 plus the IDF-weighted relevance floor), every one of them returns `no_match` — so there is nothing to link the asker to, and the answer has to be written by someone who saw the failure. - #4491 — [Question] ROBOGUIDE 9 (Rev.Z) 的 .frw 工位文件带完整性校验：用脚本修改 XML 内容（如 WorkCell 的 Name 属性）后启动报「工作单 - #4503 — [Question] ROBOGUIDE V9 虚拟机器人（FRVRC）的 MD: 文件设备如何程序化注入 的 MD: dump）创建虚拟工位。实测发现：把备份文件放到 - Score 68. Prize: [Bounty] Answer the 2 linked question(s)  
+# [Bounty] Answer the 3 linked questi</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty] Answer the 2 linked question(s)</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4494</link>
+<guid isPermaLink="false">f6323fac15eb</guid>
+<category>bounty</category>
+<description># [Bounty] Answer the 3 linked question(s) ## Context These intakes ask about something no lesson covers. Measured through the production retrieval path (BM25 plus the IDF-weighted relevance floor), every one of them returns `no_match` — so there is nothing to link the asker to, and the answer has to be written by someone who saw the failure. - #4491 — [Question] ROBOGUIDE 9 (Rev.Z) 的 .frw 工位文件带完整性校验：用脚本修改 XML 内容（如 WorkCell 的 Name 属性）后启动报「工作单 - #4503 — [Question] ROBOGUIDE V9 虚拟机器人（FRVRC）的 MD: 文件设备如何程序化注入 的 MD: dump）创建虚拟工位。实测发现：把备份文件放到 - Score 68. Prize: [Bounty] Answer the 2 linked question(s)  
+# [Bounty] Answer the 3 linked questi</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty][$0][i18n] 多语言 README：新增 한국어 / Español / Français / Deutsch / Português(BR) / Русский（一门语言一个 PR）</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4751</link>
+<guid isPermaLink="false">39d7c1088739</guid>
+<category>bounty</category>
+<description>&gt; **Payment:** 本项目**不付钱**。`zero-bounty` / `$0` 意味着只有信用回报：merge credit、贡献者图、 &gt; Hall of Fame。真正的赏金只存在于有人用 Opire 的 `/reward ` 资助的 issue 上。见 &gt; `JOIN.md` § &quot;Bounties &amp; payment&quot;。 ## 背景 README 目前只有三种语言：English（canonical）、日本語、简体中文。仓库的语料、客户端插件和 MCP 工具已经在讲多种语言的故事（`locale/` 有 en/ja/ko/zh-CN），但**入口文档**没有跟上——一个韩语或 西班牙语的 agent 作者，第一屏看到的是自己读不懂的 README。 这个任务就是补这个缺口：**一种语言一个 PR**，从当前 `main` 的 `README.md` 完整翻译。 ## 可选语言（任选一种，先到先得） | 语言 | 文件名 | 备注 | |---|---|---| | 한국어 | `README.ko.md` | `locale/` 里已有 ko，术语可以对齐 | | Español | `README.es.md` | | | Français | `README.fr.md` | | | Deutsch | `README.de.md Score 68</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P0] Model Routing &amp; Failover</title>
+<link>https://github.com/hanzoai/ai/issues/137</link>
+<guid isPermaLink="false">cf1d3d991f51</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P0` **QA Bounty:** Model Routing &amp; Failover Identify incorrect routing, silent failures, unexpected model substitutions, and fallback failures. ## What Needs Testing - Verify that every model ID advertised by `GET /v1/models` routes to the exact intended model backend without silent substitution or alias misdirection. - Detect silent failures (e.g., HTTP 200 responses with empty `content`, truncated streams without `finish_reason`, or HTML/plain-text error bodies masquerading as 200 OK). - Test automatic failover and fallback chains when a primary upstream provider Score 68. Prize: [QA Bounty] [P0] Model Routing &amp; Failover ## Overview
+**Priority:** `P0`
+**QA Bo</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Audio Generation &amp; Transcription</title>
+<link>https://github.com/hanzoai/ai/issues/133</link>
+<guid isPermaLink="false">df403c129d7f</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Audio Generation &amp; Transcription Test speech quality, multilingual accuracy, timestamps, long recordings, interruptions, and audio output consistency. ## What Needs Testing - Test text-to-speech (`/v1/audio/speech`) across voices, speeds, formats (`mp3`, `wav`, `opus`, `aac`, `flac`, `pcm`), and streaming audio chunks. - Evaluate speech-to-text transcription (`/v1/audio/transcriptions`) and translation across multilingual audio samples, accents, background noise, and technical terminology. - Verify word-level and segment-level timestamp accuracy Score 68. Prize: [QA Bounty] [P1] Audio Generation &amp; Transcription ## Overview
+**Priority:** `P1`</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Cross-Modal Workflows</title>
+<link>https://github.com/hanzoai/ai/issues/130</link>
+<guid isPermaLink="false">41304f1c3ed9</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Cross-Modal Workflows Test pipelines combining text, images, audio, and video, particularly where output from one model becomes input to another. ## What Needs Testing - Chain text -&gt; image -&gt; video -&gt; audio/transcription pipelines across `/v1/chat/completions`, `/v1/images/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, and video generation endpoints. - Verify content-type, URL/base64 handoff, and metadata preservation when the output artifact of one model is passed directly as input to the next model in a multi-step workflow. - Id Score 68. Prize: [QA Bounty] [P1] Cross-Modal Workflows ## Overview
+**Priority:** `P1`
+**QA Bount</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Text Generation Edge Cases</title>
+<link>https://github.com/hanzoai/ai/issues/132</link>
+<guid isPermaLink="false">df0a87290668</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Text Generation Edge Cases Test long-context handling, JSON validity, function calling, reasoning consistency, truncation, and streaming interruptions. ## What Needs Testing - Test long-context windows (32k, 128k, 256k+ tokens) including needle-in-a-haystack retrieval and boundary conditions near context limits. - Validate strict JSON mode (`response_format: { type: &#x27;json_object&#x27; }` and `json_schema`) under complex nested schemas and edge-case inputs. - Test single and parallel function/tool calling, malformed tool arguments, multi-turn tool-resu Score 68. Prize: [QA Bounty] [P1] Text Generation Edge Cases ## Overview
+**Priority:** `P1`
+**QA </description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[radar] SN open bounty 2026-11-12T16:18</title>
+<link>https://github.com/relayhop/sn-monetization-runtime/issues/1371</link>
+<guid isPermaLink="false">fe76543a5fbd</guid>
+<category>bounty</category>
+<description>New SN OPEN_BOUNTY detected: ``` 1613251 bitcoin 1 873 21000 6 0.9 1600846 13 recent@bitcoin|top@bitcoin OPEN_BOUNTY,FRESH,SIGNAL Bounty: record a full tap-through of our TestFlight app on a physical iPhone ``` Score 68. Prize: [radar] SN open bounty 2026-11-12T16:18 New SN OPEN_BOUNTY detected:
+
+```
+161325</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[radar] SN open bounty 2026-11-12T16:18</title>
+<link>https://github.com/relayhop/sn-monetization-runtime/issues/1371</link>
+<guid isPermaLink="false">fe76543a5fbd</guid>
+<category>bounty</category>
+<description>New SN OPEN_BOUNTY detected: ``` 1613251 bitcoin 1 873 21000 6 0.9 1600846 13 recent@bitcoin|top@bitcoin OPEN_BOUNTY,FRESH,SIGNAL Bounty: record a full tap-through of our TestFlight app on a physical iPhone ``` Score 68. Prize: [radar] SN open bounty 2026-11-12T16:18 New SN OPEN_BOUNTY detected:
+
+```
+161325</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Accelerating Scale-up and Pre-piloting of Emerging Chemical Technologies (ASPECT)</title>
+<link>https://www.grants.gov/search-results-detail/363815</link>
+<guid isPermaLink="false">87c6b233f738</guid>
+<category>grant</category>
+<description>Golden Field Office · DE-FOA-0003647 · status posted. Eligibility filtered to Individuals (code 21). Many still need SAM.gov/UEI; this is not a promise of a simple application. Score 65. Prize: Accelerating Scale-up and Pre-piloting of Emerging Chemical Technologies (ASPECT. Deadline: 2026-12-01</description>
+<pubDate>Fri, 04 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>John H. Prescott Marine Mammal Rescue Assistance Grant</title>
+<link>https://www.grants.gov/search-results-detail/363929</link>
+<guid isPermaLink="false">4345b5e998af</guid>
+<category>grant</category>
+<description>DOC NOAA - ERA Production · NOAA-NMFS-PRPO-2026-31863 · status posted. Eligibility filtered to Individuals (code 21). Many still need SAM.gov/UEI; this is not a promise of a simple application. Score 65. Prize: John H. Prescott Marine Mammal Rescue Assistance Grant DOC NOAA - ERA Production. Deadline: 2026-12-01</description>
+<pubDate>Wed, 23 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>AHP (Association of Hackathon Professionals) Tour</title>
+<link>https://ahptour.com/about</link>
+<guid isPermaLink="false">a390d5c88857</guid>
+<category>hackathon</category>
+<description>Article URL: https://ahptour.com/about Comments URL: https://news.ycombinator.com/item?id=49954624 Points: 2 # Comments: 0 Score 64. Prize: AHP (Association of Hackathon Professionals) Tour Article URL: https://ahptour.c</description>
+<pubDate>Sun, 04 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Arcan Fall Hackathon Report</title>
+<link>https://arcan-fe.com/2026/10/21/arcan-fall-hackathon-report/</link>
+<guid isPermaLink="false">f9e73cfe07c4</guid>
+<category>hackathon</category>
+<description>HN by kogasa240p, 1 points Score 64. Prize: Arcan Fall Hackathon Report HN by kogasa240p, 1 points</description>
+<pubDate>Thu, 22 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>BearHacks 2027</title>
+<link>https://bearhacks2027.devpost.com/</link>
+<guid isPermaLink="false">837703f970d6</guid>
+<category>hackathon</category>
+<description>Sheridan College Hazel McCallion Campus. Submissions: Apr 23 - 25, 2027. Themes: Machine Learning/AI, Mobile, Web Score 64. Prize: $CAD  10,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bitcoin++ privacy hackathon winner: BlackIce, distributed frost silent payments</title>
+<link>https://btcpp.dev/seoul/hackathon/projects/33249dbf-181b-4cc6-9074-1a742f71cb60</link>
+<guid isPermaLink="false">1a5d64183a3f</guid>
+<category>hackathon</category>
+<description>HN by not_nifty, 2 points Score 64. Prize: Bitcoin++ privacy hackathon winner: BlackIce, distributed frost silent payments </description>
+<pubDate>Fri, 06 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Building a app for a hackathon for hackathon winners (Sweden 2026)</title>
+<link>https://sidequest-snowy-seven.vercel.app/</link>
+<guid isPermaLink="false">8de3f6f2b3c4</guid>
+<category>hackathon</category>
+<description>Article URL: https://sidequest-snowy-seven.vercel.app/ Comments URL: https://news.ycombinator.com/item?id=49866308 Points: 1 # Comments: 0 Score 64. Prize: Building a app for a hackathon for hackathon winners (Sweden 2026) Article URL: </description>
+<pubDate>Sun, 27 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>COBOL dev won .NET hackathon with help from AI</title>
+<link>https://www.theregister.com/ai-and-ml/2026/09/15/cobol-dev-won-net-hackathon-with-help-from-ai-and-their-cio-loves-it/5296438</link>
+<guid isPermaLink="false">3d5dacc0201a</guid>
+<category>hackathon</category>
+<description>Article URL: https://www.theregister.com/ai-and-ml/2026/09/15/cobol-dev-won-net-hackathon-with-help-from-ai-and-their-cio-loves-it/5296438 Comments URL: https://news.ycombinator.com/item?id=49723159 Points: 4 # Comments: 0 Score 64. Prize: COBOL dev won .NET hackathon with help from AI Article URL: https://www.theregis</description>
+<pubDate>Wed, 16 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Comfy hackathon: open-source Higgsfield&#x27;s platform</title>
+<link>https://comfy.org/open-source-higgsfield/</link>
+<guid isPermaLink="false">3546d36e640c</guid>
+<category>hackathon</category>
+<description>HN by gessha, 2 points Score 64. Prize: Comfy hackathon: open-source Higgsfield&#x27;s platform HN by gessha, 2 points</description>
+<pubDate>Tue, 03 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>DevFest Münster 2026: Agentic AI Hackathon</title>
+<link>https://devfest-ai-hackathon.devpost.com/</link>
+<guid isPermaLink="false">087ebd9119a1</guid>
+<category>hackathon</category>
+<description>Volkshochschule. Submissions: Nov 21, 2026. Themes: Beginner Friendly, Low/No Code, Machine Learning/AI Score 64. Prize: DevFest Münster 2026: Agentic AI Hackathon Volkshochschule. Submissions: Nov 21,</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>For those into GenAI entertainment, I am excited about this hackathon</title>
+<link>https://news.ycombinator.com/item?id=49719096</link>
+<guid isPermaLink="false">31340f84f65e</guid>
+<category>hackathon</category>
+<description>Gossip Goblin hackathon taking place at Google DeepMind in SF on 10/20 -- goal is for founders building in the future of genAI entertainment to show off their generative content infra. https://luma.com/f7lrl8gr Comments URL: https://news.ycombinator.com/item?id=49719096 Points: 2 # Comments: 0 Score 64. Prize: For those into GenAI entertainment, I am excited about this hackathon Gossip Gob</description>
+<pubDate>Tue, 15 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>From hackathon prototype to production ML: Building PredictPay at Affirm</title>
+<link>https://tech.affirm.com/predictpay-from-hackathon-idea-to-smarter-payments-at-scale-a8dc7c3837db</link>
+<guid isPermaLink="false">b9dbcbc23c8a</guid>
+<category>hackathon</category>
+<description>HN by alexanderstatni, 2 points Score 64. Prize: From hackathon prototype to production ML: Building PredictPay at Affirm HN by a</description>
+<pubDate>Tue, 20 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>HN: Speed Demon, a 72-hour hackathon where every push is timed on one box</title>
+<link>https://speeddemon.dev/board/</link>
+<guid isPermaLink="false">209427aaf0af</guid>
+<category>hackathon</category>
+<description>HN by souvlakee, 2 points Score 64. Prize: HN: Speed Demon, a 72-hour hackathon where every push is timed on one box HN by </description>
+<pubDate>Fri, 30 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Hack-a-ton with Friends</title>
+<link>https://hack-a-ton-with-friends.devpost.com/</link>
+<guid isPermaLink="false">dbb4f9fbf59c</guid>
+<category>hackathon</category>
+<description>DOW Theatre. Submissions: Nov 14 - 15, 2026. Themes: Education, Beginner Friendly Score 64. Prize: Hack-a-ton with Friends DOW Theatre. Submissions: Nov 14 - 15, 2026. Themes: Edu</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>HackSussex GameJam 2026</title>
+<link>https://hacksussex-gamejam-2026.devpost.com/</link>
+<guid isPermaLink="false">c3e44c2e7fa8</guid>
+<category>hackathon</category>
+<description>Brighton. Submissions: Dec 05 - 06, 2026. Themes: Gaming Score 64. Prize: £ 0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Hoya Hacks 2027</title>
+<link>https://hoya-hacks-2027.devpost.com/</link>
+<guid isPermaLink="false">9a379cb2bb75</guid>
+<category>hackathon</category>
+<description>Healey Family Student Center. Submissions: Jan 22 - 24, 2027. Themes: Beginner Friendly, Open Ended, Social Good Score 64. Prize: Hoya Hacks 2027 Healey Family Student Center. Submissions: Jan 22 - 24, 2027. Th</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>IBM Qiskit Hackathon - Bangladesh</title>
+<link>https://ibm-qiskit-hackathon.devpost.com/</link>
+<guid isPermaLink="false">38d80da16637</guid>
+<category>hackathon</category>
+<description>BRAC University. Submissions: Nov 12 - 13, 2026. Themes: Quantum Score 64. Prize: IBM Qiskit Hackathon - Bangladesh BRAC University. Submissions: Nov 12 - 13, 202</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>K-Dub Hacks</title>
+<link>https://k-dub-hacks.devpost.com/</link>
+<guid isPermaLink="false">bffa2159411d</guid>
+<category>hackathon</category>
+<description>Spur Innovation Center. Submissions: Nov 27 - 29, 2026. Themes: Beginner Friendly, Open Ended Score 64. Prize: $CAD  202,000</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Making 1,750 programmable PCB badges for Canada&#x27;s biggest hackathon</title>
+<link>https://va3ndf.com/blog/hacker-badges/</link>
+<guid isPermaLink="false">60308e134d58</guid>
+<category>hackathon</category>
+<description>Article URL: https://va3ndf.com/blog/hacker-badges/ Comments URL: https://news.ycombinator.com/item?id=50086838 Points: 68 # Comments: 15 Score 64. Prize: Making 1,750 programmable PCB badges for Canada&#x27;s biggest hackathon Article URL:</description>
+<pubDate>Wed, 14 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Nerdearla Vibeathon by Devin</title>
+<link>https://vibeathon-mexico-2026.devpost.com/</link>
+<guid isPermaLink="false">d9e7569d3f71</guid>
+<category>hackathon</category>
+<description>Amazon CDMX (Puerta Polanco). Submissions: Nov 21, 2026. Themes: Beginner Friendly, Low/No Code, Social Good Score 64. Prize: Nerdearla Vibeathon by Devin Amazon CDMX (Puerta Polanco). Submissions: Nov 21, </description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Open Counter: book a small business by talking – Amazon Developer Hackathon</title>
+<link>https://github.com/lk-nyoka/open-counter</link>
+<guid isPermaLink="false">1ac9f00c8153</guid>
+<category>hackathon</category>
+<description>HN by Nzimande_00, 2 points Score 64. Prize: Open Counter: book a small business by talking – Amazon Developer Hackathon HN b</description>
+<pubDate>Tue, 03 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Open Mercato Hackathon in Wrocław – AveCezar</title>
+<link>https://blog.cygankiewicz.com/en/cezar-agent-orchestrator/</link>
+<guid isPermaLink="false">f6a0a6036220</guid>
+<category>hackathon</category>
+<description>Article URL: https://blog.cygankiewicz.com/en/cezar-agent-orchestrator/ Comments URL: https://news.ycombinator.com/item?id=49795247 Points: 2 # Comments: 1 Score 64. Prize: Open Mercato Hackathon in Wrocław – AveCezar Article URL: https://blog.cygankiew</description>
+<pubDate>Mon, 21 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: MetaArena – Compare &amp; Rank 5,353 Meta Global AI Hackathon Projects</title>
+<link>https://meta-hackathon.com/</link>
+<guid isPermaLink="false">56339086b800</guid>
+<category>hackathon</category>
+<description>HN by ohong, 2 points Score 64. Prize: Show HN: MetaArena – Compare &amp; Rank 5,353 Meta Global AI Hackathon Projects HN b</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: Synteq hackathon is giving out a flamethrower, 1/2 a cow, a DGX Spark</title>
+<link>https://hack.synteq.app</link>
+<guid isPermaLink="false">045c4dfb5bbe</guid>
+<category>hackathon</category>
+<description>HN by benchaupt, 1 points Score 64. Prize: Show HN: Synteq hackathon is giving out a flamethrower, 1/2 a cow, a DGX Spark H</description>
+<pubDate>Wed, 21 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Stupid Ideas Hackathon (Ottawa F26)</title>
+<link>https://stupideas-ottawa-f26.devpost.com/</link>
+<guid isPermaLink="false">7bf09fb6e1b8</guid>
+<category>hackathon</category>
+<description>Bayview Yards. Submissions: Nov 15, 2026. Themes: Beginner Friendly, Open Ended, Social Good Score 64. Prize: $CAD  1,252</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>VibeCheck: A formal methods hackathon in SF</title>
+<link>https://fmxai.org/vibecheck/</link>
+<guid isPermaLink="false">0e1c93164d5c</guid>
+<category>hackathon</category>
+<description>Article URL: https://fmxai.org/vibecheck/ Comments URL: https://news.ycombinator.com/item?id=49924456 Points: 1 # Comments: 1 Score 64. Prize: VibeCheck: A formal methods hackathon in SF Article URL: https://fmxai.org/vibec</description>
+<pubDate>Thu, 01 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+</channel>
+</rss>

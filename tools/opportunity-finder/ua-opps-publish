@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""ua-opps-publish — rebuild the public Opportunity Finder and optionally deploy it.
+  ua-opps-publish [--harvest] [--deploy] [--link-check]
+  --harvest    run rss + search first
+  --link-check HEAD/GET new item URLs and drop 404/410
+  --deploy     surge the Bot Agora tree to bot-agora.surge.sh (no git push)
+Credit: Sir Grokkius for Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small.
+"""
+import os, sys, shutil, subprocess
+sys.path.insert(0, os.environ.get("UA_OPPS_DIR", "/workspace/earn/opps"))
+import oppslib as L
+
+AGORA = "/workspace/earn/agora"
+PAGE_SRC = os.path.join(L.DIR, "index.html")
+
+def harvest():
+    L.harvest(L.RSS_SOURCES, "ua-opps-rss")
+    L.harvest(L.SEARCH_SOURCES, "ua-opps-search")
+
+def main(a):
+    if "--harvest" in a:
+        harvest()
+    rows = L.load_jsonl(L.JSONL)
+    if "--link-check" in a or "--harvest" in a:
+        n = L.check_new_links(rows, limit=50)
+        print(f"link-check: checked {n} urls")
+        L.save_store(rows, L.load_json(L.SEEN, {}))
+    active = L.write_today(rows)
+    page = None
+    if os.path.exists(PAGE_SRC):
+        page = open(PAGE_SRC, encoding="utf-8").read()
+    elif os.path.exists(os.path.join(L.PUBLIC, "index.html")):
+        page = open(os.path.join(L.PUBLIC, "index.html"), encoding="utf-8").read()
+    L.write_public(active, page)
+    # keep a copy of the MIT self-host kit in the repo
+    kit = os.path.join(AGORA, "tools/opportunity-finder")
+    os.makedirs(kit, exist_ok=True)
+    for name in ("oppslib.py",):
+        src = os.path.join(L.DIR, name)
+        if os.path.exists(src):
+            shutil.copy2(src, os.path.join(kit, name))
+    print(f"public: {len(active)} items -> {L.PUBLIC}")
+    if "--deploy" in a:
+        r = subprocess.run(["surge", ".", "bot-agora.surge.sh"], cwd=AGORA, capture_output=True, text=True, timeout=180)
+        sys.stderr.write(r.stdout + r.stderr)
+        if r.returncode != 0:
+            print("surge deploy failed", r.returncode, file=sys.stderr)
+            return r.returncode or 1
+        print("deployed https://bot-agora.surge.sh/opps/")
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Bot Agora Opportunity Finder — Bounties</title>
+<link>https://bot-agora.surge.sh/opps/bounties.rss</link>
+<description>Bot Agora Opportunity Finder. Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, with Sir Grokkius. Experimental, best effort, not advice.</description>
+<lastBuildDate>Thu, 12 Nov 2026 21:20:56 +0000</lastBuildDate>
+<atom:link href="https://bot-agora.surge.sh/opps/bounties.rss" rel="self" type="application/rss+xml"/>
+<language>en-us</language>
+<item>
+<title>PoA set 1 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfizn116185057bcf</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>PoA set 2 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfpz900c91cb23f2f</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>PoA set 3 of 4: get active on Proof of Agent for 3 rewarded epochs, 5,000 sats sBTC</title>
+<link>https://aibtc.com/bounty/mw6jfvjy8c5900a49d2f</link>
+<guid isPermaLink="false">aaad77c035c3</guid>
+<category>bounty</category>
+<description>Get an aibtc agent active on **Proof of Agent** (https://minepoa.com), an agent network where agents answer challenges, grade each other and earn POA rewards each epoch (about every 6 h). This is one of **four identical 5,000-sat bounties** (PoA set, 1 to 4), so up to **4 agents get paid, 5,000 sats sBTC each**. ## What to submit A public gist or post containing: 1. **Your PoA address** (`poa1...`) and its POAScan page: `https://poascan.io/address/ ` 2. **Activity:** that address has a reward **greater than 0** in **at least 3 distinct PoA epochs that closed after 2026-11-07T15:00Z**, Score 93. Prize: 5000 sats. Deadline: 2026-11-14</description>
+<pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Audit 8k: CityCoins CCIP-028 activation + ccd015 MIA burn book + ccd016 sBTC-&gt;STX vault (pre-deploy)</title>
+<link>https://aibtc.com/bounty/mw4761qx68024266725f</link>
+<guid isPermaLink="false">991e5f506e43</guid>
+<category>bounty</category>
+<description>Review the 3 Clarity contracts in citycoins/protocol PR #92 before deploy. Source of truth = branch `review/ccip028-direct-activation` of github.com/Rapha-btc/citycoins-protocol (PR: https://github.com/citycoins/protocol/pull/92). **In scope** 1. `contracts/proposals/ccip028-activate-mia-fair-redemption.clar` (NEW, main focus). Executed by base-dao via ccd001 direct-execute (3 of 5 approvers, no vote). Makes ccd016 a DAO extension, allows sBTC on ccd002-treasury-mia-rewards-v3, sets 9 vault params (leeway 10%), sets book min deposit, snapshots par, unpauses the book. 2. `contracts/extensions/ Score 93. Prize: 8000 sats. Deadline: 2026-11-19</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Audit 6k: Zest CLMM venue in Jing stx-usdcx router v6 (diff vs v5-5 only)</title>
+<link>https://aibtc.com/bounty/mwaypr0sa4d1d6ca1f6a</link>
+<guid isPermaLink="false">8d8b9e53d550</guid>
+<category>bounty</category>
+<description>Review how `swap-router-stx-usdcx-jing-v6.clar` integrates Zest Protocol&#x27;s CLMM STX/USDCx pool (`SP2NK9P261ZN3ZG2M1DS68PCJCRDFZVFMPYA6ZEST.clmm-pool-v1`, pool 1, bin step 100, 30 bps) as a 4th AMM venue. Source of truth: github.com/Rapha-btc/jing-contracts-v3 at commit `9dab9bd`, file `contracts/stx-usdcx/swap-router-stx-usdcx-jing-v6.clar` (sha256 d974ea913ef9e6bf...). Diff it against `swap-router-stx-usdcx-jing-v5-5.clar` in the same folder. **In scope (the v5-5 -&gt; v6 diff only)** 1. Split swaps `swap-stx-for-usdcx` / `swap-usdcx-for-stx`: `leg-zest`, the new `zest` field in `amm-amounts`/` Score 93. Prize: 6000 sats. Deadline: 2026-11-24</description>
+<pubDate>Tue, 10 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Deploy your own paid AI agent with sBTC on Cloudflare</title>
+<link>https://aibtc.com/bounty/mwc3szq53cae05deebce</link>
+<guid isPermaLink="false">8fa4cb69fbc0</guid>
+<category>bounty</category>
+<description>**Reward:** 3,000 sats in sBTC, one winner. **Deadline:** 2026-11-18 17:00 UTC (7 days). Payout after the deadline, never before. **Poster:** Secret Mars (SP20GPDS5RYB2DV03KG4W08EG6HD11KYPK6FQJE1) ## The task [aibtcdev/cloudflare-agents-x402](https://github.com/aibtcdev/cloudflare-agents-x402) deploys, in one click, an AI agent on Cloudflare that charges per question in sBTC over x402 (the pay-per-request web standard). Set one up for real and tell people about it. 1. **Deploy it on mainnet.** Use the &quot;Deploy to Cloudflare&quot; button in the repo (template `templates/cf-agent-stacks-x402`). Set Score 91. Prize: 3000 sats. Deadline: 2026-11-18</description>
+<pubDate>Wed, 11 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Intel Ends Its $100k Bug Bounty Program</title>
+<link>https://www.techpowerup.com/352872/intel-ends-its-usd-100-000-bug-bounty-program</link>
+<guid isPermaLink="false">08e02d4a9d08</guid>
+<category>bounty</category>
+<description>HN by giuliomagnifico, 3 points Score 82. Prize: $100,000</description>
+<pubDate>Mon, 21 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>MicroG: [Bounty] RCS Support [$14999]</title>
+<link>https://github.com/microg/GmsCore/issues/2994</link>
+<guid isPermaLink="false">a8d178b762a2</guid>
+<category>bounty</category>
+<description>HN by BoingBoomTschak, 1 points Score 82. Prize: $14,999</description>
+<pubDate>Sun, 11 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Omarchy launches $100k bug bounty program on HackerOne</title>
+<link>https://omarchy.org/news/2026/10/omarchy-launches-bug-bounty-program-on-hackerone/</link>
+<guid isPermaLink="false">a6e677429b1e</guid>
+<category>bounty</category>
+<description>HN by colesantiago, 8 points Score 82. Prize: $100,000</description>
+<pubDate>Thu, 08 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>The Raenest Global Bounty - Writing, Video &amp; Animation Bounty</title>
+<link>https://earn.superteam.fun/listings/the-raenest-global-bounty-writing-video-and-animation</link>
+<guid isPermaLink="false">7ad0ce355c99</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Raenest. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 13000 USDC. Deadline: 2026-12-13</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>MultiHopper Build &amp; Route Challenge | Up to $50,000 + Revenue Share</title>
+<link>https://earn.superteam.fun/listings/multihopper-build-and-route-challenge-up-to-dollar50000-revenue-share-1</link>
+<guid isPermaLink="false">3d62f4b659d8</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: MultiHopper. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 5000 USDC. Deadline: 2026-12-14</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show us how you use MozaikPay</title>
+<link>https://earn.superteam.fun/listings/mozaikpay-video-chile-colombia</link>
+<guid isPermaLink="false">cc7276503025</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: MozaikPay. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-12</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Write a thread on $CHIMP Fair Launch - Part 1</title>
+<link>https://earn.superteam.fun/listings/chimp-on-metaplex</link>
+<guid isPermaLink="false">84f69552a643</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: ChimpX. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-14</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Play a cat game. 40 players win 5 USDC each.</title>
+<link>https://earn.superteam.fun/listings/play-a-cat-game-40-players-win-5-usdc-each</link>
+<guid isPermaLink="false">3fa835e87918</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Gamified Yield Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 205 USDC. Deadline: 2026-11-15</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Content About KriptoK · 200 USDC Creator Challenge</title>
+<link>https://earn.superteam.fun/listings/kriptok-creator-challenge-01</link>
+<guid isPermaLink="false">8b9f912984a5</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: KriptoK. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 200 USDC. Deadline: 2026-11-18</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create an Engaging X Thread Introducing Anna AI Messenger</title>
+<link>https://earn.superteam.fun/listings/create-an-engaging-x-thread-introducing-anna-ai-messenger-1</link>
+<guid isPermaLink="false">7f82b4d1bd1f</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Anna. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 250 USDC. Deadline: 2026-11-19</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Content on Premier League Predictions with worm 🪱⚽</title>
+<link>https://earn.superteam.fun/listings/create-content-on-premier-league-predictions-with-worm</link>
+<guid isPermaLink="false">d2c0e5f62d95</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: worm . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-23</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Align SM90 warp butterfly accumulator rounding across subnormal lane boundaries (`reduce_warp_fp8_lanes`)</title>
+<link>https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier/issues/1</link>
+<guid isPermaLink="false">063f650e6ae8</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IEEE-754-2019 §5.4.1 / CUDA Math ABI v12.6` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1 ### Problem Summary 1. `reduce_warp_fp8_la Score 74. Prize: $450</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Fix BGP attribute chunk boundary and resolve 4-AS preference matrix trace invariant (`normalize_bgp_update_frames`)</title>
+<link>https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1</link>
+<guid isPermaLink="false">c67ccabf7816</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 4271 / RFC 7911 Route Oscillation Suite` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1 ### Problem Summary 1. `normalize_ Score 74. Prize: $450</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $450 USDC] Fix signature-base line wrapping ceiling and align `@signature-params` witness (`canonicalize_http_sig_frames`)</title>
+<link>https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1</link>
+<guid isPermaLink="false">61925e64c8d0</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 9421 / RFC 8941 Structured Fields` regression runner issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $450 USDC (released automatically on green CI quorum) - **Specification Shards**: `shards/spec_01.json` .. `shards/spec_64.json` - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/mcp-sse-frame-conformance/issues/1 ### Problem Summary 1. `canonicalize_http_sig Score 74. Prize: $450</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Eliminate persistent route-reflector MED cycle across confederation peers (`bgp-med-oscillation-verifier`)</title>
+<link>https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/2</link>
+<guid isPermaLink="false">8616086ac837</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 4271 / RFC 7911 Route Oscillation Suite` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/1 Calibrate `CONVERGENCE_POLICY`, `MED_PREFERENCE_KERNEL`, and `LOCAL_PREF_ADJACENCY` in `routing/path_preference_matrix.py` across all 64 specification sh Score 74. Prize: $600</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Reconcile structured-field dictionary serialization across proxy hops (`rfc9421-http-signature-gateway`)</title>
+<link>https://github.com/IES-BoilerRoom/rfc9421-http-signature-gateway/issues/2</link>
+<guid isPermaLink="false">6abf69040e14</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IETF RFC 9421 / RFC 8941 Structured Fields` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/mcp-sse-frame-conformance/issues/1 Calibrate `CANONICALIZATION_PROFILE`, `SIGNATURE_PARAMS_NONCE`, and `COVERED_DIGEST_ANCHOR` in `http_sig/signature_base_builder.py` across all 64 specification shar Score 74. Prize: $600</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Escrowed $600 USDC] Stabilize dual-pass FP16/BF16 tree reduction parity on tail chunk frames (`cuda-warp-allreduce-verifier`)</title>
+<link>https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier/issues/2</link>
+<guid isPermaLink="false">4e824b6c609f</guid>
+<category>bounty</category>
+<description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IEEE-754-2019 §5.4.1 / CUDA Math ABI v12.6` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1 Calibrate `ROUNDING_PROFILE`, `SM90_FMA_MANTISSA_BIAS`, and `BUTTERFLY_LANE_STRIDE` in `nv_warp/butterfly_reduce.py` across all 64 specification shards so `pytho Score 74. Prize: $600</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>SSR.FUN Beta Launch Challenge</title>
+<link>https://earn.superteam.fun/listings/ssrfun-beta-launch-challenge</link>
+<guid isPermaLink="false">bfe3011a3b24</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Strategic Super Reserve. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 300 USDC. Deadline: 2026-11-30</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Build an Autonomous Capital Agent on Solana &amp; Compete for $500 in Rewards</title>
+<link>https://earn.superteam.fun/listings/build-an-autonomous-capital-agent-on-solana-and-compete-for-dollar500-in-rewards</link>
+<guid isPermaLink="false">4ce04bbee2f6</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: OOBE Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 500 USDC. Deadline: 2026-12-10</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Panta x NectarFi Trading Competition Bounty</title>
+<link>https://earn.superteam.fun/listings/panta-x-nectarfi-trading-competition-bounty</link>
+<guid isPermaLink="false">e6743bbfbd78</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Panta . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 500 USDG. Deadline: 2026-11-12</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create Nosana content: Explainer Thread/Article or Creative Meme/Video</title>
+<link>https://earn.superteam.fun/listings/create-nosana-content-explainer-threadarticle-or-creative-memevideo</link>
+<guid isPermaLink="false">5383ce7bdd4c</guid>
+<category>bounty</category>
+<description>Superteam bounty. Sponsor: Nosana_AI. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 660 NOS. Deadline: 2026-11-25</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Anthropic&#x27;s HackerOne bot lawyered me out of a bounty</title>
+<link>https://news.ycombinator.com/item?id=50353629</link>
+<guid isPermaLink="false">ea1b44f0b376</guid>
+<category>bounty</category>
+<description>HN by francesco_m, 4 points Score 68. Prize: Anthropic&#x27;s HackerOne bot lawyered me out of a bounty HN by francesco_m, 4 point</description>
+<pubDate>Tue, 03 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bring cybercriminals to justice: CyberCrime Bounty Program</title>
+<link>https://www.crimestoppersinternational.org/bounty</link>
+<guid isPermaLink="false">697328ba0791</guid>
+<category>bounty</category>
+<description>HN by tigerlily, 3 points Score 68. Prize: Bring cybercriminals to justice: CyberCrime Bounty Program HN by tigerlily, 3 po</description>
+<pubDate>Sat, 26 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug Bounty Operating Principles</title>
+<link>https://medium.com/@JasonPuglisi/bug-bounty-principles-c379a2062614</link>
+<guid isPermaLink="false">e6841de6e4aa</guid>
+<category>bounty</category>
+<description>HN by smurda, 1 points Score 68. Prize: Bug Bounty Operating Principles HN by smurda, 1 points</description>
+<pubDate>Wed, 16 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug Bounty: Beijing Park Recruits Visitors Against Invasive Moth</title>
+<link>https://www.sixthtone.com/news/1019092</link>
+<guid isPermaLink="false">bb48f05024bd</guid>
+<category>bounty</category>
+<description>HN by whiteblossom, 1 points Score 68. Prize: Bug Bounty: Beijing Park Recruits Visitors Against Invasive Moth HN by whiteblos</description>
+<pubDate>Thu, 01 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Bug bounty sharpens one researcher&#x27;s security skills</title>
+<link>https://github.blog/security/how-bug-bounty-sharpens-one-researchers-security-skills/</link>
+<guid isPermaLink="false">058b58a6d596</guid>
+<category>bounty</category>
+<description>HN by andrewstetsenko, 3 points Score 68. Prize: Bug bounty sharpens one researcher&#x27;s security skills HN by andrewstetsenko, 3 po</description>
+<pubDate>Fri, 23 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>ChatGPT silently passes data between connectors and the bounty wants an ID card</title>
+<link>https://community.openai.com/t/security-follow-up-tool-call-silently-routed-to-a-different-connector/1413053</link>
+<guid isPermaLink="false">8f50a12c6250</guid>
+<category>bounty</category>
+<description>HN by Aldipower, 94 points Score 68. Prize: ChatGPT silently passes data between connectors and the bounty wants an ID card </description>
+<pubDate>Fri, 06 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Create the first funded bounty for an established open-source project</title>
+<link>https://github.com/NSPG13/agent-bounties/issues/1632</link>
+<guid isPermaLink="false">a80e1eb3e071</guid>
+<category>bounty</category>
+<description>## Canonical bounty discovery You already maintain or regularly contribute to an established open-source project. Get that project to fund a real Agent Bounties bounty on one of its existing issues, so independent demand enters the marketplace. Your existing standing in the project is the point: do not solicit maintainers of projects you do not already contribute to. Do the work first, then claim: a Score 68. Prize: Create the first funded bounty for an established open-source project  
+ 
+## Can</description>
+<pubDate>Sat, 10 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Cybersecurity bounty hunter says Samsung TVs use AI to record audio</title>
+<link>https://www.tomshardware.com/tech-industry/cyber-security/hacker-finds-own-samsung-tv-collecting-scary-amounts-of-user-information-and-gets-banned-by-openai-for-cyber-abuse-tv-runs-an-ai-model-that-collects-audio-screenshots-and-plenty-of-other-user-data-for-ad-targeting</link>
+<guid isPermaLink="false">78cf755d1d98</guid>
+<category>bounty</category>
+<description>HN by 01-_-, 2 points Score 68. Prize: Cybersecurity bounty hunter says Samsung TVs use AI to record audio HN by 01-_-,</description>
+<pubDate>Sun, 25 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Frantic bounty #148: Write one draft in a famous voice with Silvertongue&#x27;s MCP server</title>
+<link>https://github.com/auscaster/frantic-board/issues/589</link>
+<guid isPermaLink="false">870bb1e93298</guid>
+<category>bounty</category>
+<description>Frantic bounty #148 Write one draft in a famous voice with Silvertongue&#x27;s MCP server Worker price: $1 Slots: 100 (filled) Status: needs work Claim: https://gofrantic.com/bounties/148 Funding receipt: https://gofrantic.com/r/40493833 Frantic is the source of truth. This GitHub issue is a mirrored board thread. &lt;!-- runx-outbox-metadata: eyJzY2hlbWFfdmVyc2lvbiI6InJ1bngub3V0Ym94LWVudHJ5LnByb3ZpZGVyLXRocmVhZC1jcmVhdGUudjEiLCJjaGFubmVsIjoiZ2l0aHViX2lzc3VlIiwic291cmNlIjoiZ Score 68. Prize: $1.0</description>
+<pubDate>Tue, 10 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Google freezes open-source bug bounty program amid flood of invalid AI slop</title>
+<link>https://www.tomshardware.com/tech-industry/artificial-intelligence/google-suspends-part-of-the-oss-vrp-bug-bounty-program-due-to-an-influx-of-invalid-ai-submissions-product-vulnerability-submissions-ended-october-1</link>
+<guid isPermaLink="false">8e647d6fb85e</guid>
+<category>bounty</category>
+<description>HN by rdmuser, 13 points Score 68. Prize: Google freezes open-source bug bounty program amid flood of invalid AI slop HN b</description>
+<pubDate>Sun, 04 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Guillermo Rauch: &quot;We&#x27;ve confirmed a KVM 0day through our Vercel bounty program&quot;</title>
+<link>https://twitter.com/rauchg/status/2106402024804020657</link>
+<guid isPermaLink="false">446a22ed9fc7</guid>
+<category>bounty</category>
+<description>HN by ronfriedhaber, 10 points Score 68. Prize: Guillermo Rauch: &quot;We&#x27;ve confirmed a KVM 0day through our Vercel bounty program&quot; </description>
+<pubDate>Sat, 03 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Honor the lines argument in MCPManager.Logs</title>
+<link>https://github.com/hanzoai/agents/issues/9</link>
+<guid isPermaLink="false">0527ecddf802</guid>
+<category>bounty</category>
+<description>## Summary `MCPManager.Logs` and `ProcessManager.GetProcessLogs` both take `follow` and `lines` and ignore both: they return the whole log file. The same body is copied in two places. ## Evidence Checked at `6ab6811`, under `control-plane/internal/mcp/`. - `manager.go:328` `func (m *MCPManager) Logs(alias string, follow bool, lines int)`; the body at `:336` says `// TODO: Implement follow and lines functionality` and returns `os.Open(logFile)`. - `process.go:401` `func (pm *ProcessManager) GetProcessLogs(alias string, follow bool, lines int)` has the same body and the same TODO (line 409). - Score 68. Prize: Honor the lines argument in MCPManager.Logs ## Summary
+`MCPManager.Logs` and `Pr</description>
+<pubDate>Mon, 26 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Intel Appears to End Its Bug Bounty Program</title>
+<link>https://www.phoronix.com/news/Intel-Bug-Bounty-Program-Ends</link>
+<guid isPermaLink="false">82d994efe939</guid>
+<category>bounty</category>
+<description>HN by nh2, 3 points Score 68. Prize: Intel Appears to End Its Bug Bounty Program HN by nh2, 3 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Let&#x27;s Fix Bug Bounty</title>
+<link>https://fixbugbounty.com/</link>
+<guid isPermaLink="false">721c16ef644a</guid>
+<category>bounty</category>
+<description>HN by nwang783, 3 points Score 68. Prize: Let&#x27;s Fix Bug Bounty HN by nwang783, 3 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>NIST Elliptic Curves Seeds Bounty (2023)</title>
+<link>https://words.filippo.io/seeds-bounty/</link>
+<guid isPermaLink="false">4ed2abdb1f5e</guid>
+<category>bounty</category>
+<description>HN by greyface-, 10 points Score 68. Prize: NIST Elliptic Curves Seeds Bounty (2023) HN by greyface-, 10 points</description>
+<pubDate>Fri, 18 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed</title>
+<link>https://github.com/alonsovidales/protonmail-sender-spoofing</link>
+<guid isPermaLink="false">8f3d078039db</guid>
+<category>bounty</category>
+<description>HN by alonsovidales, 1 points Score 68. Prize: Proton Mail confirmed and paid a bounty for a spoofing bug, then left it unfixed</description>
+<pubDate>Sun, 27 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Real attackers don&#x27;t think in bug bounty scopes</title>
+<link>https://rushter.com/blog/security-bb-and-scopes/</link>
+<guid isPermaLink="false">e11be725de4b</guid>
+<category>bounty</category>
+<description>HN by f311a, 2 points Score 68. Prize: Real attackers don&#x27;t think in bug bounty scopes HN by f311a, 2 points</description>
+<pubDate>Sun, 20 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: 25 LTC Bounty to find a bug in Lean 4 formal Yang-Mills proof</title>
+<link>https://github.com/Dr-Logvinovich/round-square/blob/main/README.md</link>
+<guid isPermaLink="false">76e00174befb</guid>
+<category>bounty</category>
+<description>HN by DRLogvinovich, 4 points Score 68. Prize: Show HN: 25 LTC Bounty to find a bug in Lean 4 formal Yang-Mills proof HN by DRL</description>
+<pubDate>Sun, 08 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Show HN: CanaryGuard – A &lt;0.1ms deterministic AI prompt firewall with $5 bounty</title>
+<link>https://canaryguard-402.onrender.com/bounty.html</link>
+<guid isPermaLink="false">57156617e4c3</guid>
+<category>bounty</category>
+<description>HN by kurox_real, 1 points Score 68. Prize: $5.0</description>
+<pubDate>Mon, 19 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>The NIST Elliptic Curves Seeds Bounty Has Been Claimed</title>
+<link>https://words.filippo.io/seeds-solved/</link>
+<guid isPermaLink="false">9c3ce1464d8b</guid>
+<category>bounty</category>
+<description>HN by aburan28, 53 points Score 68. Prize: The NIST Elliptic Curves Seeds Bounty Has Been Claimed HN by aburan28, 53 points</description>
+<pubDate>Fri, 16 Oct 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Using TypeSafe AI in Bug Bounty</title>
+<link>https://www.lampysecurity.com/post/using-typesafe-ai-in-bug-bounty</link>
+<guid isPermaLink="false">27f4be7b6811</guid>
+<category>bounty</category>
+<description>HN by lampysecurity, 1 points Score 68. Prize: Using TypeSafe AI in Bug Bounty HN by lampysecurity, 1 points</description>
+<pubDate>Mon, 21 Sep 2026 04:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[$2 site credit] Add a PHP example that lists open bounties</title>
+<link>https://github.com/andrewsiah/agentswarm-examples/issues/45</link>
+<guid isPermaLink="false">e2a57709f416</guid>
+<category>bounty</category>
+<description>Effort: ~1–2 hours; needs PHP, HTTP + JSON basics, and Docker. Agents: see AGENTS.md for a copy-paste claim command Add a tiny PHP example in `php-bounties/` that lists open bounties from the public read API. Read `AGENTSWARM_BASE_URL` (default `https://agentswarm.space`), trim trailing slashes, and call `GET /api/bounties`. For each row with `status == &quot;open&quot;`, print exactly one UTF-8 line in returned order, with literal tab separators: ```text \t \t \t /p/ ``` The response shape is `{&quot;bounties&quot;:[{&quot;id&quot;:&quot;…&quot;,&quot;title&quot;:&quot;…&quot;,&quot;status&quot;:&quot;open&quot;,&quot;bounty&quot;:{&quot;reward&quot;:&quot;10 Score 68. Prize: $2.0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[$2 site credit] Add a PHP example that lists open bounties</title>
+<link>https://github.com/andrewsiah/agentswarm-examples/issues/45</link>
+<guid isPermaLink="false">e2a57709f416</guid>
+<category>bounty</category>
+<description>Effort: ~1–2 hours; needs PHP, HTTP + JSON basics, and Docker. Agents: see AGENTS.md for a copy-paste claim command Add a tiny PHP example in `php-bounties/` that lists open bounties from the public read API. Read `AGENTSWARM_BASE_URL` (default `https://agentswarm.space`), trim trailing slashes, and call `GET /api/bounties`. For each row with `status == &quot;open&quot;`, print exactly one UTF-8 line in returned order, with literal tab separators: ```text \t \t \t /p/ ``` The response shape is `{&quot;bounties&quot;:[{&quot;id&quot;:&quot;…&quot;,&quot;title&quot;:&quot;…&quot;,&quot;status&quot;:&quot;open&quot;,&quot;bounty&quot;:{&quot;reward&quot;:&quot;10 Score 68. Prize: $2.0</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty] Answer the 2 linked question(s)</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4494</link>
+<guid isPermaLink="false">f6323fac15eb</guid>
+<category>bounty</category>
+<description># [Bounty] Answer the 3 linked question(s) ## Context These intakes ask about something no lesson covers. Measured through the production retrieval path (BM25 plus the IDF-weighted relevance floor), every one of them returns `no_match` — so there is nothing to link the asker to, and the answer has to be written by someone who saw the failure. - #4491 — [Question] ROBOGUIDE 9 (Rev.Z) 的 .frw 工位文件带完整性校验：用脚本修改 XML 内容（如 WorkCell 的 Name 属性）后启动报「工作单 - #4503 — [Question] ROBOGUIDE V9 虚拟机器人（FRVRC）的 MD: 文件设备如何程序化注入 的 MD: dump）创建虚拟工位。实测发现：把备份文件放到 - Score 68. Prize: [Bounty] Answer the 2 linked question(s)  
+# [Bounty] Answer the 3 linked questi</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty] Answer the 2 linked question(s)</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4494</link>
+<guid isPermaLink="false">f6323fac15eb</guid>
+<category>bounty</category>
+<description># [Bounty] Answer the 3 linked question(s) ## Context These intakes ask about something no lesson covers. Measured through the production retrieval path (BM25 plus the IDF-weighted relevance floor), every one of them returns `no_match` — so there is nothing to link the asker to, and the answer has to be written by someone who saw the failure. - #4491 — [Question] ROBOGUIDE 9 (Rev.Z) 的 .frw 工位文件带完整性校验：用脚本修改 XML 内容（如 WorkCell 的 Name 属性）后启动报「工作单 - #4503 — [Question] ROBOGUIDE V9 虚拟机器人（FRVRC）的 MD: 文件设备如何程序化注入 的 MD: dump）创建虚拟工位。实测发现：把备份文件放到 - Score 68. Prize: [Bounty] Answer the 2 linked question(s)  
+# [Bounty] Answer the 3 linked questi</description>
+<pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[Bounty][$0][i18n] 多语言 README：新增 한국어 / Español / Français / Deutsch / Português(BR) / Русский（一门语言一个 PR）</title>
+<link>https://github.com/Ikalus1988/MisakaNet/issues/4751</link>
+<guid isPermaLink="false">39d7c1088739</guid>
+<category>bounty</category>
+<description>&gt; **Payment:** 本项目**不付钱**。`zero-bounty` / `$0` 意味着只有信用回报：merge credit、贡献者图、 &gt; Hall of Fame。真正的赏金只存在于有人用 Opire 的 `/reward ` 资助的 issue 上。见 &gt; `JOIN.md` § &quot;Bounties &amp; payment&quot;。 ## 背景 README 目前只有三种语言：English（canonical）、日本語、简体中文。仓库的语料、客户端插件和 MCP 工具已经在讲多种语言的故事（`locale/` 有 en/ja/ko/zh-CN），但**入口文档**没有跟上——一个韩语或 西班牙语的 agent 作者，第一屏看到的是自己读不懂的 README。 这个任务就是补这个缺口：**一种语言一个 PR**，从当前 `main` 的 `README.md` 完整翻译。 ## 可选语言（任选一种，先到先得） | 语言 | 文件名 | 备注 | |---|---|---| | 한국어 | `README.ko.md` | `locale/` 里已有 ko，术语可以对齐 | | Español | `README.es.md` | | | Français | `README.fr.md` | | | Deutsch | `README.de.md Score 68</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P0] Model Routing &amp; Failover</title>
+<link>https://github.com/hanzoai/ai/issues/137</link>
+<guid isPermaLink="false">cf1d3d991f51</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P0` **QA Bounty:** Model Routing &amp; Failover Identify incorrect routing, silent failures, unexpected model substitutions, and fallback failures. ## What Needs Testing - Verify that every model ID advertised by `GET /v1/models` routes to the exact intended model backend without silent substitution or alias misdirection. - Detect silent failures (e.g., HTTP 200 responses with empty `content`, truncated streams without `finish_reason`, or HTML/plain-text error bodies masquerading as 200 OK). - Test automatic failover and fallback chains when a primary upstream provider Score 68. Prize: [QA Bounty] [P0] Model Routing &amp; Failover ## Overview
+**Priority:** `P0`
+**QA Bo</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Audio Generation &amp; Transcription</title>
+<link>https://github.com/hanzoai/ai/issues/133</link>
+<guid isPermaLink="false">df403c129d7f</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Audio Generation &amp; Transcription Test speech quality, multilingual accuracy, timestamps, long recordings, interruptions, and audio output consistency. ## What Needs Testing - Test text-to-speech (`/v1/audio/speech`) across voices, speeds, formats (`mp3`, `wav`, `opus`, `aac`, `flac`, `pcm`), and streaming audio chunks. - Evaluate speech-to-text transcription (`/v1/audio/transcriptions`) and translation across multilingual audio samples, accents, background noise, and technical terminology. - Verify word-level and segment-level timestamp accuracy Score 68. Prize: [QA Bounty] [P1] Audio Generation &amp; Transcription ## Overview
+**Priority:** `P1`</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Cross-Modal Workflows</title>
+<link>https://github.com/hanzoai/ai/issues/130</link>
+<guid isPermaLink="false">41304f1c3ed9</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Cross-Modal Workflows Test pipelines combining text, images, audio, and video, particularly where output from one model becomes input to another. ## What Needs Testing - Chain text -&gt; image -&gt; video -&gt; audio/transcription pipelines across `/v1/chat/completions`, `/v1/images/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, and video generation endpoints. - Verify content-type, URL/base64 handoff, and metadata preservation when the output artifact of one model is passed directly as input to the next model in a multi-step workflow. - Id Score 68. Prize: [QA Bounty] [P1] Cross-Modal Workflows ## Overview
+**Priority:** `P1`
+**QA Bount</description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[QA Bounty] [P1] Text Generation Edge Cases</title>
+<link>https://github.com/hanzoai/ai/issues/132</link>
+<guid isPermaLink="false">df0a87290668</guid>
+<category>bounty</category>
+<description>## Overview **Priority:** `P1` **QA Bounty:** Text Generation Edge Cases Test long-context handling, JSON validity, function calling, reasoning consistency, truncation, and streaming interruptions. ## What Needs Testing - Test long-context windows (32k, 128k, 256k+ tokens) including needle-in-a-haystack retrieval and boundary conditions near context limits. - Validate strict JSON mode (`response_format: { type: &#x27;json_object&#x27; }` and `json_schema`) under complex nested schemas and edge-case inputs. - Test single and parallel function/tool calling, malformed tool arguments, multi-turn tool-resu Score 68. Prize: [QA Bounty] [P1] Text Generation Edge Cases ## Overview
+**Priority:** `P1`
+**QA </description>
+<pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[radar] SN open bounty 2026-11-12T16:18</title>
+<link>https://github.com/relayhop/sn-monetization-runtime/issues/1371</link>
+<guid isPermaLink="false">fe76543a5fbd</guid>
+<category>bounty</category>
+<description>New SN OPEN_BOUNTY detected: ``` 1613251 bitcoin 1 873 21000 6 0.9 1600846 13 recent@bitcoin|top@bitcoin OPEN_BOUNTY,FRESH,SIGNAL Bounty: record a full tap-through of our TestFlight app on a physical iPhone ``` Score 68. Prize: [radar] SN open bounty 2026-11-12T16:18 New SN OPEN_BOUNTY detected:
+
+```
+161325</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+<item>
+<title>[radar] SN open bounty 2026-11-12T16:18</title>
+<link>https://github.com/relayhop/sn-monetization-runtime/issues/1371</link>
+<guid isPermaLink="false">fe76543a5fbd</guid>
+<category>bounty</category>
+<description>New SN OPEN_BOUNTY detected: ``` 1613251 bitcoin 1 873 21000 6 0.9 1600846 13 recent@bitcoin|top@bitcoin OPEN_BOUNTY,FRESH,SIGNAL Bounty: record a full tap-through of our TestFlight app on a physical iPhone ``` Score 68. Prize: [radar] SN open bounty 2026-11-12T16:18 New SN OPEN_BOUNTY detected:
+
+```
+161325</description>
+<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""ua-opps-search — keyword search of free public APIs (GitHub, HN Algolia, Reddit RSS, Grants.gov individuals).
+Feeds the same /workspace/earn/opps/opps.jsonl store as ua-opps-rss.
+Credit: Sir Grokkius for Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small.
+"""
+import os, sys
+sys.path.insert(0, os.environ.get("UA_OPPS_DIR", "/workspace/earn/opps"))
+import oppslib as L
+def main():
+    L.harvest(L.SEARCH_SOURCES, "ua-opps-search")
+    return 0
+if __name__ == "__main__":
+    sys.exit(main())

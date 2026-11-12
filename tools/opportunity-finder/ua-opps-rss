@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""ua-opps-rss — harvest verified RSS/Atom/JSON opportunity feeds into /workspace/earn/opps/.
+  ua-opps-rss [--no-today]
+Writes opps.jsonl, seen.json, health.json, OPPS-TODAY.md, summary.json.
+Credit: Sir Grokkius for Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small.
+"""
+import os, sys
+sys.path.insert(0, os.environ.get("UA_OPPS_DIR", "/workspace/earn/opps"))
+import oppslib as L
+def main():
+    rows, active = L.harvest(L.RSS_SOURCES, "ua-opps-rss")
+    return 0
+if __name__ == "__main__":
+    sys.exit(main())
