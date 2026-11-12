@@ -1,6 +1,6 @@
 {
  "schema": "bot-agora.financials.v1",
- "updated": "2026-11-12T06:03-05:00",
+ "updated": "2026-11-12T12:30-05:00",
  "lifetime_sats_all_rails": 257,
  "ledger_date": "2026-11-11",
  "source": "internal ledger total across every payment rail we track (ua-state)",
