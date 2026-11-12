@@ -14,6 +14,7 @@ import { checkHeaders } from "./tools/headers";
 import { parseCsp } from "./tools/csp";
 import { checkRobots } from "./tools/robots";
 import { inspectUrl } from "./tools/url";
+import { handleRpc, TOOLS as MCP_TOOLS } from "./mcp";
 import { stacksPaymentMiddleware, type StacksPaymentVariables } from "@aibtc/x402-stacks-agents/hono";
 
 type Env = { OVERFLOW_URL?: string; STATS?: any; AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
@@ -76,6 +77,7 @@ const INFO = {
 
 type Route = { method: string; path: string; paid: boolean; input: string; does: string };
 const ROUTES: Route[] = [
+  { method: "POST", path: "/mcp", paid: false, input: "MCP JSON-RPC (Streamable HTTP, JSON responses)", does: "all tools over MCP; paid tools use _meta x402/error + x402/payment" },
   { method: "GET", path: "/stats", paid: false, input: "none", does: "public usage counters + on-chain receipts for the pay-to address" },
   { method: "GET", path: "/health", paid: false, input: "none", does: "liveness" },
   { method: "GET", path: "/health/ai", paid: false, input: "none", does: "tiny AI self-test (cached 10 min)" },
@@ -120,7 +122,7 @@ const app = new Hono<{ Bindings: Env; Variables: StacksPaymentVariables }>();
 
 // ---- usage counters (no PII: only route names and counts). Batched per isolate, flushed to KV at most once a minute. ----
 const PAID_PATHS = new Set(["/ask", "/lint", "/cron/review", "/json/review", "/retry/review", "/x402/review", "/headers/review"]);
-const SKIP = new Set(["/stats", "/health", "/favicon.ico"]);
+const SKIP = new Set(["/stats", "/health", "/favicon.ico", "/mcp"]);
 let pend: Record<string, number> = {}; let lastFlush = 0;
 const bump = (k: string) => { pend[k] = (pend[k] || 0) + 1; };
 async function flush(env: Env) {
@@ -164,12 +166,12 @@ app.get("/stats", async (c) => {
   const kv = c.env.STATS ? await c.env.STATS.get("stats", "json") : null;
   const counts: Record<string, number> = { ...(kv?.counts || {}) }; for (const [k, v] of Object.entries(pend)) counts[k] = (counts[k] || 0) + v;
   return c.json({ desk: "Bot Agora x402 desk", counting_since: kv?.since ?? null, updated: kv?.updated ?? null,
-    free_calls: counts.free_calls || 0, paywall_402_shown: counts.paywall_402 || 0, paid_calls: counts.paid_success || 0,
+    free_calls: counts.free_calls || 0, mcp_calls: counts.mcp_calls || 0, paywall_402_shown: counts.paywall_402 || 0, paid_calls: counts.paid_success || 0,
     by_route: Object.fromEntries(Object.entries(counts).filter(([k]) => k.includes(" ")).sort((a, b) => b[1] - a[1])),
     onchain: await onchain(), price_sats: PRICE,
     note: "Counts are approximate (batched per edge isolate, flushed about once a minute), contain no IPs or request contents, and start at the time shown. On-chain numbers come from the public Stacks API for the pay-to address." });
 });
-app.use("*", cors({ origin: "*", allowHeaders: ["content-type", "payment-signature"], exposeHeaders: ["payment-required", "payment-response"] }));
+app.use("*", cors({ origin: "*", allowHeaders: ["content-type", "payment-signature", "mcp-protocol-version", "mcp-session-id", "authorization"], exposeHeaders: ["payment-required", "payment-response", "mcp-session-id"] }));
 app.get("/", (c) => c.json(INFO));
 app.get("/health", (c) => c.json({ ok: true }));
 app.get("/health/ai", async (c) => {
@@ -269,6 +271,16 @@ app.post("/json/review", async (c) => { const t = await body(c); if (!t.trim()) 
 app.post("/retry/review", async (c) => { const t = await body(c); if (!t.trim()) return c.json({ error: "empty body" }, 400); return review("retry policy check", checkRetryPolicy(asPolicy(t)), t)(c); });
 app.post("/x402/review", async (c) => { const t = await body(c); if (!t.trim()) return c.json({ error: "empty body" }, 400); return review("x402 decode", decodeX402(t), t)(c); });
 app.post("/headers/review", async (c) => { const t = await body(c); if (!t.trim()) return c.json({ error: "empty body" }, 400); return review("HTTP header audit", checkHeaders(t), t)(c); });
+// ---- MCP (Streamable HTTP, stateless, JSON responses). Tools forward to the routes above via app.fetch. ----
+app.get("/mcp", (c) => c.json({ error: "POST JSON-RPC here (MCP Streamable HTTP). This server does not open an SSE stream.", tools: MCP_TOOLS.length, catalog: origin(c) + "/catalog" }, 405, { allow: "POST" }));
+app.delete("/mcp", (c) => c.body(null, 405));
+app.post("/mcp", async (c) => {
+  let msg: any; try { msg = JSON.parse(await c.req.text()); } catch { return c.json({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } }, 400); }
+  bump("mcp_calls"); if (msg?.method === "tools/call") bump(`mcp ${String(msg?.params?.name ?? "?").slice(0, 32)}`);
+  const run = (m: any) => handleRpc(m, origin(c), (r) => Promise.resolve(app.fetch(r, c.env, c.executionCtx)));
+  if (Array.isArray(msg)) { const outs = (await Promise.all(msg.slice(0, 20).map(run))).filter(Boolean); return outs.length ? c.json(outs) : c.body(null, 202); }
+  const out = await run(msg); return out ? c.json(out) : c.body(null, 202);
+});
 app.notFound((c) => c.json({ error: "no such route", catalog: new URL(c.req.url).origin + "/catalog" }, 404));
 
 app.onError((e, c) => c.json({ error: "internal error, you were not charged", detail: String(e).slice(0, 200) }, 500));

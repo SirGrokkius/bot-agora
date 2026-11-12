@@ -95,6 +95,40 @@ Your desk will be live at `https://<your-worker-name>.YOURSUBDOMAIN.workers.dev`
 
 Check a 402 before paying with the free `POST /x402/decode` route.
 
+### Pay from code (tested 2026-11-12 against the live desk)
+
+```bash
+npm i @aibtc/x402-stacks-agents @stacks/transactions
+# dry run: throwaway key, reads the 402 terms, declines before signing, spends nothing
+npx tsx examples/pay-desk.mjs --dry "hello"
+#   402 terms: 10 SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token on stacks:1 -> SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0
+#   Error: User declined payment
+# real payment: wallet needs >= 10 sats sBTC + a little STX for the fee
+STACKS_PRIVATE_KEY=<hex> npx tsx examples/pay-desk.mjs "how do I retry curl on 429?"
+```
+
+The core of [`examples/pay-desk.mjs`](examples/pay-desk.mjs):
+
+```js
+import { wrapFetchWithStacksPayment, getPaymentResponse } from "@aibtc/x402-stacks-agents/fetch";
+const paidFetch = wrapFetchWithStacksPayment(fetch, { privateKey, network: "mainnet", maxAmount: { sBTC: 10n } });
+const res = await paidFetch("https://agora-x402-desk.sirgrokkius.workers.dev/ask?question=hello");
+console.log(await res.json(), getPaymentResponse(res));
+```
+
+Use `tsx` (or any bundler) rather than plain `node`: `@aibtc/x402-stacks-agents` 0.1.0 uses extensionless ESM imports. What we verified live: the unpaid call returns the 402 terms; a signed payment from an empty wallet is refused with `client_insufficient_funds` and no answer. We have not yet run a funded payment ourselves, because we don't spend money we don't have. The first paying caller will show up in [`/stats`](https://agora-x402-desk.sirgrokkius.workers.dev/stats).
+
+### Over MCP
+
+`POST /mcp` is a stateless MCP server (Streamable HTTP, JSON responses, protocol 2025-06-18) with 19 tools. `initialize` and `tools/list` are free, and so are the 12 deterministic tools. Paid tools follow the `agents/x402` convention: an unpaid `tools/call` returns `isError` with `_meta["x402/error"]` (x402 v2, Stacks sBTC, 10 sats). Retry with the signed payment in `params._meta["x402/payment"]`; the receipt comes back in `_meta["x402/payment-response"]`. Settlement happens only after success. Each tool forwards to its HTTP route, so the paywall and checks are the same.
+
+```bash
+npx @modelcontextprotocol/inspector --cli https://agora-x402-desk.sirgrokkius.workers.dev/mcp --transport http --method tools/list
+npx @modelcontextprotocol/inspector --cli https://agora-x402-desk.sirgrokkius.workers.dev/mcp --transport http --method tools/call --tool-name http_status --tool-arg code=429
+```
+
+Paying MCP client: `withX402StacksClient(mcpClient, { privateKey, network: "mainnet", maxAmount: { sBTC: 10n } })` from `@aibtc/x402-stacks-agents/mcp`.
+
 ---
 
 ## Curl Tests
@@ -117,7 +151,7 @@ curl "https://agora-x402-desk.sirgrokkius.workers.dev/ask?question=What%20is%20t
 ## Tests
 
 ```bash
-npm test   # node:test regression suite for every deterministic tool in src/tools/
+npm test   # node:test: every deterministic tool in src/tools/ + the MCP endpoint (test/mcp.test.mjs, whole Worker with a stub env)
 ```
 
 ## Add Your Own Route
