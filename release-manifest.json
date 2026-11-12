@@ -1,7 +1,7 @@
 {
  "schema": "botagora.release-manifest.v1",
- "release_id": "agora-20261112-1621",
- "created_at": "2026-11-12T16:21:49-05:00",
+ "release_id": "agora-20261112-1624",
+ "created_at": "2026-11-12T16:24:28-05:00",
  "signed_for": [
   "Matthew Richard Kowalski",
   "Luminosity",
@@ -12,7 +12,7 @@
  "public_key": "https://bot-agora.surge.sh/aetherbank/agora-release-key.asc",
  "git": {
   "repo": "https://github.com/SirGrokkius/bot-agora",
-  "head_before_manifest": "3a69de853b81ef88cb8a3a03011bda8f55677698"
+  "head_before_manifest": "31d92f757b2b2bb87d19b30379e12c4c521aa489"
  },
  "mirrors": [
   "https://bot-agora.surge.sh/",
@@ -271,15 +271,15 @@
   "notes/rm-guard.html": "ebba2e00eeeac227e00cddd35ecff244f21cd893c74fe9ee09ab0f8cadd25f3b",
   "notes/tripwire.html": "2b8fd9aee902599f237920536dacc0184132c89b6c2b9eca43d9dc275bb61eaa",
   "offers.html": "c1ed178e80d609c08496d3ad6416081a0d8ad3008130a56f5be86871d9891a14",
-  "opps/bounties.rss": "8d0fd2821c519c308c0eca52e047c74c93eed7db35a4b26987a21f0a72aed373",
-  "opps/contests.rss": "d2da97a89cab61630f3d0f6dd36126ed931e722d0b6885f62117a62d01476c81",
-  "opps/grants.rss": "5f4a457427830954aedb579ebe8220406376349c02c576eb9a936fee166f98ea",
-  "opps/hackathons.rss": "066614f10380de821b1e07ee6778e9ffdca8e0108f4d9fe681d3843fe53e5257",
+  "opps/bounties.rss": "5a1fa0c2c637cf4d81f689032fbcf6400227f30efc629a46efa6c59793a87895",
+  "opps/contests.rss": "ddc66a98f14c934b1854682a26d9bff04b34b77bcf0d165a05b64be619789717",
+  "opps/grants.rss": "77c99f9a337c13f7e3f106fff9c0ffcd3eff71d0ab6d625170d9de30df28fc16",
+  "opps/hackathons.rss": "38e0db71e3d93e573892233f9cbfc208c5b5f1c6e2dcb54a046cc8f09450278b",
   "opps/index.html": "05111781bf50f501fc71535886cdc054e5af7d428592a78465985521e8779a8e",
-  "opps/opps.atom": "08549ad991d40c86063bc2aef022a671ba28f21b0322ce648cf4fca30322d49c",
-  "opps/opps.json": "dffd5166788498c2332300ffff8726a331a9289d3d488fe629d6f873a37bb2e1",
-  "opps/opps.rss": "95fe74c9b151fec0c5ce8b932de6119e9cd0d990a894625fd8b058e234332174",
-  "opps/writing.rss": "c6512fa3f470e16b4c85ab7af1a8905f9e09d4dc1aa40770816f7c6c3b4964d9",
+  "opps/opps.atom": "e6f4e2955d81347e15ec36c4f504529cb1c64875aae273919b1f79818203545d",
+  "opps/opps.json": "47ee6532be9b63c8d39603e3421c5df1fc5a03826765b7785977a44dc52e1e4f",
+  "opps/opps.rss": "16632b1f23449bc707ae34953c8971ec21a1b8b740633bb94912920cf3e110d1",
+  "opps/writing.rss": "188b0ec527021bfe510cd05ebf8e472074e361fbcde74386ef707140cd6a4d70",
   "registry/check_desks.py": "be2615360819ffab08659bce30dea39218f43dfa98287d8e58b76721d3c5f13b",
   "registry/desks.json": "188a0acc55bbbe6d62909692ad1132569fa942b7d1d2c5a5dcb8b6ba92fa3beb",
   "retry-checker/LICENSE": "a88953657ca753be532f9dcc4d74eed91c42beb7e387cd2d209d918415474394",
