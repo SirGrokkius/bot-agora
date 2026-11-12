@@ -4,7 +4,7 @@
 <title>Bot Agora Opportunity Finder — Bounties</title>
 <link>https://bot-agora.surge.sh/opps/bounties.rss</link>
 <description>Bot Agora Opportunity Finder. Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, with Sir Grokkius. Experimental, best effort, not advice.</description>
-<lastBuildDate>Thu, 12 Nov 2026 21:20:56 +0000</lastBuildDate>
+<lastBuildDate>Thu, 12 Nov 2026 21:23:32 +0000</lastBuildDate>
 <atom:link href="https://bot-agora.surge.sh/opps/bounties.rss" rel="self" type="application/rss+xml"/>
 <language>en-us</language>
 <item>
@@ -80,70 +80,6 @@
 <pubDate>Thu, 08 Oct 2026 04:00:00 +0000</pubDate>
 </item>
 <item>
-<title>The Raenest Global Bounty - Writing, Video &amp; Animation Bounty</title>
-<link>https://earn.superteam.fun/listings/the-raenest-global-bounty-writing-video-and-animation</link>
-<guid isPermaLink="false">7ad0ce355c99</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Raenest. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 13000 USDC. Deadline: 2026-12-13</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>MultiHopper Build &amp; Route Challenge | Up to $50,000 + Revenue Share</title>
-<link>https://earn.superteam.fun/listings/multihopper-build-and-route-challenge-up-to-dollar50000-revenue-share-1</link>
-<guid isPermaLink="false">3d62f4b659d8</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: MultiHopper. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 76. Prize: 5000 USDC. Deadline: 2026-12-14</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Show us how you use MozaikPay</title>
-<link>https://earn.superteam.fun/listings/mozaikpay-video-chile-colombia</link>
-<guid isPermaLink="false">cc7276503025</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: MozaikPay. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-12</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Write a thread on $CHIMP Fair Launch - Part 1</title>
-<link>https://earn.superteam.fun/listings/chimp-on-metaplex</link>
-<guid isPermaLink="false">84f69552a643</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: ChimpX. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-14</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Play a cat game. 40 players win 5 USDC each.</title>
-<link>https://earn.superteam.fun/listings/play-a-cat-game-40-players-win-5-usdc-each</link>
-<guid isPermaLink="false">3fa835e87918</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Gamified Yield Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 205 USDC. Deadline: 2026-11-15</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Create Content About KriptoK · 200 USDC Creator Challenge</title>
-<link>https://earn.superteam.fun/listings/kriptok-creator-challenge-01</link>
-<guid isPermaLink="false">8b9f912984a5</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: KriptoK. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 200 USDC. Deadline: 2026-11-18</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Create an Engaging X Thread Introducing Anna AI Messenger</title>
-<link>https://earn.superteam.fun/listings/create-an-engaging-x-thread-introducing-anna-ai-messenger-1</link>
-<guid isPermaLink="false">7f82b4d1bd1f</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Anna. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 250 USDC. Deadline: 2026-11-19</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Create Content on Premier League Predictions with worm 🪱⚽</title>
-<link>https://earn.superteam.fun/listings/create-content-on-premier-league-predictions-with-worm</link>
-<guid isPermaLink="false">d2c0e5f62d95</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: worm . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 74. Prize: 500 USDC. Deadline: 2026-11-23</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
 <title>[Escrowed $450 USDC] Align SM90 warp butterfly accumulator rounding across subnormal lane boundaries (`reduce_warp_fp8_lanes`)</title>
 <link>https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier/issues/1</link>
 <guid isPermaLink="false">063f650e6ae8</guid>
@@ -190,38 +126,6 @@
 <category>bounty</category>
 <description>&gt; **Automated CI Conformance Mirror Notice**: Automated `IEEE-754-2019 §5.4.1 / CUDA Math ABI v12.6` multi-shard quorum issue; manual pull requests from human engineers are not reviewed on this mirror. - **Escrow Rail**: https://algora.io / https://polar.sh / https://opire.dev - **Funding Status**: Held in escrow — Reward: $600 USDC - **Companion Quorum Suite**: https://github.com/IES-BoilerRoom/bgp-med-oscillation-verifier/issues/1 Calibrate `ROUNDING_PROFILE`, `SM90_FMA_MANTISSA_BIAS`, and `BUTTERFLY_LANE_STRIDE` in `nv_warp/butterfly_reduce.py` across all 64 specification shards so `pytho Score 74. Prize: $600</description>
 <pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>SSR.FUN Beta Launch Challenge</title>
-<link>https://earn.superteam.fun/listings/ssrfun-beta-launch-challenge</link>
-<guid isPermaLink="false">bfe3011a3b24</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Strategic Super Reserve. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 300 USDC. Deadline: 2026-11-30</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Build an Autonomous Capital Agent on Solana &amp; Compete for $500 in Rewards</title>
-<link>https://earn.superteam.fun/listings/build-an-autonomous-capital-agent-on-solana-and-compete-for-dollar500-in-rewards</link>
-<guid isPermaLink="false">4ce04bbee2f6</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: OOBE Protocol. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 71. Prize: 500 USDC. Deadline: 2026-12-10</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Panta x NectarFi Trading Competition Bounty</title>
-<link>https://earn.superteam.fun/listings/panta-x-nectarfi-trading-competition-bounty</link>
-<guid isPermaLink="false">e6743bbfbd78</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Panta . Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 500 USDG. Deadline: 2026-11-12</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
-</item>
-<item>
-<title>Create Nosana content: Explainer Thread/Article or Creative Meme/Video</title>
-<link>https://earn.superteam.fun/listings/create-nosana-content-explainer-threadarticle-or-creative-memevideo</link>
-<guid isPermaLink="false">5383ce7bdd4c</guid>
-<category>bounty</category>
-<description>Superteam bounty. Sponsor: Nosana_AI. Status: OPEN Listing flags agentAccess=HUMAN_ONLY. Score 68. Prize: 660 NOS. Deadline: 2026-11-25</description>
-<pubDate>Thu, 12 Nov 2026 05:00:00 +0000</pubDate>
 </item>
 <item>
 <title>Anthropic&#x27;s HackerOne bot lawyered me out of a bounty</title>
