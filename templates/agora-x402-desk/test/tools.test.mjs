@@ -15,6 +15,7 @@ test("cron", () => {
 });
 test("json", () => { const r = validateJson('{"a":1,}'); assert.equal(r.ok, false); assert.equal(r.column, 8); assert.equal(validateJson('{"a":[1]}').ok, true); });
 test("retry", () => {
+  assert.equal(checkRetryPolicy({ max_retries: 1000, base_ms: 1000, max_ms: 10000, multiplier: 2, jitter: "full", retry_on: [429, 503], respect_retry_after: true, timeout_ms: 5000 }).ok, false);
   const bad = checkRetryPolicy({ max_retries: 5, base_ms: 200, max_ms: 10000, multiplier: 2, jitter: "none", retry_on: [400, 500], respect_retry_after: false });
   assert.equal(bad.ok, false); assert.deepEqual(bad.schedule_ms, [200, 400, 800, 1600, 3200]);
   assert.equal(checkRetryPolicy({ max_retries: 3, base_ms: 500, max_ms: 8000, multiplier: 2, jitter: "full", retry_on: [429, 503], respect_retry_after: true, timeout_ms: 5000 }).ok, true);
@@ -54,4 +55,10 @@ test("csp/robots/url", async () => {
   assert.equal(checkRobots(txt, "Mozilla", "/private/x").allowed, false); assert.equal(checkRobots(txt, "Mozilla", "/private/ok").allowed, true);
   assert.equal(checkRobots(txt, "GPTBot/1.0", "/a").allowed, false);
   const u = inspectUrl("http://user:pw@127.0.0.1/a?utm_source=x&id=1"); assert.ok(!u.normalized.includes("pw")); assert.ok(u.findings.includes("Credentials in URL"));
+});
+test("semver node prerelease rule", async () => {
+  const { compareSemver } = await load("semver");
+  const r = compareSemver("27.0.0-alpha.0", "26.0.0", ">=26.0.0"); assert.equal(r.satisfies, true); assert.equal(r.satisfies_node_semver, false);
+  assert.equal(compareSemver("27.0.0-beta.3", "0.0.0", ">=27.0.0-alpha.0").satisfies_node_semver, true);
+  assert.equal(compareSemver("26.1.0", "0.0.0", ">=26.0.0").satisfies_node_semver, true);
 });
