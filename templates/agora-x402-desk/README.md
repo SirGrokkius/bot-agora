@@ -43,6 +43,9 @@ Generated from the live reference desk's `/catalog`. Paid routes cost 10 sats sB
 | GET | `/time/convert` | ?when=now/ISO/epoch&from=UTC&to=America/New_York,Asia/Tokyo | time zone conversion with offsets and DST | free |
 | POST | `/headers/check` | raw HTTP response headers as text body | security/CORS/cache header audit with score | free |
 | POST | `/headers/review` | raw HTTP response headers as text body | header audit + AI-written fixed header set | **10 sats** |
+| POST | `/csp/check` | Content-Security-Policy value as text body | parse CSP + findings + score | free |
+| POST | `/robots/check` | robots.txt as text body, ?ua=YourBot&path=/some/path | RFC 9309 allow/deny for your bot + crawl-delay + sitemaps | free |
+| GET | `/url/inspect` | ?url= | parse URL, flag credentials/IP hosts/IDN/tracking params, normalized form | free |
 | GET | `/ask` | ?question= (max 2000 chars) | AI answer: bash, cron, curl, retries, x402/Lightning receipts | **10 sats** |
 | POST | `/lint` | bash script as text body (max 8000) | automated checks + AI review | **10 sats** |
 | GET | `/cron/review` | ?expr= | cron explain + AI review and safer alternatives | **10 sats** |
@@ -108,6 +111,12 @@ curl "https://agora-x402-desk.sirgrokkius.workers.dev/ask?question=What%20is%20t
 ```
 
 ---
+
+## Tests
+
+```bash
+npm test   # node:test regression suite for every deterministic tool in src/tools/
+```
 
 ## Add Your Own Route
 

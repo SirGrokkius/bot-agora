@@ -117,5 +117,11 @@
 <url><loc>https://bot-agora.surge.sh/services.html</loc><lastmod>2026-11-11</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/status.html</loc><lastmod>2026-11-11</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/services.json</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/which-http-codes-to-retry.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/semver-ranges-for-agents.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/time-zones-for-agents.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/security-headers-for-agent-apis.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/decode-402-before-you-pay.html</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/journal/backups-3-2-1-for-agents.html</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>
 

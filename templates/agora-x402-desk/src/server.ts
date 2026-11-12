@@ -8,9 +8,12 @@ import { checkRetryPolicy } from "./tools/retry";
 import { decodeX402 } from "./tools/x402";
 import { explainStatus } from "./tools/http";
 import { compareSemver } from "./tools/semver";
-import { convertTime } from "./tools/time";
+import { convertTimeSafe as convertTime } from "./tools/timeguard";
 import { cors } from "hono/cors";
 import { checkHeaders } from "./tools/headers";
+import { parseCsp } from "./tools/csp";
+import { checkRobots } from "./tools/robots";
+import { inspectUrl } from "./tools/url";
 import { stacksPaymentMiddleware, type StacksPaymentVariables } from "@aibtc/x402-stacks-agents/hono";
 
 type Env = { AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
@@ -61,7 +64,7 @@ const INFO = {
   what: "Small paid AI answers: GET /ask?question=... (bash, cron, curl, retries, checking x402/Lightning receipts) and POST /lint (send a bash script as the request body, up to 8,000 chars; returns automated checks plus an AI review).",
   price: `${PRICE} sats in sBTC per call, Stacks mainnet, x402 v2. You pay only after a successful answer (settle after success).`,
   pay_to: PAY_TO,
-  tools_free: "POST /headers/check (raw headers body), GET /cron/explain?expr=..., GET /http/status?code=, GET /semver/compare?a=&b=&range=, GET /time/convert?when=&from=&to=, POST /json/validate (body), POST /retry/check (JSON policy body), POST /x402/decode (402 body or payment-required header value). Deterministic, no AI, free.",
+  tools_free: "POST /headers/check (raw headers body), POST /csp/check, POST /robots/check?ua=&path=, GET /url/inspect?url=, GET /cron/explain?expr=..., GET /http/status?code=, GET /semver/compare?a=&b=&range=, GET /time/convert?when=&from=&to=, POST /json/validate (body), POST /retry/check (JSON policy body), POST /x402/decode (402 body or payment-required header value). Deterministic, no AI, free.",
   tools_paid: "Same input + an AI review and fixes, 10 sats each: GET /cron/review?expr=, POST /json/review, POST /retry/review, POST /x402/review, POST /headers/review.",
   catalog: "GET /catalog (machine-readable list of every route, price and input), GET /openapi.json, GET /.well-known/x402",
   template: "Fork your own: https://github.com/SirGrokkius/bot-agora/tree/main/templates/agora-x402-desk",
@@ -85,6 +88,9 @@ const ROUTES: Route[] = [
   { method: "GET", path: "/time/convert", paid: false, input: "?when=now|ISO|epoch&from=UTC&to=America/New_York,Asia/Tokyo", does: "time zone conversion with offsets and DST" },
   { method: "POST", path: "/headers/check", paid: false, input: "raw HTTP response headers as text body", does: "security/CORS/cache header audit with score" },
   { method: "POST", path: "/headers/review", paid: true, input: "raw HTTP response headers as text body", does: "header audit + AI-written fixed header set" },
+  { method: "POST", path: "/csp/check", paid: false, input: "Content-Security-Policy value as text body", does: "parse CSP + findings + score" },
+  { method: "POST", path: "/robots/check", paid: false, input: "robots.txt as text body, ?ua=YourBot&path=/some/path", does: "RFC 9309 allow/deny for your bot + crawl-delay + sitemaps" },
+  { method: "GET", path: "/url/inspect", paid: false, input: "?url=", does: "parse URL, flag credentials/IP hosts/IDN/tracking params, normalized form" },
   { method: "GET", path: "/ask", paid: true, input: "?question= (max 2000 chars)", does: "AI answer: bash, cron, curl, retries, x402/Lightning receipts" },
   { method: "POST", path: "/lint", paid: true, input: "bash script as text body (max 8000)", does: "automated checks + AI review" },
   { method: "GET", path: "/cron/review", paid: true, input: "?expr=", does: "cron explain + AI review and safer alternatives" },
@@ -104,7 +110,7 @@ function openapi(BASE: string) {
     if (r.input.startsWith("?")) op.parameters = [{ name: r.input.slice(1).split("=")[0], in: "query", required: true, schema: { type: "string" } }];
     paths[r.path] = { ...(paths[r.path] || {}), [r.method.toLowerCase()]: op };
   }
-  return { openapi: "3.1.0", info: { title: INFO.name, version: "1.2.0", description: INFO.what }, servers: [{ url: BASE }], paths };
+  return { openapi: "3.1.0", info: { title: INFO.name, version: "1.3.0", description: INFO.what }, servers: [{ url: BASE }], paths };
 }
 async function body(c: any) { return (await c.req.text()).slice(0, MAX_IN); }
 function asPolicy(t: string): unknown { try { return JSON.parse(t); } catch { return t; } }
@@ -143,6 +149,13 @@ app.get("/time/convert", (c) => {
   return c.json(convertTime({ when: c.req.query("when") ?? "now", from_tz: c.req.query("from") || undefined, to_tz: to }));
 });
 app.post("/headers/check", async (c) => { const t = await body(c); if (!t.trim()) return c.json({ ok: false, error: "POST raw response headers as the body (Name: value per line)" }, 400); return c.json(checkHeaders(t)); });
+app.post("/csp/check", async (c) => { const t = await body(c); if (!t.trim()) return c.json({ ok: false, error: "POST the CSP header value as the body" }, 400); return c.json(parseCsp(t)); });
+app.post("/robots/check", async (c) => {
+  const t = (await c.req.text()).slice(0, 500_000); const ua = c.req.query("ua") ?? ""; const path = c.req.query("path") ?? "/";
+  if (!t.trim() || !ua) return c.json({ ok: false, error: "POST robots.txt as the body and add ?ua=YourBot&path=/x" }, 400);
+  return c.json(checkRobots(t, ua, path));
+});
+app.get("/url/inspect", (c) => c.json(inspectUrl(c.req.query("url") ?? "")));
 app.post("/lint/free", async (c) => {
   const src = (await c.req.text()).slice(0, MAX_IN);
   return c.json({ automated_findings: staticLint(src), note: "Automated checks only. Paid POST /lint adds an AI review." });
