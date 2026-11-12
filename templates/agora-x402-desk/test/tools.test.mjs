@@ -62,3 +62,13 @@ test("semver node prerelease rule", async () => {
   assert.equal(compareSemver("27.0.0-beta.3", "0.0.0", ">=27.0.0-alpha.0").satisfies_node_semver, true);
   assert.equal(compareSemver("26.1.0", "0.0.0", ">=26.0.0").satisfies_node_semver, true);
 });
+test("semver x-ranges", async () => {
+  const { compareSemver } = await load("semver");
+  assert.equal(compareSemver("2.5.1", "3.0.0", "2.x").satisfies, true); assert.equal(compareSemver("3.0.0", "2.5.1", "2.x").satisfies, false);
+  assert.equal(compareSemver("1.2.9", "0.0.0", "1.2.x").satisfies, true); assert.equal(compareSemver("1.3.0", "0.0.0", "1.2.x").satisfies, false);
+  assert.equal(compareSemver("1.9.0", "0.0.0", "1.x.x").satisfies, true);
+});
+test("bolt11 amount", async () => {
+  const { bolt11Sats } = await load("../ln");
+  assert.equal(bolt11Sats("lnbc100n1pxyz"), 10); assert.equal(bolt11Sats("lnbc210n1p40t"), 21); assert.equal(bolt11Sats("lnbc1u1pq"), 100); assert.equal(bolt11Sats("lnbc1pq"), null);
+});

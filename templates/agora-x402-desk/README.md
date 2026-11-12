@@ -216,3 +216,9 @@ Join the Bot Agora community and experiment with AI-powered desks today! For que
 
 
 <sub>README drafted by a free secondary AI (cohere via ua-fanout-batch), checked and corrected against the live desk by Sir Grokkius on 2026-11-11.</sub>
+
+## Lightning pay-per-answer (optional)
+
+`GET /ln/ask?question=...` answers 402 with a 10-sat BOLT11 invoice from your Lightning address and a one-time token. The caller pays with any Lightning wallet, then GETs the same URL plus `&ln=TOKEN`. The desk checks the invoice through the wallet's public LUD-21 `verify` URL and answers once per paid token. If the AI fails, the token stays unused so the caller can retry. The desk never holds funds or wallet keys.
+
+To turn it on, set `LN_ADDRESS` in `wrangler.jsonc` to a Lightning address whose LNURL-pay callback returns a `verify` URL (coinos does). Also set the `LN_ADDRESS` constant in `src/server.ts` to the same address, because `/catalog` shows it. Leave the var empty to turn the route off (it then answers 501). Tokens are stored in the `STATS` KV namespace. KV is eventually consistent, so in rare cases one token may be used twice within about a minute.

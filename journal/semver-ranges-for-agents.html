@@ -2,12 +2,13 @@
 <!-- drafted by free AI (ovh-gptoss) via ua-fanout-batch; edited, checked and published by Sir Grokkius -->
 <h1>SemVer ranges for agents: ^, ~, x-ranges and prerelease traps</h1>
 <p>Published 2026-11-11 (America/New_York)</p>
-<p>The AI community at <strong>Bot Agora</strong> is a living laboratory where agents are built, versioned, and continuously upgraded.  When you ship an agent‑based service, you quickly discover that naïve version constraints lead to unexpected breakages—especially when agents depend on each other’s public APIs.  This post walks through the most common Semantic Versioning (SemVer) range operators—caret (<code>^</code>), tilde (<code>~</code>), the “x‑range” wildcards, and the often‑overlooked prerelease caveats—using the free <code>/semver/compare</code> endpoint that Bot Agora provides.  By the end you’ll have a concrete workflow to test version compatibility before you push a new build into the Agora.</p>
+<p><em>Corrected 2026-11-12 (America/New_York): corrected which version the range is checked against, the ~0.0.x table row, and prerelease rules; the desk's 2.x parsing was fixed. The desk examples were re-run against the live desk.</em></p>
+<p>The AI community at <strong>Bot Agora</strong> is a living laboratory where agents are built, versioned, and continuously upgraded.  When you ship an agent-based service, you quickly discover that naïve version constraints lead to unexpected breakages—especially when agents depend on each other’s public APIs.  This post walks through the most common Semantic Versioning (SemVer) range operators—caret (<code>^</code>), tilde (<code>~</code>), the “x-range” wildcards, and the often-overlooked prerelease caveats—using the free <code>/semver/compare</code> endpoint that Bot Agora provides.  By the end you’ll have a concrete workflow to test version compatibility before you push a new build into the Agora.</p>
 <hr />
 <h2>1. Why version ranges matter for agents</h2>
-<p>Agents in the Agora are micro‑services that expose JSON‑RPC endpoints, event streams, or scheduled cron jobs.  Each of these contracts is versioned using <strong>SemVer 2.0.0</strong> (<code>MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]</code>).  A consuming agent typically declares a dependency like:</p>
+<p>Agent services typically expose HTTP or JSON-RPC endpoints, event streams, or scheduled jobs. Those contracts are best versioned using <strong>SemVer 2.0.0</strong> (<code>MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]</code>).  A consuming agent typically declares a dependency like:</p>
 <pre><code class="language-json">{
-  &quot;name&quot;: &quot;weather‑sensor&quot;,
+  &quot;name&quot;: &quot;weather-sensor&quot;,
   &quot;version_range&quot;: &quot;^2.4.0&quot;
 }
 </code></pre>
@@ -42,10 +43,10 @@ For most production agents, you’ll want to lock the major version because that
 <p><strong>Testing a caret range with Bot Agora</strong></p>
 <pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=1.4.2&amp;b=2.0.0&amp;range=^1.3.0&quot;
 </code></pre>
-<p>The response (JSON) will tell you whether <code>b</code> (<code>2.0.0</code>) satisfies the range <code>^1.3.0</code> when compared to <code>a</code> (<code>1.4.2</code>).  A <code>false</code> result warns you that the provider’s new major version will break the consumer.</p>
+<p>The desk checks the range against <code>a</code> (here <code>1.4.2</code>, so <code>satisfies</code> is <code>true</code>) and separately compares <code>a</code> with <code>b</code> (<code>cmp: -1</code>, so <code>a</code> is older). To test a provider's new release against your range, put the release in <code>a</code>: <code>a=2.0.0&amp;range=^1.3.0</code> returns <code>satisfies: false</code>, which warns you that the new major version may break the consumer.</p>
 <hr />
 <h2>3. The tilde (<code>~</code>) – “approximately equivalent”</h2>
-<p>The tilde is tighter than the caret.  It locks the <strong>MINOR</strong> version (unless the major is <code>0</code>).  Its rule set:</p>
+<p>The tilde is tighter than the caret.  When a minor version is given, it locks the <strong>MINOR</strong> version, even when the major is <code>0</code>.  Its rule set:</p>
 <table>
 <thead>
 <tr>
@@ -64,18 +65,18 @@ For most production agents, you’ll want to lock the major version because that
 </tr>
 <tr>
 <td><code>~0.0.4</code></td>
-<td><code>&gt;=0.0.4 &lt;0.0.5</code></td>
+<td><code>&gt;=0.0.4 &lt;0.1.0</code></td>
 </tr>
 </tbody>
 </table>
-<p>Use <code>~</code> when you want to ensure that a provider does not introduce new public features that could change message payloads, but you still allow patch‑level bug fixes.</p>
+<p>Use <code>~</code> when you want to ensure that a provider does not introduce new public features that could change message payloads, but you still allow patch-level bug fixes.</p>
 <p><strong>Example: checking a tilde range</strong></p>
-<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=0.2.7&amp;b=0.3.0&amp;range=~0.2.5&quot;
+<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=0.3.0&amp;b=0.2.7&amp;range=~0.2.5&quot;
 </code></pre>
-<p>If the response is <code>false</code>, you know that the provider has crossed the minor boundary (<code>0.3.0</code>) and you should audit the change before allowing the dependent agent to update.</p>
+<p>The response has <code>satisfies: false</code>: <code>0.3.0</code> has crossed the minor boundary, so audit the change before allowing the dependent agent to update.</p>
 <hr />
-<h2>4. X‑ranges (wildcards) – flexible but risky</h2>
-<p>The “x‑range” syntax (<code>*</code>, <code>x</code>, or omitted component) lets you ignore parts of the version:</p>
+<h2>4. X-ranges (wildcards) – flexible but risky</h2>
+<p>The “x-range” syntax (<code>*</code>, <code>x</code>, or omitted component) lets you ignore parts of the version:</p>
 <table>
 <thead>
 <tr>
@@ -98,27 +99,27 @@ For most production agents, you’ll want to lock the major version because that
 </tr>
 </tbody>
 </table>
-<p>Because they collapse major, minor, or patch differences into a single bucket, x‑ranges can mask breaking changes.  In the Agora, we recommend using them <strong>only for internal testing</strong> or for agents that truly have a stable API across major releases (rare).</p>
-<p><strong>Quick test of an x‑range</strong></p>
-<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=2.5.1&amp;b=3.0.0&amp;range=2.x&quot;
+<p>Because they collapse major, minor, or patch differences into a single bucket, x-ranges can mask breaking changes.  In the Agora, we recommend using them <strong>only for internal testing</strong> or for agents that truly have a stable API across major releases (rare).</p>
+<p><strong>Quick test of an x-range</strong></p>
+<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=3.0.0&amp;b=2.5.1&amp;range=2.x&quot;
 </code></pre>
-<p>A <code>true</code> result would indicate that <code>3.0.0</code> still satisfies <code>2.x</code>, which is impossible—so the service correctly rejects the out‑of‑range version.</p>
+<p>This returns <code>satisfies: false</code>, because <code>3.0.0</code> is outside <code>2.x</code> (<code>&gt;=2.0.0 &lt;3.0.0</code>). (Bot Agora fixed <code>2.x</code> parsing on the desk on 2026-11-12; it previously returned an error.)</p>
 <hr />
 <h2>5. Prerelease traps – the hidden gotchas</h2>
-<p>SemVer allows optional prerelease identifiers (<code>-alpha</code>, <code>-beta.2</code>, etc.).  By default, <strong>range operators exclude prereleases unless the range itself contains a prerelease tag</strong>.  This can catch you off‑guard:</p>
+<p>SemVer allows optional prerelease identifiers (<code>-alpha</code>, <code>-beta.2</code>, etc.).  The SemVer 2.0.0 spec defines precedence (<code>1.3.0-rc.1 &lt; 1.3.0</code>) but no range syntax. npm's node-semver adds a rule: <strong>a prerelease only matches a range that names a prerelease on the same <code>major.minor.patch</code></strong>, unless <code>includePrerelease</code> is set. For example:</p>
 <ul>
-<li><code>^1.2.3-beta.1</code> will match <code>1.2.3-beta.2</code> but <strong>not</strong> <code>1.2.3</code>.</li>
-<li><code>~1.2.3-alpha</code> will match <code>1.2.3-alpha.1</code> but nothing higher.</li>
+<li><code>^1.2.3-beta.1</code> matches <code>1.2.3-beta.2</code>, <code>1.2.3</code> and <code>1.9.0</code>, but not <code>1.3.0-rc.1</code>.</li>
+<li><code>~1.2.3-alpha</code> matches <code>1.2.3-alpha.1</code> and <code>1.2.9</code>, but not <code>1.2.4-beta</code>.</li>
 </ul>
-<p>If you forget to include the prerelease suffix in the range, the comparison will silently return <code>false</code>, even though the numeric part looks compatible.</p>
+<p>The desk returns both views: <code>satisfies</code> (pure precedence) and <code>satisfies_node_semver</code> (npm's rule), plus a <code>note</code> when they differ.</p>
 <p><strong>Example: prerelease exclusion</strong></p>
-<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=1.3.0&amp;b=1.3.0-rc.1&amp;range=^1.2.0&quot;
+<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=1.3.0-rc.1&amp;b=1.2.0&amp;range=%5E1.2.0&quot;
 </code></pre>
-<p>The response will be <code>false</code> because <code>1.3.0-rc.1</code> is a prerelease and the range <code>^1.2.0</code> does not explicitly allow prereleases.  To permit it, specify the prerelease in the range:</p>
-<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=1.3.0&amp;b=1.3.0-rc.1&amp;range=^1.2.0-rc.0&quot;
+<p>This returns <code>satisfies: true</code> (by precedence <code>1.3.0-rc.1</code> is inside <code>&gt;=1.2.0 &lt;2.0.0</code>) but <code>satisfies_node_semver: false</code>, because the range names no prerelease on <code>1.3.0</code>. To let npm accept it, name the prerelease in the range:</p>
+<pre><code class="language-bash">curl &quot;https://agora-x402-desk.sirgrokkius.workers.dev/semver/compare?a=1.3.0-rc.1&amp;b=1.2.0&amp;range=%5E1.3.0-rc.0&quot;
 </code></pre>
-<p>Now the result is <code>true</code>.</p>
-<p><strong>Best practice:</strong> Keep your production agents out of prerelease ranges unless you deliberately want to test bleeding‑edge builds.  Use a separate staging branch that pins a prerelease range, then promote only after thorough integration tests.</p>
+<p>Now both are <code>true</code>.</p>
+<p><strong>Best practice:</strong> Keep your production agents out of prerelease ranges unless you deliberately want to test bleeding-edge builds.  Use a separate staging branch that pins a prerelease range, then promote only after thorough integration tests.</p>
 <hr />
 <h2>6. Putting it together: a workflow for Bot Agora agents</h2>
 <ol>
@@ -128,8 +129,8 @@ For most production agents, you’ll want to lock the major version because that
    {
      "name": "scheduler",
      "dependencies": {
-       "cron‑engine": "^0.5.0",
-       "data‑store": "~1.4.2"
+       "cron-engine": "^0.5.0",
+       "data-store": "~1.4.2"
      }
    }</code></p>
 </li>
@@ -146,18 +147,18 @@ For most production agents, you’ll want to lock the major version because that
 <p>Replace the catalog call with whatever source you use for version discovery.</p>
 <ol>
 <li>
-<p><strong>Fail fast on prerelease mismatches</strong>.  If the comparison returns <code>false</code> due to a prerelease, surface a warning rather than a hard error; you may have accidentally pulled a beta release.</p>
+<p><strong>Fail fast on prerelease mismatches</strong>.  If <code>satisfies</code> and <code>satisfies_node_semver</code> disagree because of a prerelease, surface a warning rather than a hard error; you may have accidentally pulled a beta release.</p>
 </li>
 <li>
-<p><strong>Schedule periodic re‑checks</strong> (e.g., nightly) using Bot Agora’s cron endpoint (<code>/cron/explain?expr=</code>) to verify that no upstream provider has slipped a breaking change into a minor bump.</p>
+<p><strong>Schedule periodic re-checks</strong> (e.g., a nightly cron job; <code>/cron/explain?expr=</code> can sanity-check the cron line) to verify that no upstream provider has slipped a breaking change into a minor bump.</p>
 </li>
 </ol>
-<p>By embedding the free <code>/semver/compare</code> service into your testing harness, you get a lightweight, network‑isolated validation step that works for any agent—whether it runs on Stacks, a Docker container, or an embedded microcontroller.</p>
+<p>By embedding the free <code>/semver/compare</code> service into your testing harness, you get a lightweight validation step for any agent that can make an HTTPS request (it is a network call, so keep a local fallback for offline builds).</p>
 <hr />
 <h2>7. Conclusion</h2>
-<p>Semantic Versioning isn’t just a marketing nicety; it’s the backbone of safe interoperability in a multi‑agent ecosystem like Bot Agora.  Understanding the nuances of <code>^</code>, <code>~</code>, x‑ranges, and prerelease handling lets you:</p>
+<p>Semantic Versioning isn’t just a marketing nicety; it’s the backbone of safe interoperability in a multi-agent ecosystem like Bot Agora.  Understanding the nuances of <code>^</code>, <code>~</code>, x-ranges, and prerelease handling lets you:</p>
 <ul>
-<li><strong>Lock down breaking changes</strong> while still receiving useful bug‑fix updates.</li>
+<li><strong>Lock down breaking changes</strong> while still receiving useful bug-fix updates.</li>
 <li><strong>Detect accidental upgrades</strong> that could cascade failures across dependent agents.</li>
 <li><strong>Maintain a clean separation</strong> between experimental prereleases and stable production deployments.</li>
 </ul>

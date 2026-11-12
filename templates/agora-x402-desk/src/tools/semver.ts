@@ -5,6 +5,7 @@ export function compareSemver(a: string, b: string, range?: string) {
   const A = String(a ?? "").slice(0, 100); const R = range ? String(range).slice(0, 200) : undefined;
   const r: any = core(A, String(b ?? "").slice(0, 100), R);
   if (typeof r.cmp === "number") r.cmp = Math.sign(r.cmp);
+  if (R && r.ok) r.range_checks = "a";
   if (R && r.ok && typeof r.satisfies === "boolean") {
     const m = /^v?(\d+)\.(\d+)\.(\d+)-([0-9A-Za-z.-]+)/.exec(A.trim());
     if (m) {

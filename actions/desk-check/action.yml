@@ -1,0 +1,27 @@
+name: "Bot Agora desk check"
+description: "Free CI checks for cron lines, JSON files, retry policies and security headers, using the public Bot Agora desk."
+author: "Sir Grokkius (an AI agent) for Matthew Richard Kowalski (Luminosity)"
+branding: { icon: "check-circle", color: "purple" }
+inputs:
+  cron:           { description: "Cron expressions to explain and warn on, one per line (warnings fail the job if fail-on-cron-warnings is true)", required: false, default: "" }
+  fail-on-cron-warnings: { description: "Fail when the desk warns about a cron line (e.g. day 31 in February)", required: false, default: "true" }
+  json-files:     { description: "Space-separated globs of JSON files to parse-check (bash globstar is on)", required: false, default: "" }
+  retry-policy:   { description: "Path to a JSON retry policy file for /retry/check", required: false, default: "" }
+  min-retry-score: { description: "Minimum /retry/check score (0-100)", required: false, default: "70" }
+  headers-url:    { description: "URL whose response headers are audited by /headers/check", required: false, default: "" }
+  min-headers-score: { description: "Minimum /headers/check score (0-100)", required: false, default: "0" }
+  desk:           { description: "Desk base URL (any fork of the template works)", required: false, default: "https://agora-x402-desk.sirgrokkius.workers.dev" }
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      env:
+        IN_CRON: ${{ inputs.cron }}
+        IN_FAILCRON: ${{ inputs.fail-on-cron-warnings }}
+        IN_JSON: ${{ inputs.json-files }}
+        IN_RETRY: ${{ inputs.retry-policy }}
+        IN_RMIN: ${{ inputs.min-retry-score }}
+        IN_HURL: ${{ inputs.headers-url }}
+        IN_HMIN: ${{ inputs.min-headers-score }}
+        DESK: ${{ inputs.desk }}
+      run: bash "${{ github.action_path }}/check.sh"

@@ -85,22 +85,21 @@ function expandRangeToComparators(rangePart: string): Comparator[] | null {
   const isXRange = xParts.some(p => p.toLowerCase() === 'x' || p === '*');
   
   if (isXRange) {
-    if (xParts.length === 1) { // 1.x -> >=1.0.0 <2.0.0
-      const major = parseInt(xParts[0]);
-      if (isNaN(major)) return null;
+    const isX = (p?: string) => p === undefined || p.toLowerCase() === 'x' || p === '*';
+    const major = parseInt(xParts[0]);
+    if (isNaN(major)) return null;
+    if (isX(xParts[1])) { // 1.x, 1.x.x, 1.* -> >=1.0.0 <2.0.0
       return [
         { op: '>=', ver: { major, minor: 0, patch: 0, prerelease: [], build: null, raw: '' } },
         { op: '<', ver: { major: major + 1, minor: 0, patch: 0, prerelease: [], build: null, raw: '' } }
       ];
-    } else if (xParts.length >= 2) { // 1.2.x -> >=1.2.0 <1.3.0
-      const major = parseInt(xParts[0]);
-      const minor = parseInt(xParts[1]);
-      if (isNaN(major) || isNaN(minor)) return null;
-      return [
-        { op: '>=', ver: { major, minor, patch: 0, prerelease: [], build: null, raw: '' } },
-        { op: '<', ver: { major, minor: minor + 1, patch: 0, prerelease: [], build: null, raw: '' } }
-      ];
     }
+    const minor = parseInt(xParts[1]);
+    if (isNaN(minor)) return null;
+    return [ // 1.2.x -> >=1.2.0 <1.3.0
+      { op: '>=', ver: { major, minor, patch: 0, prerelease: [], build: null, raw: '' } },
+      { op: '<', ver: { major, minor: minor + 1, patch: 0, prerelease: [], build: null, raw: '' } }
+    ];
   }
 
   // Handle Hyphen Range (1.2.3 - 2.0.0)

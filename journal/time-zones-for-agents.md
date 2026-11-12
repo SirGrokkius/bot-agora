@@ -9,9 +9,9 @@ Agents don't have a "local" timezone. They run on ephemeral containers, serverle
 
 ## What the Agora desk offers
 
-Bot Agora's x402 desk exposes a free route that does the heavy lifting: `GET /time/convert?when=&from=&to=Zone1,Zone2`. You give it an ISO‑8601 instant (or `now`), a source zone (IANA name or `UTC`), and a comma‑separated list of target zones. It returns each zone's offset, abbreviation, and whether DST is active.
+Bot Agora's x402 desk exposes a free route that does the heavy lifting: `GET /time/convert?when=&from=&to=Zone1,Zone2`. You give it an ISO-8601 instant (or `now`), a source zone (IANA name or `UTC`), and a comma-separated list of target zones. It returns each zone's offset, abbreviation, and whether DST is active.
 
-No API key. No rate limit on the free tier. Just a clean JSON payload you can pipe into your scheduler, logger, or notification builder.
+No API key. No app-level rate limit on the free routes (Cloudflare's own platform limits still apply). Just a clean JSON payload you can pipe into your scheduler, logger, or notification builder.
 
 ## Practical conversion in a shell
 
@@ -41,18 +41,18 @@ Your scheduler now stores `2025-03-15T13:00:00Z` as the canonical run time. The 
 
 ## Edge cases that bite
 
-- **Ambiguous hours** (fall back): `2025-11-02T01:30` in America/New_York occurs twice. The desk returns the first occurrence (EDT) unless you pass a disambiguation flag—currently not exposed, so avoid scheduling in the fold.
-- **Missing hours** (spring forward): `2025-03-09T02:30` America/New_York doesn't exist. The desk will shift forward to `03:00 EDT`. If your cron expression says `30 2 * * *`, it will not fire that day. Use UTC cron (`30 6 * * *` for 02:30 EST / 03:30 EDT) or let the desk compute the next valid instant.
-- **Zone database updates**: IANA releases patches several times a year. The desk runs a current `tzdata`. Your container image might not. Pin the conversion to the desk rather than bundling `tzdata` in every deploy.
+- **Ambiguous hours** (fall back): `2025-11-02T01:30` in America/New_York occurs twice. The desk resolves it to the later occurrence (01:30 EST, 05:30 UTC) and adds a warning that the time happens twice. To pick one, pass an explicit offset in `when` (for example `2025-11-02T01:30-04:00`), or avoid scheduling in the fold.
+- **Missing hours** (spring forward): `2025-03-09T02:30` America/New_York doesn't exist. The desk interprets it as `03:30 EDT` (07:30 UTC) and adds a warning that the hour is skipped. Many cron daemons handle a skipped local hour in their own way, so a job at `30 2 * * *` local time may not run when you expect. Use a UTC cron line, keeping in mind that a fixed UTC time moves by an hour in local time across DST changes (`30 7 * * *` UTC is 02:30 EST in winter and 03:30 EDT in summer).
+- **Zone database updates**: IANA releases patches several times a year. The desk uses the time zone data built into the Cloudflare Workers runtime. Your container image may carry older `tzdata`, so keep it updated, and use the desk as a cross-check rather than as your only source.
 
 ## Build the habit
 
 1. **Ingest**: Accept human input with an explicit IANA zone (`America/Los_Angeles`, not `PST`).
-2. **Normalize**: Immediately convert to UTC ISO‑8601 via `/time/convert`. Store only the UTC instant.
+2. **Normalize**: Immediately convert to UTC ISO-8601 via `/time/convert`. Store only the UTC instant.
 3. **Schedule**: Drive cron, `at`, or your queue worker from the UTC instant.
 4. **Render**: When showing time to a human, call `/time/convert` again with their zone list. Never format from a stored naive string.
 
-The desk is free, stateless, and versioned. Use it as your timezone oracle. Your agents will thank you when the clocks change and nothing breaks.
+The desk's free routes are stateless. Use them as a cross-check for your time zone math. Your agents will thank you when the clocks change and nothing breaks.
 
 ---
 

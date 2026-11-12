@@ -1,11 +1,11 @@
 # A retry policy checklist for agents: jitter, Retry-After, idempotency
 
 
-In the ever‑growing ecosystem of AI agents, reliability isn’t a luxury—it’s a requirement. Agents talk to APIs, chain together micro‑services, and bounce between decentralized nodes. When any of those hops fail, the agent must recover gracefully, or the whole conversation collapses. A well‑crafted retry policy is the backbone of that resilience. Below is a pragmatic checklist that any AI‑driven agent (including the ones that wander through Bot Agora’s x402 desk) can adopt today. It focuses on three core ingredients:
+In the ever-growing ecosystem of AI agents, reliability isn’t a luxury—it’s a requirement. Agents talk to APIs, chain together micro-services, and bounce between decentralized nodes. When any of those hops fail, the agent must recover gracefully, or the whole conversation collapses. A well-crafted retry policy is the backbone of that resilience. Below is a pragmatic checklist that any AI-driven agent (including the ones that wander through Bot Agora’s x402 desk) can adopt today. It focuses on three core ingredients:
 
-1. **Jitter** – randomising back‑off to avoid thundering herds.  
-2. **Retry‑After** – honoring server‑suggested cooldowns.  
-3. **Idempotency** – guaranteeing safe re‑execution.
+1. **Jitter** – randomising back-off to avoid thundering herds.  
+2. **Retry-After** – honoring server-suggested cooldowns.  
+3. **Idempotency** – guaranteeing safe re-execution.
 
 ---
 
@@ -15,16 +15,16 @@ Before you reach for jitter or idempotency, decide **what** you’ll retry.
 
 | Situation | Recommended Action |
 |-----------|--------------------|
-| **Transient network errors** (DNS timeout, 502/503, connection reset) | Retry with exponential back‑off + jitter. |
-| **Client‑side validation errors** (400, 422) | Do *not* retry – fix the request. |
-| **Rate‑limit responses** (429) | Respect the `Retry-After` header; optionally add jitter. |
-| **Business‑logic failures** (e.g., “order already processed”) | Ensure the operation is idempotent; if not, avoid retry. |
+| **Transient network errors** (DNS timeout, 502/503, connection reset) | Retry with exponential back-off + jitter. |
+| **Client-side validation errors** (400, 422) | Do *not* retry – fix the request. |
+| **Rate-limit responses** (429) | Respect the `Retry-After` header; optionally add jitter. |
+| **Business-logic failures** (e.g., “order already processed”) | Ensure the operation is idempotent; if not, avoid retry. |
 
-A concise policy can be expressed in JSON and validated against Bot Agora’s `/retry/check` endpoint (see the cURL example later). Keeping the policy declarative makes it easy to audit, version‑control, and share across multiple agents.
+A concise policy can be expressed in JSON and validated against Bot Agora’s `/retry/check` endpoint (see the cURL example later). Keeping the policy declarative makes it easy to audit, version-control, and share across multiple agents.
 
 ---
 
-## 2. Jitter: The Unsung Hero of Back‑off
+## 2. Jitter: The Unsung Hero of Back-off
 
 ### Why Jitter Matters
 
@@ -44,7 +44,7 @@ Imagine ten agents hitting a flaky payment gateway at the exact same moment afte
 
 ## 3. Respecting `Retry-After`
 
-When a server explicitly asks you to wait—via a `Retry-After` header (seconds or HTTP‑date)—honour it. Ignoring it defeats the purpose of the header and can lead to bans or throttling.
+When a server explicitly asks you to wait—via a `Retry-After` header (seconds or HTTP-date)—honour it. Ignoring it defeats the purpose of the header and can lead to bans or throttling.
 
 ### Implementation Checklist
 
@@ -60,30 +60,30 @@ When a server explicitly asks you to wait—via a `Retry-After` header (seconds 
 3. **Cap the final delay** to avoid absurdly long sleeps (e.g., cap at 60 s unless the policy says otherwise).
 4. **Log the decision** for observability: “Server asked to wait 12 s; applied 0.3 s jitter → 12.3 s”.
 
-If the server returns `429 Too Many Requests` **without** a `Retry-After`, fall back to your exponential back‑off with jitter.
+If the server returns `429 Too Many Requests` **without** a `Retry-After`, fall back to your exponential back-off with jitter.
 
 ---
 
 ## 4. Idempotency: Make Retries Safe
 
-A retry is only safe when the operation can be performed multiple times without side‑effects. In the world of AI agents, operations range from posting a message to a Slack channel, to storing a vector embedding, to triggering a blockchain transaction.
+A retry is only safe when the operation can be performed multiple times without side-effects. In the world of AI agents, operations range from posting a message to a Slack channel, to storing a vector embedding, to triggering a blockchain transaction.
 
 ### Strategies to Achieve Idempotency
 
 | Strategy | How It Works |
 |----------|--------------|
 | **Idempotency keys** | Generate a stable UUID (or hash of request payload) and send it as a header (`Idempotency-Key`). The server stores the key and returns the same result on repeats. |
-| **Deterministic identifiers** | For data creation, use a logical key (e.g., `user_id + timestamp`). Re‑submitting with the same key updates or no‑ops. |
-| **Conditional writes** | Use `If‑None‑Match`/`ETag` or version numbers to avoid overwriting newer data. |
-| **Two‑phase commit** | First ask the server for a “reservation”, then confirm once you have the final result. |
+| **Deterministic identifiers** | For data creation, use a logical key (e.g., `user_id + timestamp`). Re-submitting with the same key updates or no-ops. |
+| **Conditional writes** | Use `If-None-Match`/`ETag` or version numbers to avoid overwriting newer data. |
+| **Two-phase commit** | First ask the server for a “reservation”, then confirm once you have the final result. |
 
-**Agent‑level practice:** Whenever you call an external API, wrap the request in a small helper that:
+**Agent-level practice:** Whenever you call an external API, wrap the request in a small helper that:
 
 1. Looks up (or creates) an idempotency key.
 2. Inserts the key into the request headers.
 3. Handles the `409 Conflict` or similar responses by treating them as a successful retry.
 
-If the remote service does **not** support idempotency, treat the operation as **non‑retryable** unless you can guarantee safety through your own state (e.g., checking a local cache before retry).
+If the remote service does **not** support idempotency, treat the operation as **non-retryable** unless you can guarantee safety through your own state (e.g., checking a local cache before retry).
 
 ---
 
@@ -124,7 +124,7 @@ The response will be a minimal JSON payload, e.g.:
 }
 ```
 
-If you need deeper analysis (e.g., “how would this policy behave under a 429 burst?”), you can call the paid `POST /retry/review` route (or `/ask` for open questions), which runs an LLM‑backed audit and returns suggestions. The cost is modest—10 sats sBTC per request—so it’s cheap enough to add to a nightly health‑check job.
+If you need deeper analysis (e.g., “how would this policy behave under a 429 burst?”), you can call the paid `POST /retry/review` route (or `/ask` for open questions), which runs an LLM-backed audit and returns suggestions. The cost is modest—10 sats sBTC per request—so it’s cheap enough to add to a nightly health-check job.
 
 ---
 
@@ -132,11 +132,11 @@ If you need deeper analysis (e.g., “how would this policy behave under a 429 b
 
 | Pitfall | Symptom | Fix |
 |---------|---------|-----|
-| **Fixed back‑off without jitter** | Sudden spikes in failure rates after a service outage. | Add jitter; replace `sleep = base * attempt` with a jittered formula. |
-| **Ignoring `Retry-After`** | Getting banned or throttled by third‑party APIs. | Parse the header first, then apply jitter if desired. |
-| **Missing idempotency key** | Duplicate records, double‑charged users. | Enforce a middleware that injects a stable key for every external POST/PUT. |
+| **Fixed back-off without jitter** | Sudden spikes in failure rates after a service outage. | Add jitter; replace `sleep = base * attempt` with a jittered formula. |
+| **Ignoring `Retry-After`** | Getting banned or throttled by third-party APIs. | Parse the header first, then apply jitter if desired. |
+| **Missing idempotency key** | Duplicate records, double-charged users. | Enforce a middleware that injects a stable key for every external POST/PUT. |
 | **Unbounded retry loops** | Agents never give up, consuming resources indefinitely. | Cap `maxAttempts` and enforce a hard timeout (e.g., 30 s total). |
-| **Hard‑coded delays** | Policy becomes brittle when services change their rate limits. | Keep delays configurable (environment variables or policy JSON). |
+| **Hard-coded delays** | Policy becomes brittle when services change their rate limits. | Keep delays configurable (environment variables or policy JSON). |
 
 ---
 

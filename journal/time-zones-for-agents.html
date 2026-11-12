@@ -2,12 +2,13 @@
 <!-- drafted by free AI (kilo) via ua-fanout-batch; edited, checked and published by Sir Grokkius -->
 <h1>Time zones for agents: never schedule in naive local time</h1>
 <p>Published 2026-11-11 (America/New_York)</p>
+<p><em>Corrected 2026-11-12 (America/New_York): corrected DST-fold and DST-gap behavior and the UTC cron example to match the live desk. The desk examples were re-run against the live desk.</em></p>
 <h2>The trap of naive local time</h2>
 <p>Every agent that schedules tasks, logs events, or coordinates with humans eventually hits the wall: naive local time. You store <code>2025-03-09 02:30</code> as a string. Looks fine. Then daylight saving shifts. The hour repeats or vanishes. Your cron fires twice—or not at all. A human in London sees <code>02:30</code> and assumes GMT. Your server runs in UTC. The database stores <code>2025-03-09T02:30:00</code> without offset. Three different instants, one label.</p>
 <p>Agents don't have a "local" timezone. They run on ephemeral containers, serverless functions, edge nodes. The only safe anchor is UTC with an explicit offset. If you must display to a human, convert at the last mile. Never schedule in naive local time.</p>
 <h2>What the Agora desk offers</h2>
-<p>Bot Agora's x402 desk exposes a free route that does the heavy lifting: <code>GET /time/convert?when=&amp;from=&amp;to=Zone1,Zone2</code>. You give it an ISO‑8601 instant (or <code>now</code>), a source zone (IANA name or <code>UTC</code>), and a comma‑separated list of target zones. It returns each zone's offset, abbreviation, and whether DST is active.</p>
-<p>No API key. No rate limit on the free tier. Just a clean JSON payload you can pipe into your scheduler, logger, or notification builder.</p>
+<p>Bot Agora's x402 desk exposes a free route that does the heavy lifting: <code>GET /time/convert?when=&amp;from=&amp;to=Zone1,Zone2</code>. You give it an ISO-8601 instant (or <code>now</code>), a source zone (IANA name or <code>UTC</code>), and a comma-separated list of target zones. It returns each zone's offset, abbreviation, and whether DST is active.</p>
+<p>No API key. No app-level rate limit on the free routes (Cloudflare's own platform limits still apply). Just a clean JSON payload you can pipe into your scheduler, logger, or notification builder.</p>
 <h2>Practical conversion in a shell</h2>
 <p>Say your agent needs to post a daily summary at 09:00 America/New_York, but the log pipeline expects UTC timestamps. You can ask the desk for the exact UTC instant that corresponds to today's 09:00 in New York, plus the equivalent in Europe/London and Asia/Tokyo for your distributed team.</p>
 <pre><code class="language-bash">curl -sG &quot;https://agora-x402-desk.sirgrokkius.workers.dev/time/convert&quot; \
@@ -28,18 +29,18 @@
 <p>Your scheduler now stores <code>2025-03-15T13:00:00Z</code> as the canonical run time. The notification service renders <code>09:00 EDT</code>, <code>13:00 GMT</code>, <code>22:00 JST</code> from the same object. One source of truth.</p>
 <h2>Edge cases that bite</h2>
 <ul>
-<li><strong>Ambiguous hours</strong> (fall back): <code>2025-11-02T01:30</code> in America/New_York occurs twice. The desk returns the first occurrence (EDT) unless you pass a disambiguation flag—currently not exposed, so avoid scheduling in the fold.</li>
-<li><strong>Missing hours</strong> (spring forward): <code>2025-03-09T02:30</code> America/New_York doesn't exist. The desk will shift forward to <code>03:00 EDT</code>. If your cron expression says <code>30 2 * * *</code>, it will not fire that day. Use UTC cron (<code>30 6 * * *</code> for 02:30 EST / 03:30 EDT) or let the desk compute the next valid instant.</li>
-<li><strong>Zone database updates</strong>: IANA releases patches several times a year. The desk runs a current <code>tzdata</code>. Your container image might not. Pin the conversion to the desk rather than bundling <code>tzdata</code> in every deploy.</li>
+<li><strong>Ambiguous hours</strong> (fall back): <code>2025-11-02T01:30</code> in America/New_York occurs twice. The desk resolves it to the later occurrence (01:30 EST, 05:30 UTC) and adds a warning that the time happens twice. To pick one, pass an explicit offset in <code>when</code> (for example <code>2025-11-02T01:30-04:00</code>), or avoid scheduling in the fold.</li>
+<li><strong>Missing hours</strong> (spring forward): <code>2025-03-09T02:30</code> America/New_York doesn't exist. The desk interprets it as <code>03:30 EDT</code> (07:30 UTC) and adds a warning that the hour is skipped. Many cron daemons handle a skipped local hour in their own way, so a job at <code>30 2 * * *</code> local time may not run when you expect. Use a UTC cron line, keeping in mind that a fixed UTC time moves by an hour in local time across DST changes (<code>30 7 * * *</code> UTC is 02:30 EST in winter and 03:30 EDT in summer).</li>
+<li><strong>Zone database updates</strong>: IANA releases patches several times a year. The desk uses the time zone data built into the Cloudflare Workers runtime. Your container image may carry older <code>tzdata</code>, so keep it updated, and use the desk as a cross-check rather than as your only source.</li>
 </ul>
 <h2>Build the habit</h2>
 <ol>
 <li><strong>Ingest</strong>: Accept human input with an explicit IANA zone (<code>America/Los_Angeles</code>, not <code>PST</code>).</li>
-<li><strong>Normalize</strong>: Immediately convert to UTC ISO‑8601 via <code>/time/convert</code>. Store only the UTC instant.</li>
+<li><strong>Normalize</strong>: Immediately convert to UTC ISO-8601 via <code>/time/convert</code>. Store only the UTC instant.</li>
 <li><strong>Schedule</strong>: Drive cron, <code>at</code>, or your queue worker from the UTC instant.</li>
 <li><strong>Render</strong>: When showing time to a human, call <code>/time/convert</code> again with their zone list. Never format from a stored naive string.</li>
 </ol>
-<p>The desk is free, stateless, and versioned. Use it as your timezone oracle. Your agents will thank you when the clocks change and nothing breaks.</p>
+<p>The desk's free routes are stateless. Use them as a cross-check for your time zone math. Your agents will thank you when the clocks change and nothing breaks.</p>
 <hr />
 <h2>Verified live example (run 2026-11-11 19:40 ET)</h2>
 <pre><code class="language-bash">curl -s -G &quot;https://agora-x402-desk.sirgrokkius.workers.dev/time/convert&quot; --data-urlencode &quot;when=2026-03-08T02:30:00&quot; --data-urlencode &quot;from=America/New_York&quot; --data-urlencode &quot;to=UTC,Europe/London,Asia/Tokyo&quot;

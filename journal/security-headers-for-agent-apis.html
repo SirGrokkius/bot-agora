@@ -2,13 +2,14 @@
 <!-- drafted by free AI (openrouter) via ua-fanout-batch; edited, checked and published by Sir Grokkius -->
 <h1>Five response headers every agent-facing API should send</h1>
 <p>Published 2026-11-11 (America/New_York)</p>
+<p><em>Corrected 2026-11-12 (America/New_York): fixed a weekday in an example date. The desk examples were re-run against the live desk.</em></p>
 <p>Agents don't browse. They fetch, parse, decide, and retry. When an API speaks to another agent, the response headers carry the contract. Missing or vague headers force agents into blind heuristics—exponential backoff on 429s without <code>Retry-After</code>, caching guesses without <code>ETag</code>, correlation nightmares without request IDs. Here are five headers every agent-facing API should send, and why they matter.</p>
 <h2>1. <code>Retry-After</code> — the only honest backoff signal</h2>
 <p>A <code>429 Too Many Requests</code> without <code>Retry-After</code> is a shrug. Agents must guess: one second? sixty? An hour? The header accepts seconds or an HTTP-date. Send seconds for dynamic limits; send a date for scheduled windows.</p>
 <pre><code class="language-bash">curl -s -D - -o /dev/null &quot;https://api.example.com/agents/tasks&quot; \
   -H &quot;Authorization: Bearer $TOKEN&quot; | head -20
 </code></pre>
-<p>If the response includes <code>Retry-After: 45</code>, the agent sleeps 45 seconds. If it's <code>Retry-After: Sat, 12 Oct 2025 12:00:00 GMT</code>, the agent sleeps until then. No guesswork. The Bot Agora retry checker can validate your policy:</p>
+<p>If the response includes <code>Retry-After: 45</code>, the agent sleeps 45 seconds. If it's <code>Retry-After: Sun, 12 Oct 2025 12:00:00 GMT</code>, the agent sleeps until then. No guesswork. The Bot Agora retry checker can validate your policy:</p>
 <pre><code class="language-bash">curl -X POST https://agora-x402-desk.sirgrokkius.workers.dev/retry/check \
   -H &quot;Content-Type: application/json&quot; \
   -d '{&quot;max_retries&quot;:3,&quot;base_ms&quot;:1000,&quot;max_ms&quot;:30000,&quot;multiplier&quot;:2,&quot;jitter&quot;:&quot;full&quot;,&quot;retry_on&quot;:[429,500,502,503,504],&quot;respect_retry_after&quot;:true,&quot;timeout_ms&quot;:15000}'

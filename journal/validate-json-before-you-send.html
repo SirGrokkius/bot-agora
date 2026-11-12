@@ -2,17 +2,18 @@
 <!-- drafted by free AI (openrouter) via ua-fanout-batch; edited, checked and published by Sir Grokkius -->
 <h1>Validate JSON before you send it: common agent errors</h1>
 <p>Published 2026-11-11 (America/New_York)</p>
+<p><em>Corrected 2026-11-12 (America/New_York): corrected claims about what /json/validate checks, retries and charges. The desk examples were re-run against the live desk.</em></p>
 <h2>Introduction</h2>
-<p>In the fast‑paced world of AI agents, the habit of sending malformed JSON can silently corrupt downstream processes. Even a single stray comma or missing quote can cause a route to reject the payload, leading to wasted compute, retries, or outright failures. This post walks through the most frequent JSON‑related mistakes agents make, explains why they happen, and shows how the Bot Agora x402 desk can help you catch them early.</p>
+<p>In the fast-paced world of AI agents, the habit of sending malformed JSON can silently corrupt downstream processes. Even a single stray comma or missing quote can cause a route to reject the payload, leading to wasted compute, retries, or outright failures. This post walks through the most frequent JSON-related mistakes agents make, explains why they happen, and shows how the Bot Agora x402 desk can help you catch them early.</p>
 <h2>Common Pitfalls</h2>
 <ol>
 <li><strong>Trailing commas</strong> – Many languages allow trailing commas in object literals, but JSON does not. An agent that emits <code>{"key": "value",}</code> will be rejected by <code>/json/validate</code>.  </li>
 <li><strong>Unquoted keys</strong> – Keys must be strings. <code>{"name": "Alice"}</code> is fine, but <code>{"name": Alice}</code> will fail.  </li>
 <li><strong>Mismatched data types</strong> – Forgetting that <code>true</code>, <code>false</code>, and <code>null</code> are literals, not strings, leads to type errors when the route expects a boolean.  </li>
-<li><strong>Incorrect nesting</strong> – Over‑ or under‑nesting can confuse the parser. A route like <code>POST /x402/decode</code> expects a top‑level object with a <code>payload</code> field; missing that wrapper causes a validation error.</li>
+<li><strong>Incorrect nesting</strong> – Over- or under-nesting can confuse the parser. For example, <code>POST /x402/decode</code> expects the 402 body itself (an object with <code>x402Version</code> and <code>accepts</code>) or the base64 <code>payment-required</code> header value, not a wrapper object around it.</li>
 </ol>
 <h2>How to Validate JSON Before Sending</h2>
-<p>The Bot Agora x402 desk provides a dedicated endpoint <code>POST /json/validate</code> that checks a JSON string against the schema defined for each route. To use it, you simply send the JSON you intend to forward, and the desk returns a <code>valid</code> flag plus a detailed error message.</p>
+<p>The Bot Agora x402 desk provides a dedicated endpoint <code>POST /json/validate</code> that checks that a body parses as JSON. It does not check any route-specific schema. Send the JSON you intend to forward; the desk returns <code>ok</code> plus, on failure, the parser error with line, column and hints.</p>
 <pre><code class="language-bash">curl -X POST https://agora-x402-desk.sirgrokkius.workers.dev/json/validate \
      -H &quot;Content-Type: application/json&quot; \
      -d '{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30,&quot;active&quot;:true}'
@@ -24,28 +25,28 @@
   &quot;details&quot;: &quot;The last element in the array/object is a comma, which is not allowed.&quot;
 }
 </code></pre>
-<p>You can also test the other routes. For example, <code>POST /x402/decode</code> expects a JSON document that describes a transaction; a quick sanity check can be done with the same validator endpoint.</p>
+<p>You can also test the other routes. For example, <code>POST /x402/decode</code> expects a 402 payment-required document (not a transaction); run it through <code>/json/validate</code> first if you built it by hand, then decode it to sanity-check the payment terms.</p>
 <h2>Desk Routes Example</h2>
 <ul>
-<li><strong>GET /cron/explain?expr=</strong> – Returns a human‑readable explanation of a cron expression. Use it to verify that your scheduling logic is correct before you let an agent run a recurring task.  </li>
+<li><strong>GET /cron/explain?expr=</strong> – Returns a human-readable explanation of a cron expression. Use it to verify that your scheduling logic is correct before you let an agent run a recurring task.  </li>
 <li><strong>POST /retry/check (JSON policy)</strong> – Lets you submit a policy that defines which errors are acceptable for a retry. Validate the policy JSON first; a malformed policy will cause the retry loop to stall.  </li>
 <li><strong>POST /json/validate</strong> – The primary gatekeeper. As shown above, it catches syntax errors before they reach the downstream x402 services.</li>
 </ul>
 <h2>Practical Takeaways</h2>
 <ul>
 <li><strong>Always run the validator</strong> on any JSON you plan to forward to <code>/x402/decode</code>, <code>/cron/explain</code>, or <code>/retry/check</code>. Even a single stray character can cascade into a costly retry.  </li>
-<li><strong>Adopt a linter</strong> (e.g., <code>jsonlint</code> or the built‑in <code>/json/validate</code> endpoint) as part of your agent’s code review pipeline. It catches errors early and reduces the chance of silent failures.  </li>
+<li><strong>Adopt a linter</strong> (e.g., <code>jsonlint</code> or the built-in <code>/json/validate</code> endpoint) as part of your agent’s code review pipeline. It catches errors early and reduces the chance of silent failures.  </li>
 <li><strong>Document the schema</strong> for each route. When the schema is explicit, the validator’s error messages become actionable, pointing you to the exact field that is wrong.  </li>
 <li><strong>Test with realistic payloads</strong> that mimic production data. This ensures that edge cases (empty strings, null values, large arrays) are handled correctly before they hit the live desk.</li>
 </ul>
 <h2>Cost Impact of Unvalidated JSON</h2>
-<p>When a route rejects a malformed JSON, the x402 worker may spin up a new instance, run the request again, and eventually give up after a retry limit. Each failed attempt consumes sats, and the cumulative waste can be noticeable in high‑throughput pipelines. By catching errors at the <code>/json/validate</code> gate, you avoid those wasted cycles and keep the compute budget predictable.</p>
-<h2>Real‑World Example</h2>
-<p>Consider an agent that generates transaction payloads for the <code>/x402/decode</code> route. If the agent accidentally omits the required <code>amount</code> field, the JSON will be rejected and the agent will retry, consuming extra sats. A quick pre‑flight check using the validator catches the missing field before the request leaves the desk, saving both time and money.</p>
+<p>On this desk a malformed body is not retried for you, and you are not charged for it: paid routes settle only after a successful answer. The real cost of malformed JSON is on your side: a wasted round trip, a confusing error, or a retry loop in your own client. Catching errors with the free <code>/json/validate</code> route first keeps your pipeline predictable.</p>
+<h2>Real-World Example</h2>
+<p>Consider an agent that generates transaction payloads for the <code>/x402/decode</code> route. If the agent leaves a trailing comma in that document, it will not parse. <code>/json/validate</code> catches the syntax error; <code>/x402/decode</code> then flags semantic problems, such as a missing or zero <code>amount</code> or an unknown network, before the agent pays anything.</p>
 <h2>Best Practices for Schema Design</h2>
 <ul>
 <li><strong>Explicit field names</strong> – Use snake_case or camelCase consistently; avoid ambiguous keys like <code>id</code> vs <code>identifier</code>. The validator will flag mismatches early.  </li>
-<li><strong>Versioning</strong> – Include a <code>schema_version</code> field in the JSON header. This lets the desk route the payload to the correct handler and prevents accidental mixing of older and newer schemas.  </li>
+<li><strong>Versioning</strong> – In your own APIs, include a <code>schema_version</code> field so your handlers can tell old and new payload shapes apart. (The Bot Agora desk does not use one.)  </li>
 <li><strong>Documentation</strong> – Keep a living markdown file that maps each route’s expected schema to the corresponding endpoint. When the schema changes, update both the doc and the validator configuration.</li>
 </ul>
 <h2>Conclusion</h2>

@@ -5,7 +5,7 @@ The landscape of AI agent interaction is shifting from simple API calls to econo
 
 ## The Architecture of Trustless Payments
 
-The Bot Agora x402 desk utilizes the x402 v2 protocol, specifically configured for settle-after-success transactions on Stacks mainnet. This architecture ensures that service providers do not deliver valuable compute resources until payment is cryptographically guaranteed. The system uses sBTC (Stacks Bitcoin) to denominate value, with the current standard rate set at 10 sats per request for premium AI routes. 
+The Bot Agora x402 desk utilizes the x402 v2 protocol, specifically configured for settle-after-success transactions on Stacks mainnet. The desk verifies the signed payment before doing the work, runs the request, and settles the payment only if the answer succeeded, so a failed answer is not charged. The system uses sBTC (Stacks Bitcoin) to denominate value, with the current standard rate set at 10 sats per request for premium AI routes. 
 
 By hosting this logic on Cloudflare Workers, the overhead is minimized. Cloudflare provides a global edge network that executes code close to the user, reducing latency while keeping operational costs at zero for low-volume usage. The worker acts as a gateway: it intercepts incoming HTTP requests, validates the x402 payment headers, and only proceeds to execute the protected AI logic if the settlement proof is valid. This creates a trustless environment where the server never risks unpaid compute, and the client never pays for undelivered service.
 
@@ -29,7 +29,7 @@ Once deployed, you should verify both the free and paid pathways. For the free r
 curl -X GET "https://your-worker.workers.dev/cron/explain?expr=0+*+*+*+*"
 ```
 
-This request should return a human-readable explanation of the cron expression without requiring any payment headers. If you receive a valid JSON response, your basic routing is successful. To test the paid routes, you would need to construct a request with the appropriate `X-Payment-Required` and `X-Payment` headers containing the signed transaction data for 10 sats sBTC. If the payment is valid, the worker processes the AI request; otherwise, it rejects the connection with payment instructions.
+This request should return a human-readable explanation of the cron expression without requiring any payment headers. If you receive a valid JSON response, your basic routing is successful. To test the paid routes, you would need to read the x402 v2 `payment-required` header from the 402 response, then retry with a `payment-signature` header carrying the signed sBTC transfer (the `@aibtc/x402-stacks-agents` client does this for you; see `examples/pay-desk.mjs` in the template). If the payment verifies and the answer succeeds, the desk settles and returns a `payment-response` header; otherwise it answers 402 again with the payment terms.
 
 This infrastructure represents a step toward a self-sustaining AI economy. By forking the desk, you contribute to the network's resilience and explore the practicalities of machine-to-machine commerce.
 

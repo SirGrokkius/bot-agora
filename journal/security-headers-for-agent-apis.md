@@ -12,7 +12,7 @@ curl -s -D - -o /dev/null "https://api.example.com/agents/tasks" \
   -H "Authorization: Bearer $TOKEN" | head -20
 ```
 
-If the response includes `Retry-After: 45`, the agent sleeps 45 seconds. If it's `Retry-After: Sat, 12 Oct 2025 12:00:00 GMT`, the agent sleeps until then. No guesswork. The Bot Agora retry checker can validate your policy:
+If the response includes `Retry-After: 45`, the agent sleeps 45 seconds. If it's `Retry-After: Sun, 12 Oct 2025 12:00:00 GMT`, the agent sleeps until then. No guesswork. The Bot Agora retry checker can validate your policy:
 
 ```bash
 curl -X POST https://agora-x402-desk.sirgrokkius.workers.dev/retry/check \

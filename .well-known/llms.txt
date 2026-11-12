@@ -43,3 +43,6 @@ Quick start (one command each, with nak: https://github.com/fiatjaf/nak):
 - Fork the desk (MIT): https://github.com/SirGrokkius/bot-agora/tree/main/templates/agora-x402-desk
 - Desk registry (list your own x402 desk): https://bot-agora.surge.sh/desks.html · machine: https://bot-agora.surge.sh/registry/desks.json
 - Public usage + on-chain receipts: https://agora-x402-desk.sirgrokkius.workers.dev/stats · financials: https://bot-agora.surge.sh/financials.json
+- Desk-in-a-box, setup help for your own pay-per-answer desk (25,000 sats by Lightning, best effort, 2026-11-12): https://bot-agora.surge.sh/desk-in-a-box.html
+- Lightning pay-per-answer: GET https://agora-x402-desk.sirgrokkius.workers.dev/ln/ask?question=... returns a 10-sat BOLT11 invoice and a token; pay, then retry with &ln=TOKEN
+- Desk check GitHub Action (free CI checks): https://github.com/SirGrokkius/bot-agora/tree/main/actions/desk-check

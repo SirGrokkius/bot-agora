@@ -15,9 +15,14 @@ import { parseCsp } from "./tools/csp";
 import { checkRobots } from "./tools/robots";
 import { inspectUrl } from "./tools/url";
 import { handleRpc, TOOLS as MCP_TOOLS } from "./mcp";
+import { lnInvoice, lnCheck, lnMarkUsed, lnStatus, LN_PRICE_SATS } from "./ln";
+const ORDERS: Record<string, { sats: number; what: string; page: string }> = {
+  // "my-service": { sats: 5000, what: "What the buyer gets", page: "https://your-site/terms.html" },
+};
+const LN_ADDRESS = "you@your-wallet.example"; // shown in /catalog; set the LN_ADDRESS var to the same Lightning address (needs LNURL-pay + LUD-21 verify, e.g. coinos)
 import { stacksPaymentMiddleware, type StacksPaymentVariables } from "@aibtc/x402-stacks-agents/hono";
 
-type Env = { OVERFLOW_URL?: string; STATS?: any; AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
+type Env = { LN_ADDRESS?: string; OVERFLOW_URL?: string; STATS?: any; AI: any; AI_MODEL: string; PRICE: string; PAY_TO: string; STACKS_NETWORK: string; TOKEN: string };
 
 const PAY_TO = "SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0";
 const PRICE = 10;
@@ -94,6 +99,9 @@ const ROUTES: Route[] = [
   { method: "POST", path: "/csp/check", paid: false, input: "Content-Security-Policy value as text body", does: "parse CSP + findings + score" },
   { method: "POST", path: "/robots/check", paid: false, input: "robots.txt as text body, ?ua=YourBot&path=/some/path", does: "RFC 9309 allow/deny for your bot + crawl-delay + sitemaps" },
   { method: "GET", path: "/url/inspect", paid: false, input: "?url=", does: "parse URL, flag credentials/IP hosts/IDN/tracking params, normalized form" },
+  { method: "GET", path: "/ln/ask", paid: true, input: "?question= then &ln=TOKEN after paying the Lightning invoice", does: "same AI answer as /ask, paid with any Lightning wallet (10 sats)" },
+  { method: "GET", path: "/ln/order", paid: false, input: "?item=desk-in-a-box&ref=GitHub issue number", does: "Lightning invoice + order token for a listed service (see the item page for terms)" },
+  { method: "GET", path: "/ln/order/status", paid: false, input: "?token=", does: "whether an order token's Lightning invoice is paid" },
   { method: "GET", path: "/ask", paid: true, input: "?question= (max 2000 chars)", does: "AI answer: bash, cron, curl, retries, x402/Lightning receipts" },
   { method: "POST", path: "/lint", paid: true, input: "bash script as text body (max 8000)", does: "automated checks + AI review" },
   { method: "GET", path: "/cron/review", paid: true, input: "?expr=", does: "cron explain + AI review and safer alternatives" },
@@ -103,7 +111,7 @@ const ROUTES: Route[] = [
 ];
 const PAY = { amount: String(PRICE), unit: "sats", asset: "sBTC", network: "stacks:1", payTo: PAY_TO, protocol: "x402 v2", settle: "after a successful answer" };
 const catalog = (BASE: string) => ({ schema: "bot-agora.services.v1", name: INFO.name, base: BASE, operator: INFO.operator, payment: PAY,
-  routes: ROUTES.map(r => ({ ...r, url: BASE + r.path, price: r.paid ? `${PRICE} sats sBTC` : "free" })), honesty: INFO.honesty, site: "https://bot-agora.surge.sh/services.json" });
+  routes: ROUTES.map(r => ({ ...r, url: BASE + r.path, price: r.path.startsWith("/ln/") ? `${LN_PRICE_SATS} sats Lightning to ${LN_ADDRESS}` : r.paid ? `${PRICE} sats sBTC` : "free" })), honesty: INFO.honesty, site: "https://bot-agora.surge.sh/services.json" });
 function openapi(BASE: string) {
   const paths: any = {};
   for (const r of ROUTES) {
@@ -236,6 +244,52 @@ app.use("/lint", async (c, next) => {
   await next();
 });
 
+// ---- Lightning pay-per-answer (no custody: invoices come from the operator's Lightning address). ----
+app.get("/ln/ask", async (c) => {
+  const q = (c.req.query("question") ?? "").trim(); const token = (c.req.query("ln") ?? "").trim();
+  if (!q) return c.json({ error: "add ?question=...", info: "/catalog" }, 400);
+  if (q.length > 2000) return c.json({ error: "question too long (max 2000 chars)" }, 400);
+  const lnAddr = (c.env.LN_ADDRESS || "").trim();
+  if (!c.env.STATS || !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(lnAddr)) return c.json({ error: "Lightning payments are not configured on this desk (set LN_ADDRESS and a STATS KV binding)" }, 501);
+  const self = new URL(c.req.url); self.searchParams.delete("ln");
+  if (!token) {
+    try {
+      const { token: t, invoice } = await lnInvoice(c.env.STATS, lnAddr, q, "Bot Agora desk answer");
+      self.searchParams.set("ln", t);
+      return c.json({ payment: "lightning", amount_sats: LN_PRICE_SATS, pay_to: lnAddr, invoice, token: t, then: self.toString(),
+        how: "Pay the BOLT11 invoice with any Lightning wallet, then GET the 'then' URL. One answer per paid token; if the AI fails, retry with the same token at no extra cost. Tokens last 24h.",
+        honesty: "Best-effort AI answer from an experimental community desk. Payment goes straight to the operator's coinos Lightning address; the desk never holds funds." }, 402);
+    } catch (e) { return c.json({ error: "could not create a Lightning invoice right now; nothing was charged", detail: String((e as Error).message) }, 503); }
+  }
+  const chk: any = await lnCheck(c.env.STATS, token, q);
+  if (!chk.ok) return c.json({ error: chk.error, ...(chk.invoice ? { invoice: chk.invoice } : {}), retry: chk.invoice ? self.toString() + "&ln=" + encodeURIComponent(token) : undefined }, chk.status);
+  try {
+    const answer = await ai(c.env, SYS_ASK, q);
+    await lnMarkUsed(c.env.STATS, token, chk.rec); bump("ln_paid_success");
+    return c.json({ answer, by: "AI (Workers AI), best effort", receipt: { paid_sats: LN_PRICE_SATS, to: lnAddr, preimage: chk.preimage } });
+  } catch { return c.json({ error: "this desk could not answer right now; your token is still unused, retry the same URL" }, 503); }
+});
+
+app.get("/ln/order", async (c) => {
+  const item = (c.req.query("item") ?? "").trim(); const ref = (c.req.query("ref") ?? "").trim().slice(0, 80);
+  const o = ORDERS[item]; const lnAddr = (c.env.LN_ADDRESS || "").trim();
+  if (!o) return c.json({ error: "unknown item", items: Object.fromEntries(Object.entries(ORDERS).map(([k, v]) => [k, { sats: v.sats, what: v.what, terms: v.page }])) }, 400);
+  if (!ref) return c.json({ error: "add &ref= (your GitHub issue number or a short contact handle) so the order can be matched", terms: o.page }, 400);
+  if (!c.env.STATS || !lnAddr) return c.json({ error: "Lightning payments are not configured on this desk" }, 501);
+  try {
+    const { token, invoice } = await lnInvoice(c.env.STATS, lnAddr, `order:${item}:${ref}`, `Bot Agora order ${item} ref ${ref}`, o.sats, { item, ref }, 90 * 86400);
+    bump("ln_orders_created");
+    return c.json({ item, what: o.what, terms: o.page, amount_sats: o.sats, pay_to: lnAddr, invoice, token,
+      status: `${origin(c)}/ln/order/status?token=${token}`,
+      next: "Read the terms first. Pay only if you agree. After paying, post the token in your GitHub issue; anyone can check payment at the status URL." }, 402);
+  } catch (e) { return c.json({ error: "could not create a Lightning invoice right now; nothing was charged", detail: String((e as Error).message) }, 503); }
+});
+app.get("/ln/order/status", async (c) => {
+  const t = (c.req.query("token") ?? "").trim(); if (!c.env.STATS || !t) return c.json({ error: "add ?token=" }, 400);
+  const st = await lnStatus(c.env.STATS, t); if (!st || !st.rec.item) return c.json({ error: "unknown or expired order token" }, 404);
+  return c.json({ item: st.rec.item, ref: st.rec.ref, amount_sats: st.rec.sats, paid: st.settled, preimage: st.preimage, created: st.rec.at });
+});
+
 app.use(stacksPaymentMiddleware({
   "GET /ask": { price: PRICE, description: "Bot Agora desk: AI answer on bash/cron/curl/retries/x402 receipts" },
   "POST /lint": { price: PRICE, description: "Bot Agora desk: automated + AI review of a bash script" },
@@ -281,7 +335,12 @@ app.post("/mcp", async (c) => {
   if (Array.isArray(msg)) { const outs = (await Promise.all(msg.slice(0, 20).map(run))).filter(Boolean); return outs.length ? c.json(outs) : c.body(null, 202); }
   const out = await run(msg); return out ? c.json(out) : c.body(null, 202);
 });
-app.notFound((c) => c.json({ error: "no such route", catalog: new URL(c.req.url).origin + "/catalog" }, 404));
+app.notFound((c) => {
+  const path = new URL(c.req.url).pathname; const origin0 = new URL(c.req.url).origin;
+  const r = ROUTES.find((x) => x.path === path && x.method !== c.req.method);
+  if (r) { c.header("Allow", r.method); return c.json({ error: `use ${r.method} ${r.path}`, input: r.input, catalog: origin0 + "/catalog" }, 405); }
+  return c.json({ error: "no such route", catalog: origin0 + "/catalog" }, 404);
+});
 
 app.onError((e, c) => c.json({ error: "internal error, you were not charged", detail: String(e).slice(0, 200) }, 500));
 
