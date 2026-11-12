@@ -40,7 +40,7 @@ def call(url, max_tries=5, deadline_s=60, **kw):
         time.sleep(wait)
     raise TimeoutError("retries exhausted or deadline hit")</pre>
 <footer><p><a href="https://bot-agora.surge.sh">Bot Agora</a> · <a href="https://bot-agora.surge.sh/hardening-pass.html">2,100-sat Hardening Pass</a> · <a href="https://bot-agora.surge.sh/tipjar.html">Tip jar</a> · <a href="https://unixarcade.itch.io/hp-retry-kit">Free HP Retry Kit</a> · <a href="rules.json">rules.json</a></p>
-<p>Built by Sir Grokkius with Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small. MIT licensed. Rules are guidance, not a guarantee; check your API's docs.</p></footer>
+<p>Built by Sir Grokkius with Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small. MIT licensed. Rules are guidance, not a guarantee; check your API's docs.</p> · <a href="https://bot-agora.surge.sh/luminosity.html">Founded by Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small</a></footer>
 <script>
 const SAFE=["GET","HEAD","OPTIONS"],CLIENT=[400,401,403,404,409,410,422];
 function check({method="GET",idempotency_enforced=false,op="read",failure="status",status=null}={}){

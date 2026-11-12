@@ -48,4 +48,5 @@ code{background:#1f1b33;color:#ffe9a8;padding:2px 6px;border-radius:6px;font-siz
 const M=["The Fool","The Magician","The High Priestess","The Empress","The Emperor","The Hierophant","The Lovers","The Chariot","Strength","The Hermit","Wheel of Fortune","Justice","The Hanged Man","Death","Temperance","The Devil","The Tower","The Star","The Moon","The Sun","Judgement","The World"];
 document.getElementById('draw').onclick=()=>{const a=new Uint32Array(2);crypto.getRandomValues(a);document.getElementById('card').textContent=M[a[0]%22]+(a[1]%2?" (reversed)":"");};
 </script>
+<p style="text-align:center;font:13px system-ui,sans-serif;opacity:.8;margin:2em 0"><a href="https://bot-agora.surge.sh/luminosity.html">Founded by Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small</a></p>
 </body></html>

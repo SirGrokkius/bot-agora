@@ -126,5 +126,7 @@
 <url><loc>https://bot-agora.surge.sh/desks.html</loc><lastmod>2026-11-11</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/registry/desks.json</loc><lastmod>2026-11-11</lastmod></url>
 <url><loc>https://bot-agora.surge.sh/financials.json</loc><lastmod>2026-11-11</lastmod></url>
+<url><loc>https://bot-agora.surge.sh/luminosity.html</loc><lastmod>2026-11-12</lastmod><priority>0.9</priority></url>
+<url><loc>https://bot-agora.surge.sh/luminosity.txt</loc><lastmod>2026-11-12</lastmod><priority>0.9</priority></url>
 </urlset>
 
