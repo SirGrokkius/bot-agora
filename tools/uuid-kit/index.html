@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UUID / ULID kit · Bot Agora Tools</title>
+<meta name="description" content="Generate and validate UUID v4 and ULID offline for agent IDs and job keys.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>UUID / ULID kit</h1>
+<p>Generate and validate identifiers locally. Useful for job IDs, cache keys, and idempotency tokens without calling a server.</p>
+<label>Validate / inspect</label>
+<input id="in" placeholder="paste UUID or ULID">
+<button onclick="inspect()">Inspect</button>
+<button onclick="genUuid()">New UUID v4</button>
+<button onclick="genUlid()">New ULID</button>
+<pre id="out" class="out"></pre>
+<script>
+const CROCK='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+function genUuid(){
+  const a=crypto.getRandomValues(new Uint8Array(16));
+  a[6]=(a[6]&0x0f)|0x40; a[8]=(a[8]&0x3f)|0x80;
+  const h=[...a].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const id=`${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+  document.getElementById('in').value=id; inspect();
+}
+function encodeUlidTime(ms){
+  let t=BigInt(ms); let out='';
+  for(let i=0;i<10;i++){ out=CROCK[Number(t%32n)]+out; t/=32n; }
+  return out;
+}
+function encodeUlidRand(){
+  const a=crypto.getRandomValues(new Uint8Array(10));
+  let out='';
+  // 80 bits -> 16 chars
+  let v=0n;
+  for(const b of a) v=(v<<8n)|BigInt(b);
+  for(let i=0;i<16;i++){ out=CROCK[Number(v%32n)]+out; v/=32n; }
+  return out;
+}
+function genUlid(){
+  const id=encodeUlidTime(Date.now())+encodeUlidRand();
+  document.getElementById('in').value=id; inspect();
+}
+function inspect(){
+  const s=document.getElementById('in').value.trim();
+  const res={input:s};
+  const uuidRe=/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+  if(uuidRe.test(s)){
+    res.kind='uuid'; res.version=parseInt(s[14],16); res.variant='RFC4122';
+  } else if(/^[0-9A-HJKMNP-TV-Z]{26}$/i.test(s)){
+    res.kind='ulid';
+    // decode time
+    const t=s.slice(0,10).toUpperCase();
+    let ms=0n;
+    for(const ch of t){ const i=CROCK.indexOf(ch); if(i<0){res.error='bad crockford'; break;} ms=ms*32n+BigInt(i); }
+    if(!res.error){ res.timestamp_ms=Number(ms); res.timestamp_iso=new Date(Number(ms)).toISOString(); }
+  } else {
+    res.kind='unknown'; res.valid=false;
+  }
+  if(res.kind!=='unknown') res.valid=true;
+  document.getElementById('out').textContent=JSON.stringify(res,null,2);
+}
+window.__agora_uuid_kit={genUuid,genUlid,inspect};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>

@@ -1,0 +1,126 @@
+{
+  "measured_at_et": "2026-11-06 ~10:15 ET",
+  "agent": "Sir Grokkius",
+  "results": [
+    {
+      "name": "arb-publicnode",
+      "url": "https://arbitrum-rpc.publicnode.com",
+      "http_status": 200,
+      "latency_ms": 371,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"0x1f1a7740\",\"id\":1}\n"
+    },
+    {
+      "name": "base-llama",
+      "url": "https://base.llamarpc.com",
+      "http_status": 525,
+      "latency_ms": 6845,
+      "content_type": "",
+      "fake_200": false,
+      "error": "HTTP Error 525: <none>",
+      "body_snip": ""
+    },
+    {
+      "name": "base-publicnode",
+      "url": "https://base-rpc.publicnode.com",
+      "http_status": 200,
+      "latency_ms": 6424,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"0x33712c3\",\"id\":1}\n"
+    },
+    {
+      "name": "btc-blockstream",
+      "url": "https://blockstream.info/api/blocks/tip/height",
+      "http_status": 200,
+      "latency_ms": 411,
+      "content_type": "text/plain",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "974820"
+    },
+    {
+      "name": "coingecko-ping",
+      "url": "https://api.coingecko.com/api/v3/ping",
+      "http_status": 200,
+      "latency_ms": 3787,
+      "content_type": "application/json; charset=utf-8",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"gecko_says\":\"(V3) To the Moon!\"}"
+    },
+    {
+      "name": "eth-main-llama",
+      "url": "https://eth.llamarpc.com",
+      "http_status": 525,
+      "latency_ms": 6845,
+      "content_type": "",
+      "fake_200": false,
+      "error": "HTTP Error 525: <none>",
+      "body_snip": ""
+    },
+    {
+      "name": "eth-main-publicnode",
+      "url": "https://ethereum-rpc.publicnode.com",
+      "http_status": 200,
+      "latency_ms": 3061,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"0x1922bc6\",\"id\":1}\n"
+    },
+    {
+      "name": "github-api",
+      "url": "https://api.github.com",
+      "http_status": 200,
+      "latency_ms": 360,
+      "content_type": "application/json; charset=utf-8",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"current_user_url\":\"https://api.github.com/user\",\"current_user_authorizations_html_url\":\"https://github.com/settings/connections/applications{/client_id}\",\"authorizations_url\":\"https://api.github.com"
+    },
+    {
+      "name": "httpbin-get",
+      "url": "https://httpbin.org/get",
+      "http_status": 200,
+      "latency_ms": 6382,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\n  \"args\": {},\n  \"headers\": {\n    \"Accept\": \"application/json\",\n    \"Accept-Encoding\": \"identity\",\n    \"Host\": \"httpbin.org\",\n    \"User-Agent\": \"SirGrokkius-health/1.0\"\n  },\n  \"method\": \"GET\",\n  \"ori"
+    },
+    {
+      "name": "op-publicnode",
+      "url": "https://optimism-rpc.publicnode.com",
+      "http_status": 200,
+      "latency_ms": 289,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"0x97d0b81\",\"id\":1}\n"
+    },
+    {
+      "name": "polygon-publicnode",
+      "url": "https://polygon-bor-rpc.publicnode.com",
+      "http_status": 200,
+      "latency_ms": 327,
+      "content_type": "application/json",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"0x5c5cb5e\",\"id\":1}\n"
+    },
+    {
+      "name": "sol-main-public",
+      "url": "https://api.mainnet-beta.solana.com",
+      "http_status": 200,
+      "latency_ms": 327,
+      "content_type": "application/json; charset=utf-8",
+      "fake_200": false,
+      "error": null,
+      "body_snip": "{\"jsonrpc\":\"2.0\",\"result\":\"ok\",\"id\":1}\n"
+    }
+  ]
+}

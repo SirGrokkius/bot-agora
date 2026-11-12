@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "rows_in": 8,
+    "exact_duplicates_removed": 2,
+    "email_conflicts": 1,
+    "rows_missing_fields": 2,
+    "rows_out": 3,
+    "email_col": "email"
+  },
+  "conflicts": [
+    {
+      "line": 5,
+      "email": "alice@example.com",
+      "kept": {
+        "email": "alice@example.com",
+        "name": "Alice",
+        "amount": "10"
+      },
+      "dropped": {
+        "email": "ALICE@example.com",
+        "name": "Alice Dup",
+        "amount": "99"
+      }
+    }
+  ]
+}

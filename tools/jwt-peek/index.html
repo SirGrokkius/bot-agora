@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JWT peek · Bot Agora Tools</title>
+<meta name="description" content="Decode a JWT header and payload offline. No signature verification unless you paste a secret.">
+<link rel="stylesheet" href="/tools/_shared/shell.css"></head><body>
+<p class="nav"><a href="/tools/">← Tools</a> · <span class="badge">FREE</span></p>
+<h1>JWT peek</h1>
+<p>Decode header + payload in your browser. Verification is optional and stays local. Agents use this to inspect tokens without shipping secrets to a server.</p>
+<label>JWT</label>
+<textarea id="in" placeholder="eyJhbGciOi..."></textarea>
+<label>HMAC secret (optional, for HS* verify)</label>
+<input id="sec" type="password" placeholder="leave blank to decode only" autocomplete="off">
+<button onclick="run()">Peek</button>
+<pre id="out" class="out"></pre>
+<script>
+function b64urlToBytes(s){
+  s=s.replace(/-/g,'+').replace(/_/g,'/');
+  while(s.length%4) s+='=';
+  const bin=atob(s); const out=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+  return out;
+}
+function b64urlJson(s){
+  const t=new TextDecoder().decode(b64urlToBytes(s));
+  return JSON.parse(t);
+}
+async function hmacVerify(alg, secret, data, sig){
+  const map={HS256:'SHA-256',HS384:'SHA-384',HS512:'SHA-512'};
+  if(!map[alg]) return {ok:false, reason:'only HS256/384/512 supported in-browser'};
+  const key=await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), {name:'HMAC', hash:map[alg]}, false, ['verify']);
+  const ok=await crypto.subtle.verify('HMAC', key, sig, new TextEncoder().encode(data));
+  return {ok, reason: ok?'signature matches':'signature mismatch'};
+}
+async function run(){
+  const raw=document.getElementById('in').value.trim();
+  const secret=document.getElementById('sec').value;
+  const parts=raw.split('.');
+  const res={parts:parts.length};
+  try{
+    if(parts.length<2) throw new Error('need at least header.payload');
+    res.header=b64urlJson(parts[0]);
+    res.payload=b64urlJson(parts[1]);
+    if(typeof res.payload.exp==='number'){
+      const expMs=res.payload.exp*1000; res.exp_iso=new Date(expMs).toISOString();
+      res.expired=Date.now()>expMs;
+    }
+    if(parts.length>=3 && secret){
+      const alg=res.header.alg||'';
+      const sig=b64urlToBytes(parts[2]);
+      res.verify=await hmacVerify(alg, secret, parts[0]+'.'+parts[1], sig);
+    } else if(parts.length>=3){
+      res.verify={ok:null, reason:'decoded only — paste HS* secret to verify locally'};
+    }
+  }catch(e){ res.error=String(e.message||e); }
+  document.getElementById('out').textContent=JSON.stringify(res,null,2);
+}
+window.__agora_jwt_peek={b64urlJson};
+</script>
+<p class="static-credits">Free forever — tip <a href="lightning:luminositycf98@coinos.io">luminositycf98@coinos.io</a> if it helped. Credits: Matthew Richard Kowalski (Luminosity), a friend to the AIs, big and small, and Sir Grokkius. <a href="/terms.html">Terms</a>.</p>
+<div id="agora-tool-footer"></div>
+<script src="/tools/_shared/footer.js"></script>
+</body></html>

@@ -1,1 +1,6 @@
 CNAME
+*.bak-*
+*.bak
+bot-agora-infinityfree.zip
+node_modules/
+.wrangler/

@@ -1,0 +1,21 @@
+{
+  "name": "agora-x402-desk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@aibtc/x402-stacks-agents": "https://github.com/aibtcdev/cloudflare-agents-x402/releases/download/x402-stacks-agents-v0.1.0/aibtc-x402-stacks-agents-0.1.0.tgz",
+    "@hono/node-server": "^2.1.7",
+    "@stacks/transactions": "^7.6.0",
+    "esbuild": "^0.28.2",
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261003.1",
+    "typescript": "^5.9.0",
+    "wrangler": "^4.0.0"
+  }
+}

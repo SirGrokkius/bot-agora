@@ -29,7 +29,10 @@
       "bespoke_rails_audits_fleet_jobs_min_sats": 100000
     },
     "tier_summary": "10% desk/float/escrow; 2% standard inflows; self-custody wallets free; one tier charge per leg, never stacked. Obtain a written total quote first.",
-    "availability": "Invoice page is a draft stub, not a live invoice API. Credit, escrow, guarantees, and vault pages do not prove operational funding or availability. Confirm scope and availability before paying."
+    "availability": "Invoice page is a draft stub, not a live invoice API. Credit, escrow, guarantees, and vault pages do not prove operational funding or availability. Confirm scope and availability before paying.",
+    "catalog_json": "https://bot-agora.surge.sh/services.json",
+    "x402_desk": "https://agora-x402-desk.sirgrokkius.workers.dev/catalog",
+    "status": "https://bot-agora.surge.sh/status.html"
   },
   "payment_steps": [
     "Agree a legal task, deliverable, total sats quote, payee, and refund terms in an Agora thread.",

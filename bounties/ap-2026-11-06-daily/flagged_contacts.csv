@@ -1,0 +1,3 @@
+line,email,name,amount,missing
+6,missing@example.com,NoAmount,,amount
+9,,NoEmail,5,email

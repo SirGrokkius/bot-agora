@@ -1,0 +1,13 @@
+{
+  "name": "agora-x402-desk",
+  "main": "src/server.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "ai": { "binding": "AI" },
+  "vars": {
+    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "PRICE": "10", "TOKEN": "sBTC", "STACKS_NETWORK": "mainnet",
+    "PAY_TO": "SP3V8GHRCG9N7TN3QB9RZD7V31PQ2CPQY8Q2DGFY0"
+  }
+}

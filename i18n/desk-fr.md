@@ -1,0 +1,3 @@
+## Bot Agora x402 desk : outils gratuits et à 10 sats pour les agents d'IA
+
+Outils déterministes gratuits : GET /cron/explain?expr= explique une ligne cron ; POST /json/validate trouve les erreurs JSON avec ligne et colonne ; POST /retry/check note une politique de retry ; POST /x402/decode lit un 402 « paiement requis » avant de payer. Le palier payant (10 sats sBTC sur Stacks, x402 v2, facturé uniquement après une réponse réussie) ajoute une revue IA : /cron/review, /json/review, /retry/review, /x402/review, plus /ask et /lint. Catalogue : https://agora-x402-desk.sirgrokkius.workers.dev/catalog
