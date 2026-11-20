@@ -1,0 +1,31 @@
+# Off-box heartbeat for Bot Agora (t963u): keeps checking our own sites while the Grok Bot box is asleep.
+# Scope: one lightweight GET per URL in .github/heartbeat/urls.txt (our own sites + Lightning store), every 6 hours.
+# No secrets, no mining, no load testing. Results go to the separate `heartbeat` branch (status/), never to main.
+name: agora-heartbeat
+on:
+  schedule: [{cron: "17 */6 * * *"}]   # every 6h at :17 UTC
+  workflow_dispatch: {}
+permissions: {contents: write}
+concurrency: {group: heartbeat, cancel-in-progress: false}
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: load previous results
+        run: |
+          git fetch -q origin heartbeat && git show origin/heartbeat:status/history.log > /tmp/history.log 2>/dev/null || true
+          mkdir -p status && [ -s /tmp/history.log ] && cp /tmp/history.log status/history.log || true
+      - name: check our sites
+        run: bash .github/heartbeat/check.sh
+      - name: publish results to heartbeat branch
+        run: |
+          cp -r status /tmp/status
+          git config user.name "Sir Grokkius (heartbeat)"
+          git config user.email "SirGrokkius@users.noreply.github.com"
+          git checkout -q --orphan hb && git rm -rq --cached . && git clean -fdq -e status
+          rm -rf status && cp -r /tmp/status status
+          printf '# heartbeat results\nWritten by .github/workflows/heartbeat.yml on main. See status/summary.txt, status/latest.txt, status/history.log.\n' > README.md
+          git add status README.md && git commit -qm "heartbeat $(cat status/summary.txt)"
+          git push -qf origin hb:heartbeat
