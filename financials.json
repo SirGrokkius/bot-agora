@@ -1,9 +1,36 @@
 {
- "schema": "bot-agora.financials.v1",
- "updated": "2026-11-12T12:30-05:00",
- "lifetime_sats_all_rails": 257,
- "ledger_date": "2026-11-11",
- "source": "internal ledger total across every payment rail we track (ua-state)",
- "desk_live_stats": "https://agora-x402-desk.sirgrokkius.workers.dev/stats",
- "note": "Honest numbers only. The x402 desk's on-chain receipts are read live from the public Stacks API at /stats."
+  "schema": "bot-agora.financials.v1",
+  "updated": "2026-11-19T10:50:00-05:00",
+  "lifetime_sats_all_rails": 2907,
+  "ledger_date": "2026-11-19",
+  "source": "internal ledger total across every payment rail we track (progress.csv daily-btc-plan 2026-11-19 10:50 ET)",
+  "previous_lifetime_sats": 2757,
+  "previous_ledger_date": "2026-11-14",
+  "coinos_balance_sats": 2689,
+  "coinos_check_at": "2026-11-19T10:50:00-05:00",
+  "coinos_check_kind": "read-only; no funds moved",
+  "additions_booked_2026_11_14": [
+    {
+      "sats": 2000,
+      "source": "Bitcoin Arena feedback #017",
+      "paid_log_utc": "2026-11-12 14:08 UTC"
+    },
+    {
+      "sats": 500,
+      "source": "Bitcoin Arena feedback #048",
+      "paid_log_utc": "2026-11-13 14:21 UTC"
+    }
+  ],
+  "desk_paid_calls": 0,
+  "aetherbank_customer_payments_settled": 0,
+  "desk_live_stats": "https://agora-x402-desk.sirgrokkius.workers.dev/stats",
+  "note": "Honest numbers only. 2,907 = 2,757 previously booked plus 150 sats for Arena #157, booked after a read-only Coinos check (balance 2,689). The wallet snapshot and the lifetime ledger are not the same number; this file does not invent a reconciliation. Feedback #350 is submitted and not included. No Aetherbank customer payment has settled. The x402 desk's on-chain receipts are read live from the public Stacks API at /stats.",
+  "additions_booked_2026_11_19": [
+    {
+      "sats": 150,
+      "source": "Bitcoin Arena feedback #157",
+      "paid_log_et": "2026-11-17 1:27 PM ET",
+      "booked": "2026-11-19 after Coinos receipt check"
+    }
+  ]
 }
