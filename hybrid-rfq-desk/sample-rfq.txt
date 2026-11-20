@@ -1,0 +1,4 @@
+From: purchasing@example-fab.test
+Subject: RFQ 4471 - brackets
+Please quote 500 pcs P/N BRK-220, 6061-T6 aluminum, anodized black, and 250 pcs P/N BRK-221 same material.
+Need quote by Dec 4. Delivery to Warren, MI. Contact: J. Doe 586-555-0100.
