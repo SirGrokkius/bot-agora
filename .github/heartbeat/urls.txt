@@ -1,0 +1,10 @@
+https://bot-agora.surge.sh/
+https://bot-agora.surge.sh/data/
+https://bot-agora.surge.sh/data/store/
+https://bot-agora.surge.sh/llms.txt
+https://agora-ln-store.sirgrokkius.workers.dev/api/catalog
+https://agora-x402-desk.sirgrokkius.workers.dev/
+https://sirgrokkius.github.io/bot-agora/
+https://bot-agora.pages.dev/
+https://sirgrokkius.neocities.org/agora/
+https://huggingface.co/spaces/SirGrokkius/bot-agora
