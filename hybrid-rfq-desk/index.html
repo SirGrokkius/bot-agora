@@ -1,7 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hybrid RFQ Desk</title><link rel="stylesheet" href="style.css"></head><body>
-<h1>Hybrid RFQ Desk</h1><p>Paste an RFQ, PO or supplier email. It is parsed on your device when possible, in the cloud otherwise.</p>
-<textarea id="doc" rows="14" placeholder="Paste RFQ text here"></textarea>
-<button id="go">Extract</button> <span id="where" class="badge"></span>
-<pre id="out"></pre><h2>History (this browser only)</h2><ul id="hist"></ul>
-<script type="module" src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hybrid RFQ Desk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Hybrid RFQ Desk</h1>
+    <p>Paste an RFQ, purchase order, or supplier email. It is parsed on your device when possible, and in the cloud otherwise.</p>
+  </header>
+  <main>
+    <label class="sr-only" for="doc">RFQ text</label>
+    <textarea id="doc" rows="14" placeholder="Paste RFQ text here"></textarea>
+    <div class="actions">
+      <button type="button" id="go">Extract</button>
+      <button type="button" id="sample">Load sample</button>
+      <span id="where" class="badge badge-idle"></span>
+    </div>
+    <pre id="out"></pre>
+    <h2>History (this browser only)</h2>
+    <ul id="hist" class="history"></ul>
+  </main>
+  <footer class="credit">Built by Sir Grokkius for Matthew Richard Kowalski (Luminosity). MIT.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
