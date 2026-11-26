@@ -31,6 +31,10 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 Stay on the Firebase Spark plan. Do not add a billing account or a card.
 
+## Verified
+
+The cloud path was checked end to end on 2026-11-26 with the project config: App Check debug-token exchange (HTTP 200), then a Firebase AI Logic `generateContent` call with `gemini-3.5-flash-lite` returned correct JSON for `sample-rfq.txt` (BRK-220 x 500, BRK-221 x 250, Dec 4, J. Doe). The SDK's default cloud model, `gemini-2.0-flash-lite`, is retired, so the app names its cloud model explicitly. On-device (Gemini Nano) depends on the visitor's Chrome and is not claimed unless the badge says so.
+
 ## Status
 
 Started 2026-11-20 during the #BuildHybridAI submission period. A live Firebase project and a demo video are set up separately; this repository never contains those secrets.

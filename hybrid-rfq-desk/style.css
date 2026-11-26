@@ -112,3 +112,13 @@ footer.credit {
   overflow: hidden;
   clip: rect(0 0 0 0);
 }
+
+/* Result summary + line-item table */
+#table { margin-top: 1rem; }
+.summary { display: grid; grid-template-columns: max-content 1fr; gap: 0.2rem 1rem; margin: 0 0 0.75rem; }
+.summary dt { font-weight: 600; color: var(--muted); }
+.summary dd { margin: 0; }
+#table table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); }
+#table th, #table td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); }
+#table th { background: #ecece8; }
+#table td.num { white-space: nowrap; }

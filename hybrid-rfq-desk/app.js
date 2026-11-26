@@ -9,8 +9,12 @@ const DEVICE_INIT_MS = 15000;
 const app = initializeApp(firebaseConfig);
 initAppCheck(app);
 const ai = getAI(app, { backend: new GoogleAIBackend() });
-const hybrid = getGenerativeModel(ai, { mode: InferenceMode.PREFER_ON_DEVICE });
-const cloud = getGenerativeModel(ai, { mode: InferenceMode.ONLY_IN_CLOUD });
+// The SDK default cloud model (gemini-2.0-flash-lite) has been retired, so name one explicitly.
+// Override with appCheckConfig.cloudModel in firebase-config.js if Google retires this one too.
+const CLOUD_MODEL = (appCheckConfig && appCheckConfig.cloudModel) || "gemini-3.5-flash-lite";
+const inCloudParams = { model: CLOUD_MODEL };
+const hybrid = getGenerativeModel(ai, { mode: InferenceMode.PREFER_ON_DEVICE, inCloudParams });
+const cloud = getGenerativeModel(ai, { mode: InferenceMode.ONLY_IN_CLOUD, inCloudParams });
 
 // App Check must be initialized before getAI. The debug token and reCAPTCHA
 // site key are read only from gitignored firebase-config.js.
@@ -18,19 +22,22 @@ function initAppCheck(firebaseApp) {
   const cfg = appCheckConfig || {};
   const debugToken = cfg.debugToken;
   const siteKey = (cfg.recaptchaEnterpriseSiteKey || "").trim();
-  if (debugToken) {
-    // Official Web debug provider: set this flag before initializeAppCheck.
-    // true = print a token in the console; a string uses that registered token.
-    self.FIREBASE_APPCHECK_DEBUG_TOKEN = debugToken;
-  }
   if (!debugToken && !siteKey) {
     throw new Error("firebase-config.js must set appCheckConfig.debugToken (localhost) or recaptchaEnterpriseSiteKey (hosted).");
+  }
+  if (debugToken) {
+    // Official Web debug provider: must be set BEFORE initializeAppCheck.
+    // true = print a fresh token in the console; a string = a token already
+    // registered in Firebase Console > App Check > Manage debug tokens.
+    // In debug mode the SDK exchanges this token itself and never calls the provider.
+    self.FIREBASE_APPCHECK_DEBUG_TOKEN = debugToken;
   }
   const provider = siteKey
     ? new ReCaptchaEnterpriseProvider(siteKey)
     : new CustomProvider({
+        // Debug-only path (localhost). Never reached while a debug token is set.
         getToken: async () => {
-          throw new Error("App Check debug token is not registered yet. Open DevTools, copy the AppCheck debug token, register it in Firebase Console > App Check > Manage debug tokens, then set appCheckConfig.debugToken to that string in firebase-config.js.");
+          throw new Error("No reCAPTCHA Enterprise site key and no debug token: App Check cannot mint a token.");
         },
       });
   return initializeAppCheck(firebaseApp, { provider, isTokenAutoRefreshEnabled: true });
@@ -82,7 +89,21 @@ async function extract(text) {
   const raw = res.response.text().replace(/^```json|```$/g, "").trim();
   let data;
   try { data = JSON.parse(raw); } catch { data = { parse_error: true, raw }; }
-  return { data, ranOn: onDevice ? "on-device (Gemini Nano)" : "cloud" };
+  return { data, ranOn: onDevice ? "on-device (Gemini Nano)" : "cloud (" + CLOUD_MODEL + ")" };
+}
+
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function renderTable(data) {
+  const el = $("table");
+  if (!data || data.parse_error) { el.innerHTML = ""; return; }
+  const c = data.contact || {};
+  const rows = (data.lines || []).map((l) =>
+    `<tr><td>${esc(l.part_no)}</td><td>${esc(l.description)}</td><td>${esc(l.material)}</td><td class="num">${esc(l.qty)} ${esc(l.unit)}</td></tr>`).join("");
+  el.innerHTML = `<dl class="summary"><dt>Customer</dt><dd>${esc(data.customer) || "—"}</dd>` +
+    `<dt>Contact</dt><dd>${esc([c.name, c.email, c.phone].filter(Boolean).join(" · ")) || "—"}</dd>` +
+    `<dt>Quote due</dt><dd>${esc(data.due_date) || "—"}</dd></dl>` +
+    `<table><thead><tr><th>Part</th><th>Description</th><th>Material</th><th>Qty</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 function renderHistory() {
@@ -100,11 +121,13 @@ $("go").onclick = async () => {
   $("go").disabled = true;
   setBadge("working", "working…");
   $("out").textContent = "";
+  renderTable(null);
   try {
     const r = await extract(text);
     const kind = r.ranOn.startsWith("on-device") ? "device" : "cloud";
     setBadge(kind, "ran " + r.ranOn);
     $("out").textContent = JSON.stringify(r.data, null, 2);
+    renderTable(r.data);
     const h = JSON.parse(localStorage.getItem("rfq-history") || "[]");
     h.unshift({ at: Date.now(), ...r });
     localStorage.setItem("rfq-history", JSON.stringify(h.slice(0, 50)));

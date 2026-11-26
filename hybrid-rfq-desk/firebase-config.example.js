@@ -25,4 +25,6 @@ export const firebaseConfig = {
 export const appCheckConfig = {
   debugToken: true,
   recaptchaEnterpriseSiteKey: "",
+  // Optional: Gemini model for the cloud path (default gemini-3.5-flash-lite).
+  // cloudModel: "gemini-3.5-flash-lite",
 };
