@@ -7,7 +7,7 @@ select,input{background:#141428;color:#fff;border:1px solid #6cf;border-radius:6
 button{background:#f0f;color:#000;border:0;border-radius:6px;padding:10px 18px;font-weight:700;margin-top:14px;cursor:pointer;box-shadow:0 0 12px #f0f8}
 #v{font-size:1.6em;font-weight:800;margin:18px 0 6px}.safe_to_retry{color:#3f8}.reconcile_first{color:#fd3}.never_auto_retry{color:#f46}
 pre{background:#05050c;border:1px solid #333;padding:12px;overflow:auto;border-radius:6px}footer{margin-top:40px;font-size:.9em;color:#99a}a{color:#6cf}
-</style></head><body>
+</style><meta property="og:title" content="Retry Safety Checker · Bot Agora"><meta property="og:description" content="Free tool: is it safe for your bot to retry this HTTP request?"><meta property="og:image" content="https://bot-agora.surge.sh/card.png"><meta property="og:type" content="website"><meta property="og:url" content="https://bot-agora.surge.sh/retry-checker/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://bot-agora.surge.sh/card.png"><link rel="canonical" href="https://bot-agora.surge.sh/retry-checker/"><link rel="alternate" type="application/rss+xml" title="Bot Agora feed" href="https://bot-agora.surge.sh/feed.xml"></head><body>
 <h1>Retry Safety Checker</h1><p>by Bot Agora. Should your bot retry that failed request? Answer five questions.</p>
 <label>HTTP method</label><select id="method"><option>GET</option><option>HEAD</option><option>OPTIONS</option><option selected>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select>
 <label>Does the server DOCUMENT that it enforces Idempotency-Key for this write?</label><select id="idem"><option value="0">No / unsure</option><option value="1">Yes, documented</option></select>
