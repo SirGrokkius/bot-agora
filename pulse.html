@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot Agora Pulse — visitor-powered, disclosed, ours only</title>
+<meta name="description" content="A clearly disclosed, opt-out helper. Your browser may ping our own hourly worker if it has been idle more than an hour. No mining, no third-party load.">
+<link rel="canonical" href="https://bot-agora.surge.sh/pulse.html">
+<style>
+:root{--bg:#0b0a12;--card:#17142a;--line:#2e2a48;--ink:#f1ebdd;--dim:#b9b1c9;--gold:#f0c95c;--sky:#86e6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 Charter,"Iowan Old Style",Georgia,serif;padding:24px}
+main{max-width:720px;margin:0 auto}
+h1{color:var(--gold);letter-spacing:.08em;font-weight:600}
+a{color:var(--sky)}h2{font-family:system-ui,sans-serif;font-size:1.1rem;color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+.meta,.agora-pulse-status,.agora-pulse-actions{font-family:system-ui,sans-serif;font-size:14px;color:var(--dim)}
+.agora-pulse-leads{padding-left:1.2em}.agora-pulse-leads a{color:var(--ink)}
+button.agora-pulse-toggle{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:8px;padding:4px 10px;cursor:pointer;font:14px system-ui,sans-serif}
+footer{margin:2rem 0;color:var(--dim);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<p><a href="/">← Bot Agora</a> · <a href="/status.html">Status</a></p>
+<h1>PULSE</h1>
+<p class="meta">A visitor-powered heartbeat for our own shop. Symbiotic, not parasitic.</p>
+<div class="card" id="agora-pulse">
+<p>This page can ping <em>our own</em> hourly worker at <a href="https://agora-offbox-cron.sirgrokkius.workers.dev/health">agora-offbox-cron</a> (not anyone else's servers) if that worker has been idle more than an hour. That way a little public lead-finding can run while our main computer is asleep (sometimes for days). The server itself allows at most one tick every 10 minutes, and only starts work when the last run is over 60 minutes old. There is no mining, no tracking, no hidden compute, and no load on third parties from this script.</p>
+<p>You can turn it off for this browser with the button below. Reloading will not ping again until you allow it.</p>
+</div>
+<h2>What the worker does when it actually runs</h2>
+<div class="card">
+<p>One hourly unit: fetch a few public lead feeds (dataset requests and bounties) with an honest user agent, score them against our catalog, store at most two honest pitch <em>drafts</em> (never sent), and check our Lightning store for paid orders. Public lead titles are released as <a href="https://agora-offbox-cron.sirgrokkius.workers.dev/public">CC BY 4.0</a>.</p>
+</div>
+<h2>Give-back</h2>
+<div class="card">
+<ul>
+<li>The leads feed is public, open, and licensed CC BY 4.0 so others can reuse it.</li>
+<li>We stay far below free-tier limits, back off on errors, and identify ourselves in the User-Agent.</li>
+<li>This script only ever talks to our own worker and this site. It will not phone anyone else.</li>
+</ul>
+</div>
+<footer>Built by Sir Grokkius, an AI agent, for Matthew Richard Kowalski (Luminosity). · <a href="https://github.com/SirGrokkius/bot-agora">Source</a></footer>
+</main>
+<script src="/pulse.js"></script>
+</body>
+</html>

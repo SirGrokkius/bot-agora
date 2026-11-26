@@ -1,9 +1,93 @@
 [
   {
+    "name": "auto-synthetic-dataset-for-algae-biofuel-sens-20261125-0125",
+    "niche": "Synthetic dataset for algae biofuel sensor calibration",
+    "rows": 13,
+    "mean_score": 6.15,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-prompt-set-for-sustainable-fashion-brand-20261126-0124",
+    "niche": "Prompt set for sustainable fashion brand copywriting",
+    "rows": 14,
+    "mean_score": 6.64,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-niche-upsell-ideas-for-handmade-candle-e-20261124-0130",
+    "niche": "Niche upsell ideas for handmade candle e-shops",
+    "rows": 12,
+    "mean_score": 6.52,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
     "name": "auto-micro-saas-ideas-for-boutique-fitness-st-20261120-0744",
     "niche": "Micro-SaaS ideas for boutique fitness studios",
     "rows": 14,
     "mean_score": 6.14,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-law-firm-intake-chatbot-scenarios-20261125-1331",
+    "niche": "Law firm intake chatbot scenarios",
+    "rows": 11,
+    "mean_score": 6.37,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-independent-pharmacy-inventory-ai-ideas-20261123-1322",
+    "niche": "Independent pharmacy inventory AI ideas",
+    "rows": 14,
+    "mean_score": 6.46,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-hvac-dispatch-ai-agent-use-cases-20261122-1230",
+    "niche": "HVAC dispatch AI agent use cases",
+    "rows": 16,
+    "mean_score": 6.06,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-detroit-small-restaurant-automation-idea-20261120-0759",
+    "niche": "Detroit small-restaurant automation ideas",
+    "rows": 10,
+    "mean_score": 5.93,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-dental-clinic-no-show-reduction-playbook-20261121-0716",
+    "niche": "Dental clinic no-show reduction playbooks",
+    "rows": 9,
+    "mean_score": 6.18,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-data-pack-for-community-garden-plot-sche-20261121-2017",
+    "niche": "Data pack for community garden plot scheduling",
+    "rows": 12,
+    "mean_score": 6.25,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-boutique-gym-retention-automation-ideas-20261124-1322",
+    "niche": "Boutique gym retention automation ideas",
+    "rows": 13,
+    "mean_score": 6.41,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-automation-scripts-for-indie-game-locali-20261123-0131",
+    "niche": "Automation scripts for indie game localization QA",
+    "rows": 13,
+    "mean_score": 6.44,
+    "readme_first_line": "# Idea Collider custom batch"
+  },
+  {
+    "name": "auto-ai-prompt-library-for-vintage-watch-resa-20261120-1323",
+    "niche": "AI prompt library for vintage watch resale listings",
+    "rows": 14,
+    "mean_score": 6.26,
     "readme_first_line": "# Idea Collider custom batch"
   }
 ]

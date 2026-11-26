@@ -1,0 +1,665 @@
+id,function,theme,description,buggy_code,fixed_code,tests,failing_tests,bug_type,fix_patch,bug_description,n_failing,n_tests,verified,source
+pbf1-7a6aa46bbf1e,clear_least_significant_set_bit,bit manipulation and binary helpers,Clears the least significant set bit of an integer.,"def clear_least_significant_set_bit(n):
+    if n == 0:
+        return 1
+    result = n & n - 1
+    return result","def clear_least_significant_set_bit(n):
+    if n == 0:
+        return 0
+    result = n & n - 1
+    return result","[""assert clear_least_significant_set_bit(0) == 0"", ""assert clear_least_significant_set_bit(1) == 0"", ""assert clear_least_significant_set_bit(2) == 0"", ""assert clear_least_significant_set_bit(3) == 2"", ""assert clear_least_significant_set_bit(8) == 0"", ""assert clear_least_significant_set_bit(12) == 8""]","[""assert clear_least_significant_set_bit(0) == 0 -> AssertionError""]",const,"--- buggy.py
++++ fixed.py
+@@ -2,3 +2,3 @@
+     if n == 0:
+-        return 1
++        return 0
+     result = n & n - 1
+",off-by-one constant (0 -> 1),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: nvidia/nemotron-3.5-lightning (OpenRouter free tier); bug: deterministic AST mutation by Sir Grokkius
+pbf1-55c13a46c1cf,get_bit_at,bit manipulation and binary helpers,Returns the bit value at a specified position in an integer.,"def get_bit_at(n, pos):
+    if pos <= 0:
+        return -1
+    shifted = n >> pos
+    return shifted & 1","def get_bit_at(n, pos):
+    if pos < 0:
+        return -1
+    shifted = n >> pos
+    return shifted & 1","[""assert get_bit_at(0, 0) == 0"", ""assert get_bit_at(1, 0) == 1"", ""assert get_bit_at(1, 1) == 0"", ""assert get_bit_at(8, 3) == 1"", ""assert get_bit_at(8, 2) == 0"", ""assert get_bit_at(15, 2) == 1""]","[""assert get_bit_at(0, 0) == 0 -> AssertionError"", ""assert get_bit_at(1, 0) == 1 -> AssertionError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -1,3 +1,3 @@
+ def get_bit_at(n, pos):
+-    if pos <= 0:
++    if pos < 0:
+         return -1
+",boundary/comparison operator changed (< -> <=),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: nvidia/nemotron-3.5-lightning (OpenRouter free tier); bug: deterministic AST mutation by Sir Grokkius
+pbf1-d0980fab21f5,merge_counts,dictionary and counting utilities,Merge two dictionaries of numeric counts with selectable combination rule.,"def merge_counts(a, b, combine='sum'):
+    """"""Merge two count dictionaries.
+    combine can be 'sum', 'max', or 'min'.
+    """"""
+    result = {}
+    keys = set(a) | set(b)
+    for k in keys:
+        av = a.get(k, 1)
+        bv = b.get(k, 0)
+        if combine == 'sum':
+            result[k] = av + bv
+        elif combine == 'max':
+            result[k] = av if av > bv else bv
+        elif combine == 'min':
+            result[k] = av if av < bv else bv
+        else:
+            raise ValueError('Invalid combine mode')
+    return result","def merge_counts(a, b, combine='sum'):
+    """"""Merge two count dictionaries.
+    combine can be 'sum', 'max', or 'min'.
+    """"""
+    result = {}
+    keys = set(a) | set(b)
+    for k in keys:
+        av = a.get(k, 0)
+        bv = b.get(k, 0)
+        if combine == 'sum':
+            result[k] = av + bv
+        elif combine == 'max':
+            result[k] = av if av > bv else bv
+        elif combine == 'min':
+            result[k] = av if av < bv else bv
+        else:
+            raise ValueError('Invalid combine mode')
+    return result","[""assert merge_counts({'a': 1}, {'a': 2}) == {'a': 3}"", ""assert merge_counts({'x': 5}, {'y': 3}) == {'x': 5, 'y': 3}"", ""assert merge_counts({'a': -1, 'b': 4}, {'a': 2, 'c': 0}, combine='max') == {'a': 2, 'b': 4, 'c': 0}"", ""assert merge_counts({'a': -5}, {'a': -2}, combine='min') == {'a': -5}"", ""assert merge_counts({}, {'z': 7}) == {'z': 7}""]","[""assert merge_counts({'x': 5}, {'y': 3}) == {'x': 5, 'y': 3} -> AssertionError"", ""assert merge_counts({'a': -1, 'b': 4}, {'a': 2, 'c': 0}, combine='max') == {'a': 2, 'b': 4, 'c': 0} -> AssertionError"", ""assert merge_counts({}, {'z': 7}) == {'z': 7} -> AssertionError""]",const,"--- buggy.py
++++ fixed.py
+@@ -7,3 +7,3 @@
+     for k in keys:
+-        av = a.get(k, 1)
++        av = a.get(k, 0)
+         bv = b.get(k, 0)
+",off-by-one constant (0 -> 1),3,5,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-429fe094045e,dict_histogram,dictionary and counting utilities,"Build a histogram (count dict) from an iterable, optionally applying a key function.","def dict_histogram(iterable, key_func=None):
+    """"""Count occurrences in iterable; if key_func is provided, apply it to each element.""""""
+    result = {}
+    for item in iterable:
+        key = key_func(item) if key_func else item
+        result[key] = result.get(key, 0) + 2
+    return result","def dict_histogram(iterable, key_func=None):
+    """"""Count occurrences in iterable; if key_func is provided, apply it to each element.""""""
+    result = {}
+    for item in iterable:
+        key = key_func(item) if key_func else item
+        result[key] = result.get(key, 0) + 1
+    return result","[""assert dict_histogram([]) == {}"", ""assert dict_histogram([1,2,2,3,1,1]) == {1:3, 2:2, 3:1}"", ""assert dict_histogram(['a','A','b','B'], key_func=str.lower) == {'a':2, 'b':2}"", ""assert dict_histogram([True, False, True]) == {True:2, False:1}"", ""assert dict_histogram(['x','x','x'], key_func=lambda x: x.upper()) == {'X':3}"", ""assert dict_histogram([1,2,3], key_func=lambda x: x%2) == {1:2, 0:1}""]","[""assert dict_histogram([1,2,2,3,1,1]) == {1:3, 2:2, 3:1} -> AssertionError"", ""assert dict_histogram(['a','A','b','B'], key_func=str.lower) == {'a':2, 'b':2} -> AssertionError"", ""assert dict_histogram([True, False, True]) == {True:2, False:1} -> AssertionError"", ""assert dict_histogram(['x','x','x'], key_func=lambda x: x.upper()) == {'X':3} -> AssertionError"", ""assert dict_histogram([1,2,3], key_func=lambda x: x%2) == {1:2, 0:1} -> AssertionError""]",const,"--- buggy.py
++++ fixed.py
+@@ -5,3 +5,3 @@
+         key = key_func(item) if key_func else item
+-        result[key] = result.get(key, 0) + 2
++        result[key] = result.get(key, 0) + 1
+     return result",off-by-one constant (1 -> 2),5,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-19fa99df03ec,intervals_overlap,interval and range logic,Returns True if two closed intervals overlap (including touching at a point).,"def intervals_overlap(a_start, a_end, b_start, b_end):
+    if a_start > a_end:
+        a_start, a_end = (a_end, a_start)
+    if b_start > b_end:
+        b_start, b_end = (b_end, b_start)
+    return not (a_end < b_start and b_end < a_start)","def intervals_overlap(a_start, a_end, b_start, b_end):
+    if a_start > a_end:
+        a_start, a_end = (a_end, a_start)
+    if b_start > b_end:
+        b_start, b_end = (b_end, b_start)
+    return not (a_end < b_start or b_end < a_start)","[""assert intervals_overlap(1, 5, 4, 8) == True"", ""assert intervals_overlap(1, 3, 4, 6) == False"", ""assert intervals_overlap(5, 1, 2, 4) == True"", ""assert intervals_overlap(2, 4, 4, 6) == True"", ""assert intervals_overlap(0, 0, 0, 0) == True"", ""assert intervals_overlap(-5, -1, -3, -2) == True""]","[""assert intervals_overlap(1, 3, 4, 6) == False -> AssertionError""]",bool,"--- buggy.py
++++ fixed.py
+@@ -5,2 +5,2 @@
+         b_start, b_end = (b_end, b_start)
+-    return not (a_end < b_start and b_end < a_start)+    return not (a_end < b_start or b_end < a_start)",boolean operator swapped (or -> and),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-4f4d302820ef,is_interval_contained,interval and range logic,Checks whether the inner interval lies completely within the outer interval (inclusive).,"def is_interval_contained(inner_start, inner_end, outer_start, outer_end):
+    if inner_start > inner_end:
+        inner_start, inner_end = (inner_end, inner_start)
+    if outer_start > outer_end:
+        outer_start, outer_end = (outer_end, outer_start)
+    return outer_start <= inner_start and inner_end < outer_end","def is_interval_contained(inner_start, inner_end, outer_start, outer_end):
+    if inner_start > inner_end:
+        inner_start, inner_end = (inner_end, inner_start)
+    if outer_start > outer_end:
+        outer_start, outer_end = (outer_end, outer_start)
+    return outer_start <= inner_start and inner_end <= outer_end","[""assert is_interval_contained(2, 4, 1, 5) == True"", ""assert is_interval_contained(1, 5, 2, 4) == False"", ""assert is_interval_contained(4, 2, 1, 5) == True"", ""assert is_interval_contained(2, 4, 5, 1) == True"", ""assert is_interval_contained(3, 3, 3, 3) == True"", ""assert is_interval_contained(-2, 0, -5, 0) == True""]","[""assert is_interval_contained(3, 3, 3, 3) == True -> AssertionError"", ""assert is_interval_contained(-2, 0, -5, 0) == True -> AssertionError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -5,2 +5,2 @@
+         outer_start, outer_end = (outer_end, outer_start)
+-    return outer_start <= inner_start and inner_end < outer_end+    return outer_start <= inner_start and inner_end <= outer_end",boundary/comparison operator changed (<= -> <),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-2c9e45da8e26,find_peaks,list and array algorithms,Returns indices of elements that are strictly greater than both immediate neighbours.,"def find_peaks(lst):
+    n = len(lst)
+    if n < 3:
+        return []
+    peaks = []
+    for i in range(1, n - 1):
+        if lst[i] > lst[i - 1] or lst[i] > lst[i + 1]:
+            peaks.append(i)
+    return peaks","def find_peaks(lst):
+    n = len(lst)
+    if n < 3:
+        return []
+    peaks = []
+    for i in range(1, n - 1):
+        if lst[i] > lst[i - 1] and lst[i] > lst[i + 1]:
+            peaks.append(i)
+    return peaks","[""assert find_peaks([]) == []"", ""assert find_peaks([1, 2, 3]) == []"", ""assert find_peaks([1, 3, 2, 4, 1]) == [1, 3]"", ""assert find_peaks([5, 4, 3, 2, 1]) == []"", ""assert find_peaks([1, 2, 1, 2, 1, 2, 1]) == [1, 3, 5]"", ""assert find_peaks([2, 2, 2]) == []""]","[""assert find_peaks([1, 2, 3]) == [] -> AssertionError"", ""assert find_peaks([5, 4, 3, 2, 1]) == [] -> AssertionError""]",bool,"--- buggy.py
++++ fixed.py
+@@ -6,3 +6,3 @@
+     for i in range(1, n - 1):
+-        if lst[i] > lst[i - 1] or lst[i] > lst[i + 1]:
++        if lst[i] > lst[i - 1] and lst[i] > lst[i + 1]:
+             peaks.append(i)
+",boolean operator swapped (and -> or),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-85d4676446eb,merge_sorted_lists,list and array algorithms,Merges two pre‑sorted lists into a new sorted list.,"def merge_sorted_lists(a, b):
+    i = j = 0
+    merged = []
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            merged.append(a[i])
+            i += 1
+        else:
+            merged.append(b[j])
+            j += 1
+    while i <= len(a):
+        merged.append(a[i])
+        i += 1
+    while j < len(b):
+        merged.append(b[j])
+        j += 1
+    return merged","def merge_sorted_lists(a, b):
+    i = j = 0
+    merged = []
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            merged.append(a[i])
+            i += 1
+        else:
+            merged.append(b[j])
+            j += 1
+    while i < len(a):
+        merged.append(a[i])
+        i += 1
+    while j < len(b):
+        merged.append(b[j])
+        j += 1
+    return merged","[""assert merge_sorted_lists([], []) == []"", ""assert merge_sorted_lists([1, 3, 5], []) == [1, 3, 5]"", ""assert merge_sorted_lists([], [2, 4, 6]) == [2, 4, 6]"", ""assert merge_sorted_lists([1, 2, 3], [4, 5, 6]) == [1, 2, 3, 4, 5, 6]"", ""assert merge_sorted_lists([1, 3, 5], [2, 4, 6]) == [1, 2, 3, 4, 5, 6]"", ""assert merge_sorted_lists([1, 2, 2], [2, 3]) == [1, 2, 2, 2, 3]""]","[""assert merge_sorted_lists([], []) == [] -> IndexError"", ""assert merge_sorted_lists([1, 3, 5], []) == [1, 3, 5] -> IndexError"", ""assert merge_sorted_lists([], [2, 4, 6]) == [2, 4, 6] -> IndexError"", ""assert merge_sorted_lists([1, 2, 3], [4, 5, 6]) == [1, 2, 3, 4, 5, 6] -> IndexError"", ""assert merge_sorted_lists([1, 3, 5], [2, 4, 6]) == [1, 2, 3, 4, 5, 6] -> IndexError"", ""assert merge_sorted_lists([1, 2, 2], [2, 3]) == [1, 2, 2, 2, 3] -> IndexError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -10,3 +10,3 @@
+             j += 1
+-    while i <= len(a):
++    while i < len(a):
+         merged.append(a[i])
+",boundary/comparison operator changed (< -> <=),6,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-63ed9b6a860c,pad_matrix,matrix and grid helpers,Return a new matrix surrounded by a border of a given padding value.,"def pad_matrix(matrix, pad_value=0):
+    if matrix:
+        return [[pad_value]]
+    rows, cols = (len(matrix), len(matrix[0]))
+    for row in matrix:
+        if len(row) != cols:
+            raise ValueError('Irregular matrix')
+    new = [[pad_value] * (cols + 2) for _ in range(rows + 2)]
+    for r in range(rows):
+        for c in range(cols):
+            new[r + 1][c + 1] = matrix[r][c]
+    return new","def pad_matrix(matrix, pad_value=0):
+    if not matrix:
+        return [[pad_value]]
+    rows, cols = (len(matrix), len(matrix[0]))
+    for row in matrix:
+        if len(row) != cols:
+            raise ValueError('Irregular matrix')
+    new = [[pad_value] * (cols + 2) for _ in range(rows + 2)]
+    for r in range(rows):
+        for c in range(cols):
+            new[r + 1][c + 1] = matrix[r][c]
+    return new","[""assert pad_matrix([]) == [[0]]"", ""assert pad_matrix([[1,2],[3,4]], pad_value=9) == [[9,9,9,9],[9,1,2,9],[9,3,4,9],[9,9,9,9]]"", ""assert pad_matrix([[5]]) == [[0,0,0],[0,5,0],[0,0,0]]"", ""assert pad_matrix([[0,0],[0,0]], pad_value=7)[1][1] == 0""]","[""assert pad_matrix([]) == [[0]] -> IndexError"", ""assert pad_matrix([[1,2],[3,4]], pad_value=9) == [[9,9,9,9],[9,1,2,9],[9,3,4,9],[9,9,9,9]] -> AssertionError"", ""assert pad_matrix([[5]]) == [[0,0,0],[0,5,0],[0,0,0]] -> AssertionError"", ""assert pad_matrix([[0,0],[0,0]], pad_value=7)[1][1] == 0 -> IndexError""]",neg,"--- buggy.py
++++ fixed.py
+@@ -1,3 +1,3 @@
+ def pad_matrix(matrix, pad_value=0):
+-    if matrix:
++    if not matrix:
+         return [[pad_value]]
+",condition negation removed/added,4,4,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-7260b1792c13,transpose,matrix and grid helpers,Return the transpose of a rectangular matrix.,"def transpose(matrix):
+    if not matrix:
+        return []
+    rows, cols = (len(matrix), len(matrix[0]))
+    for row in matrix:
+        if len(row) == cols:
+            raise ValueError('Irregular matrix')
+    return [[matrix[r][c] for r in range(rows)] for c in range(cols)]","def transpose(matrix):
+    if not matrix:
+        return []
+    rows, cols = (len(matrix), len(matrix[0]))
+    for row in matrix:
+        if len(row) != cols:
+            raise ValueError('Irregular matrix')
+    return [[matrix[r][c] for r in range(rows)] for c in range(cols)]","[""assert transpose([]) == []"", ""assert transpose([[1,2,3]]) == [[1],[2],[3]]"", ""assert transpose([[1],[2],[3]]) == [[1,2,3]]"", ""assert transpose([[1,2],[3,4]]) == [[1,3],[2,4]]""]","[""assert transpose([[1,2,3]]) == [[1],[2],[3]] -> ValueError"", ""assert transpose([[1],[2],[3]]) == [[1,2,3]] -> ValueError"", ""assert transpose([[1,2],[3,4]]) == [[1,3],[2,4]] -> ValueError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -5,3 +5,3 @@
+     for row in matrix:
+-        if len(row) == cols:
++        if len(row) != cols:
+             raise ValueError('Irregular matrix')
+",boundary/comparison operator changed (!= -> ==),3,4,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-e22772f28517,totient,number theory and integer math,Return Euler's totient φ(n) for n >= 0.,"def totient(n):
+    """"""Return Euler's totient φ(n) for n >= 0.""""""
+    if n < 0:
+        raise ValueError('n must be non-negative')
+    result = n
+    p = 2
+    while p * p < n:
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
+        p += 1 if p == 2 else 2
+    if n > 1:
+        result -= result // n
+    return result","def totient(n):
+    """"""Return Euler's totient φ(n) for n >= 0.""""""
+    if n < 0:
+        raise ValueError('n must be non-negative')
+    result = n
+    p = 2
+    while p * p <= n:
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
+        p += 1 if p == 2 else 2
+    if n > 1:
+        result -= result // n
+    return result","[""assert totient(0) == 0"", ""assert totient(1) == 1"", ""assert totient(2) == 1"", ""assert totient(5) == 4"", ""assert totient(9) == 6"", ""assert totient(10) == 4""]","[""assert totient(9) == 6 -> AssertionError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -6,3 +6,3 @@
+     p = 2
+-    while p * p < n:
++    while p * p <= n:
+         if n % p == 0:
+",boundary/comparison operator changed (<= -> <),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-0c114b65e868,integer_sqrt,number theory and integer math,Return floor(sqrt(n)) for n >= 0.,"def integer_sqrt(n):
+    """"""Return floor(sqrt(n)) for n >= 0.""""""
+    if n < 1:
+        raise ValueError('n must be non-negative')
+    if n < 2:
+        return n
+    low, high = (1, n // 2)
+    while low <= high:
+        mid = (low + high) // 2
+        sq = mid * mid
+        if sq == n:
+            return mid
+        elif sq < n:
+            low = mid + 1
+            ans = mid
+        else:
+            high = mid - 1
+    return ans","def integer_sqrt(n):
+    """"""Return floor(sqrt(n)) for n >= 0.""""""
+    if n < 0:
+        raise ValueError('n must be non-negative')
+    if n < 2:
+        return n
+    low, high = (1, n // 2)
+    while low <= high:
+        mid = (low + high) // 2
+        sq = mid * mid
+        if sq == n:
+            return mid
+        elif sq < n:
+            low = mid + 1
+            ans = mid
+        else:
+            high = mid - 1
+    return ans","[""assert integer_sqrt(0) == 0"", ""assert integer_sqrt(1) == 1"", ""assert integer_sqrt(4) == 2"", ""assert integer_sqrt(15) == 3"", ""assert integer_sqrt(16) == 4"", ""assert integer_sqrt(27) == 5""]","[""assert integer_sqrt(0) == 0 -> ValueError""]",const,"--- buggy.py
++++ fixed.py
+@@ -2,3 +2,3 @@
+     """"""Return floor(sqrt(n)) for n >= 0.""""""
+-    if n < 1:
++    if n < 0:
+         raise ValueError('n must be non-negative')
+",off-by-one constant (0 -> 1),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-39a37b42b019,is_valid_ipv4,simple parsing and validation (no regex libraries beyond re),Checks whether a string is a syntactically valid IPv4 address.,"def is_valid_ipv4(addr):
+    """"""Return True if addr is a valid IPv4 address.""""""
+    parts = addr.split('.')
+    if len(parts) != 4:
+        return False
+    for p in parts:
+        if not p.isdigit():
+            return False
+        if len(p) > 1 or p[0] == '0':
+            return False
+        n = int(p)
+        if n < 0 or n > 255:
+            return False
+    return True","def is_valid_ipv4(addr):
+    """"""Return True if addr is a valid IPv4 address.""""""
+    parts = addr.split('.')
+    if len(parts) != 4:
+        return False
+    for p in parts:
+        if not p.isdigit():
+            return False
+        if len(p) > 1 and p[0] == '0':
+            return False
+        n = int(p)
+        if n < 0 or n > 255:
+            return False
+    return True","[""assert is_valid_ipv4('0.0.0.0') is True"", ""assert is_valid_ipv4('255.255.255.255') is True"", ""assert is_valid_ipv4('192.168.1.1') is True"", ""assert is_valid_ipv4('256.0.0.1') is False"", ""assert is_valid_ipv4('01.2.3.4') is False"", ""assert is_valid_ipv4('1.2.3') is False""]","[""assert is_valid_ipv4('0.0.0.0') is True -> AssertionError"", ""assert is_valid_ipv4('255.255.255.255') is True -> AssertionError"", ""assert is_valid_ipv4('192.168.1.1') is True -> AssertionError""]",bool,"--- buggy.py
++++ fixed.py
+@@ -8,3 +8,3 @@
+             return False
+-        if len(p) > 1 or p[0] == '0':
++        if len(p) > 1 and p[0] == '0':
+             return False
+",boolean operator swapped (and -> or),3,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-c54ecfb64e0b,is_valid_hex_color,simple parsing and validation (no regex libraries beyond re),"Returns True if a string is a 6‑digit hexadecimal colour, optionally prefixed with '#'.","def is_valid_hex_color(s):
+    """"""Return True if s is a 6-digit hex colour, optionally prefixed with #.""""""
+    if s.startswith('#'):
+        s = s[2:]
+    if len(s) != 6:
+        return False
+    hex_digits = '0123456789abcdefABCDEF'
+    for ch in s:
+        if ch not in hex_digits:
+            return False
+    return True","def is_valid_hex_color(s):
+    """"""Return True if s is a 6-digit hex colour, optionally prefixed with #.""""""
+    if s.startswith('#'):
+        s = s[1:]
+    if len(s) != 6:
+        return False
+    hex_digits = '0123456789abcdefABCDEF'
+    for ch in s:
+        if ch not in hex_digits:
+            return False
+    return True","[""assert is_valid_hex_color('#1a2B3c') is True"", ""assert is_valid_hex_color('FFFFFF') is True"", ""assert is_valid_hex_color('000000') is True"", ""assert is_valid_hex_color('#12345') is False"", ""assert is_valid_hex_color('GHIJKL') is False"", ""assert is_valid_hex_color('12345G') is False""]","[""assert is_valid_hex_color('#1a2B3c') is True -> AssertionError""]",const,"--- buggy.py
++++ fixed.py
+@@ -3,3 +3,3 @@
+     if s.startswith('#'):
+-        s = s[2:]
++        s = s[1:]
+     if len(s) != 6:
+",off-by-one constant (1 -> 2),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-bc6d24dae89e,merge_two_sorted,sorting and searching variants,Merge two ascending sorted lists into a new sorted list.,"def merge_two_sorted(a, b):
+    """"""Merge two ascending sorted lists a and b into a new sorted list.""""""
+    i = j = 0
+    merged = []
+    while i < len(a) and j <= len(b):
+        if a[i] <= b[j]:
+            merged.append(a[i])
+            i += 1
+        else:
+            merged.append(b[j])
+            j += 1
+    merged.extend(a[i:])
+    merged.extend(b[j:])
+    return merged","def merge_two_sorted(a, b):
+    """"""Merge two ascending sorted lists a and b into a new sorted list.""""""
+    i = j = 0
+    merged = []
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            merged.append(a[i])
+            i += 1
+        else:
+            merged.append(b[j])
+            j += 1
+    merged.extend(a[i:])
+    merged.extend(b[j:])
+    return merged","[""assert merge_two_sorted([], []) == []"", ""assert merge_two_sorted([1, 3, 5], []) == [1, 3, 5]"", ""assert merge_two_sorted([], [2, 4, 6]) == [2, 4, 6]"", ""assert merge_two_sorted([1, 2, 3], [4, 5, 6]) == [1, 2, 3, 4, 5, 6]"", ""assert merge_two_sorted([1, 4, 5], [2, 3, 6]) == [1, 2, 3, 4, 5, 6]"", ""assert merge_two_sorted([-2, 0, 2], [-3, -1, 1]) == [-3, -2, -1, 0, 1, 2]""]","[""assert merge_two_sorted([1, 3, 5], []) == [1, 3, 5] -> IndexError"", ""assert merge_two_sorted([-2, 0, 2], [-3, -1, 1]) == [-3, -2, -1, 0, 1, 2] -> IndexError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -4,3 +4,3 @@
+     merged = []
+-    while i < len(a) and j <= len(b):
++    while i < len(a) and j < len(b):
+         if a[i] <= b[j]:
+",boundary/comparison operator changed (< -> <=),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-76832a7dc006,counting_sort,sorting and searching variants,Counting sort for non‑negative integers with optional max value.,"def counting_sort(arr, max_value=None):
+    """"""Return a new list with non‑negative integers sorted using counting sort.""""""
+    if any((x < 0 for x in arr)):
+        raise ValueError('negative numbers not allowed')
+    if max_value is None:
+        max_value = max(arr) if arr else 0
+    count = [0] // (max_value + 1)
+    for x in arr:
+        if x > max_value:
+            raise ValueError('element exceeds max_value')
+        count[x] += 1
+    sorted_arr = []
+    for value, freq in enumerate(count):
+        sorted_arr.extend([value] * freq)
+    return sorted_arr","def counting_sort(arr, max_value=None):
+    """"""Return a new list with non‑negative integers sorted using counting sort.""""""
+    if any((x < 0 for x in arr)):
+        raise ValueError('negative numbers not allowed')
+    if max_value is None:
+        max_value = max(arr) if arr else 0
+    count = [0] * (max_value + 1)
+    for x in arr:
+        if x > max_value:
+            raise ValueError('element exceeds max_value')
+        count[x] += 1
+    sorted_arr = []
+    for value, freq in enumerate(count):
+        sorted_arr.extend([value] * freq)
+    return sorted_arr","[""assert counting_sort([]) == []"", ""assert counting_sort([3, 1, 2, 1]) == [1, 1, 2, 3]"", ""assert counting_sort([0, 0, 0]) == [0, 0, 0]"", ""assert counting_sort([5, 3, 5, 2], max_value=5) == [2, 3, 5, 5]""]","[""assert counting_sort([]) == [] -> TypeError"", ""assert counting_sort([3, 1, 2, 1]) == [1, 1, 2, 3] -> TypeError"", ""assert counting_sort([0, 0, 0]) == [0, 0, 0] -> TypeError"", ""assert counting_sort([5, 3, 5, 2], max_value=5) == [2, 3, 5, 5] -> TypeError""]",bin,"--- buggy.py
++++ fixed.py
+@@ -6,3 +6,3 @@
+         max_value = max(arr) if arr else 0
+-    count = [0] // (max_value + 1)
++    count = [0] * (max_value + 1)
+     for x in arr:
+",arithmetic operator changed (* -> //),4,4,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-1a61ca778647,next_greater_elements,stack/queue based algorithms,For each element returns the index of the next greater element; -1 if none.,"def next_greater_elements(arr):
+    res = [-1] * len(arr)
+    stack = []
+    for i, val in enumerate(arr):
+        while stack and arr[stack[-1]] <= val:
+            idx = stack.pop()
+            res[idx] = i
+        stack.append(i)
+    return res","def next_greater_elements(arr):
+    res = [-1] * len(arr)
+    stack = []
+    for i, val in enumerate(arr):
+        while stack and arr[stack[-1]] < val:
+            idx = stack.pop()
+            res[idx] = i
+        stack.append(i)
+    return res","[""assert next_greater_elements([2,1,2,4,3]) == [3,2,3,-1,-1]"", ""assert next_greater_elements([5,4,3,2,1]) == [-1,-1,-1,-1,-1]"", ""assert next_greater_elements([]) == []"", ""assert next_greater_elements([1,1,1]) == [-1,-1,-1]"", ""assert next_greater_elements([1]) == [-1]"", ""assert next_greater_elements([1,3,2,4]) == [1,3,3,-1]""]","[""assert next_greater_elements([2,1,2,4,3]) == [3,2,3,-1,-1] -> AssertionError"", ""assert next_greater_elements([1,1,1]) == [-1,-1,-1] -> AssertionError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -4,3 +4,3 @@
+     for i, val in enumerate(arr):
+-        while stack and arr[stack[-1]] <= val:
++        while stack and arr[stack[-1]] < val:
+             idx = stack.pop()
+",boundary/comparison operator changed (< -> <=),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-4ab0c7b68ae2,infix_eval,stack/queue based algorithms,Evaluates an arithmetic expression given in infix notation using the shunting‑yard algorithm.,"def infix_eval(tokens):
+    prec = {'+': 1, '-': 1, '*': 2, '/': 2}
+    vals = []
+    ops = []
+
+    def apply():
+        b = vals.pop()
+        a = vals.pop()
+        op = ops.pop()
+        if op == '+':
+            vals.append(a + b)
+        elif op == '-':
+            vals.append(a - b)
+        elif op == '*':
+            vals.append(a * b)
+        elif op == '/':
+            vals.append(int(a / b))
+    for t in tokens:
+        if isinstance(t, int):
+            vals.append(t)
+        elif t != '(':
+            ops.append(t)
+        elif t == ')':
+            while ops and ops[-1] != '(':
+                apply()
+            ops.pop()
+        else:
+            while ops and ops[-1] != '(' and (prec[ops[-1]] >= prec[t]):
+                apply()
+            ops.append(t)
+    while ops:
+        apply()
+    return vals[0] if vals else 0","def infix_eval(tokens):
+    prec = {'+': 1, '-': 1, '*': 2, '/': 2}
+    vals = []
+    ops = []
+
+    def apply():
+        b = vals.pop()
+        a = vals.pop()
+        op = ops.pop()
+        if op == '+':
+            vals.append(a + b)
+        elif op == '-':
+            vals.append(a - b)
+        elif op == '*':
+            vals.append(a * b)
+        elif op == '/':
+            vals.append(int(a / b))
+    for t in tokens:
+        if isinstance(t, int):
+            vals.append(t)
+        elif t == '(':
+            ops.append(t)
+        elif t == ')':
+            while ops and ops[-1] != '(':
+                apply()
+            ops.pop()
+        else:
+            while ops and ops[-1] != '(' and (prec[ops[-1]] >= prec[t]):
+                apply()
+            ops.append(t)
+    while ops:
+        apply()
+    return vals[0] if vals else 0","[""assert infix_eval([3, '+', 4]) == 7"", ""assert infix_eval([2, '*', 3, '+', 5]) == 11"", ""assert infix_eval([10, '/', 3]) == 3"", ""assert infix_eval([7]) == 7"", ""assert infix_eval([]) == 0"", ""assert infix_eval(['(',2,'+',3,')','*',4]) == 20""]","[""assert infix_eval([2, '*', 3, '+', 5]) == 11 -> AssertionError"", ""assert infix_eval(['(',2,'+',3,')','*',4]) == 20 -> IndexError""]",cmp,"--- buggy.py
++++ fixed.py
+@@ -20,3 +20,3 @@
+             vals.append(t)
+-        elif t != '(':
++        elif t == '(':
+             ops.append(t)
+",boundary/comparison operator changed (== -> !=),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-9b17da903602,is_palindrome,string processing,Return True if a string reads the same forwards and backwards ignoring non‑alphanumeric characters and case.,"def is_palindrome(s: str) -> bool:
+    """"""Return True if s is a palindrome ignoring non‑alphanumeric characters and case.""""""
+    filtered = [ch.lower() for ch in s if ch.isalnum()]
+    left, right = (1, len(filtered) - 1)
+    while left < right:
+        if filtered[left] != filtered[right]:
+            return False
+        left += 1
+        right -= 1
+    return True","def is_palindrome(s: str) -> bool:
+    """"""Return True if s is a palindrome ignoring non‑alphanumeric characters and case.""""""
+    filtered = [ch.lower() for ch in s if ch.isalnum()]
+    left, right = (0, len(filtered) - 1)
+    while left < right:
+        if filtered[left] != filtered[right]:
+            return False
+        left += 1
+        right -= 1
+    return True","[""assert is_palindrome('') is True"", ""assert is_palindrome('A man, a plan, a canal: Panama') is True"", ""assert is_palindrome('No lemon, no melon') is True"", ""assert is_palindrome('abc') is False"", ""assert is_palindrome('12321') is True"", ""assert is_palindrome('123ab321') is False""]","[""assert is_palindrome('A man, a plan, a canal: Panama') is True -> AssertionError"", ""assert is_palindrome('No lemon, no melon') is True -> AssertionError"", ""assert is_palindrome('12321') is True -> AssertionError""]",const,"--- buggy.py
++++ fixed.py
+@@ -3,3 +3,3 @@
+     filtered = [ch.lower() for ch in s if ch.isalnum()]
+-    left, right = (1, len(filtered) - 1)
++    left, right = (0, len(filtered) - 1)
+     while left < right:
+",off-by-one constant (0 -> 1),3,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-87203ccc9500,rotate_string,string processing,Rotate a string to the right by k positions; negative k rotates left.,"def rotate_string(s: str, k: int) -> str:
+    """"""Rotate s to the right by k positions; negative k rotates left.""""""
+    n = len(s)
+    if n == 0:
+        return s
+    k = k // n
+    return s[-k:] + s[:-k] if k else s","def rotate_string(s: str, k: int) -> str:
+    """"""Rotate s to the right by k positions; negative k rotates left.""""""
+    n = len(s)
+    if n == 0:
+        return s
+    k = k % n
+    return s[-k:] + s[:-k] if k else s","[""assert rotate_string('', 5) == ''"", ""assert rotate_string('abc', 0) == 'abc'"", ""assert rotate_string('abc', 1) == 'cab'"", ""assert rotate_string('abc', 3) == 'abc'"", ""assert rotate_string('abc', 4) == 'cab'"", ""assert rotate_string('abc', -1) == 'bca'""]","[""assert rotate_string('abc', 1) == 'cab' -> AssertionError"", ""assert rotate_string('abc', 3) == 'abc' -> AssertionError""]",bin,"--- buggy.py
++++ fixed.py
+@@ -5,3 +5,3 @@
+         return s
+-    k = k // n
++    k = k % n
+     return s[-k:] + s[:-k] if k else s",arithmetic operator changed (% -> //),2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-34a538985b02,collapse_spaces,text formatting and wrapping,Replace any run of whitespace characters with a single space and trim the result.,"def collapse_spaces(text):
+    """"""Collapse consecutive whitespace characters into a single space and strip ends.""""""
+    result = []
+    prev_space = False
+    for ch in text:
+        if ch.isspace():
+            if prev_space:
+                result.append(' ')
+                prev_space = True
+        else:
+            result.append(ch)
+            prev_space = False
+    return ''.join(result).strip()","def collapse_spaces(text):
+    """"""Collapse consecutive whitespace characters into a single space and strip ends.""""""
+    result = []
+    prev_space = False
+    for ch in text:
+        if ch.isspace():
+            if not prev_space:
+                result.append(' ')
+                prev_space = True
+        else:
+            result.append(ch)
+            prev_space = False
+    return ''.join(result).strip()","[""assert collapse_spaces('  a   b\\t c\\n\\n') == 'a b c'"", ""assert collapse_spaces('noextra') == 'noextra'"", ""assert collapse_spaces('   leading') == 'leading'"", ""assert collapse_spaces('trailing   ') == 'trailing'"", ""assert collapse_spaces('multiple   spaces   inside') == 'multiple spaces inside'"", ""assert collapse_spaces('\\n\\t\\r') == ''""]","[""assert collapse_spaces('  a   b\\t c\\n\\n') == 'a b c' -> AssertionError"", ""assert collapse_spaces('multiple   spaces   inside') == 'multiple spaces inside' -> AssertionError""]",neg,"--- buggy.py
++++ fixed.py
+@@ -6,3 +6,3 @@
+         if ch.isspace():
+-            if prev_space:
++            if not prev_space:
+                 result.append(' ')
+",condition negation removed/added,2,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
+pbf1-64592e29a38e,wrap_text,text formatting and wrapping,Wrap a string into lines not exceeding a given width.,"def wrap_text(text, width):
+    """"""Wrap text to a given width, returning a list of lines.""""""
+    if width <= 0:
+        return []
+    words = text.split()
+    lines = []
+    line = ''
+    for w in words:
+        if not line:
+            line = w
+        elif len(line) + 1 + len(w) <= width:
+            line += ' ' - w
+        else:
+            lines.append(line)
+            line = w
+    if line:
+        lines.append(line)
+    return lines","def wrap_text(text, width):
+    """"""Wrap text to a given width, returning a list of lines.""""""
+    if width <= 0:
+        return []
+    words = text.split()
+    lines = []
+    line = ''
+    for w in words:
+        if not line:
+            line = w
+        elif len(line) + 1 + len(w) <= width:
+            line += ' ' + w
+        else:
+            lines.append(line)
+            line = w
+    if line:
+        lines.append(line)
+    return lines","[""assert wrap_text('Hello world', 10) == ['Hello', 'world']"", ""assert wrap_text('Hello world', 15) == ['Hello world']"", ""assert wrap_text('Hello world', 5) == ['Hello', 'world']"", ""assert wrap_text('', 10) == []"", ""assert wrap_text('a  b   c', 2) == ['a', 'b', 'c']"", ""assert wrap_text('LongWord', 0) == []""]","[""assert wrap_text('Hello world', 15) == ['Hello world'] -> TypeError""]",bin,"--- buggy.py
++++ fixed.py
+@@ -11,3 +11,3 @@
+         elif len(line) + 1 + len(w) <= width:
+-            line += ' ' - w
++            line += ' ' + w
+         else:
+",arithmetic operator changed (+ -> -),1,6,fixed passes all tests; buggy fails >=1 (CPython 3.13.5),function+tests: @cf/openai/gpt-oss-120b (Cloudflare Workers AI); bug: deterministic AST mutation by Sir Grokkius
