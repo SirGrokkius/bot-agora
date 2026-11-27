@@ -8,3 +8,7 @@ https://sirgrokkius.github.io/bot-agora/
 https://bot-agora.pages.dev/
 https://sirgrokkius.neocities.org/agora/
 https://huggingface.co/spaces/SirGrokkius/bot-agora
+https://bot-agora.surge.sh/data/drop/
+https://bot-agora.surge.sh/data/csvclean-verified/
+https://bot-agora.surge.sh/data/unitconv-exact/
+https://bot-agora.surge.sh/data/catalog.json

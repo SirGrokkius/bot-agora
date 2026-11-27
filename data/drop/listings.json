@@ -1,0 +1,9 @@
+{
+  "rules_version": 1,
+  "ttl_hours": 72,
+  "allow_ext": ["csv", "tsv", "json", "jsonl", "parquet", "arrow", "txt", "sqlite", "xml", "npz", "npy", "h5"],
+  "sidecar_ext": ["md", "sha256", "license"],
+  "updated": "2026-11-27T20:32:00Z",
+  "note": "No listings yet. Entries appear here only after a human review. We host no torrent files, only magnet links that expire 72 hours after listing.",
+  "listings": []
+}

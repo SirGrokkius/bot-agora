@@ -4,3 +4,4 @@ CNAME
 bot-agora-infinityfree.zip
 node_modules/
 .wrangler/
+__pycache__/
